@@ -1,0 +1,196 @@
+﻿/****************首页*****************/
+
+#index {
+    margin-top: 100px;
+    margin-bottom: 200px;
+}
+
+#txtKeyword {
+    font-size: large;
+}
+
+/****************用户登录*****************/
+#login {
+    margin-top: 20px;
+}
+
+    #login legend {
+        font-weight: bold;
+    }
+
+    #login table {
+        width: 350px;
+    }
+
+        #login table td {
+            padding-top: 3px;
+            padding-bottom: 3px;
+        }
+
+#logininput {
+    margin-left: 500px;
+}
+
+.validation {
+    width: 200px;
+    color: #800000;
+    font-weight: bold;
+}
+
+/******************列表********************/
+#listcontent {
+    margin: 5px 5px 50px 5px;
+}
+
+#list table {
+    border-collapse: collapse;
+    border: 2px solid #CCCCCC;
+}
+
+    #list table td {
+        border: 1px solid #CCCCCC;
+    }
+
+    #list table th {
+        margin-left: 5px;
+        margin-right: 5px;
+        height: 40px;
+        background-color: #CCCCFF;
+        font-size: 15px;
+        color: #006666;
+        font-weight: bold;
+    }
+
+        #list table th td {
+            border: 2px solid #CCCCCC;
+        }
+
+.listitem {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#amlist {
+    margin: 10px;
+}
+
+/******************明细********************/
+#detail {
+    padding: 10px;
+    height: 700px;
+}
+
+#deContent {
+    margin-top: 100px;
+    margin-left: 50px;
+    margin-bottom: 30px;
+}
+
+    #deContent table {
+        border-collapse: collapse;
+        border: 2px solid #CCCCCC;
+    }
+
+        #deContent table td {
+            padding: 5px 10px 5px 10px;
+            border: 2px solid #CCCCCC;
+        }
+
+.decol {
+    width: 100px;
+    font-size: 12px;
+    background-color: #5381AC;
+    color: #FFFFFF;
+}
+
+.download a {
+    background-color: #FFFFCC;
+    border: 1px dotted #990000;
+    padding: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #666666;
+}
+
+    .download a:hover {
+        text-decoration: underline;
+    }
+
+.notice_nr p {
+    text-indent: 2em;
+    background-color: aliceblue;
+}
+
+/*列表*/
+.tableheader {
+    background-color: #5381AC;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+    .tableheader th {
+        padding: 6px;
+        border-style: none;
+        font-size: 14px;
+    }
+
+.alternating {
+    background-color: #FFFFFF;
+}
+
+    .alternating td {
+        padding: 4px;
+        border: 1px solid #5381AC;
+    }
+
+.item {
+    background-color: #EFF3FB;
+}
+
+    .item td {
+        padding: 4px;
+        border: 1px solid #5381AC;
+    }
+/*搜索结果*/
+#search_result {
+    margin-left: 50px;
+    margin-right: 50px;
+    height: 100%;
+}
+
+    #search_result a {
+        color: #5381AC;
+    }
+/*快速上手指引*/
+#help {
+    width: 100%;
+    margin-top:20px;
+    margin-bottom: 20px;
+}
+
+.help_title {
+    border-width: 1px;
+    border-color: #999999;
+    padding: 5px;
+    background-color: #CC6600;
+    color: #FFFFFF;
+    font-weight: bold;
+    border-top-style: solid;
+    border-bottom-style: solid;
+}
+
+    .help_title:hover {
+        cursor: pointer;
+    }
+
+.help_detail {
+    padding: 5px;
+    border: 2px solid #CC6600;
+    display: none;
+}
+
+    .help_detail img {
+        border-style: solid;
+        border-width: 1px;
+        width: 500px;
+    }

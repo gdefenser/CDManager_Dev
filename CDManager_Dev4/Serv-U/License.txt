@@ -1,0 +1,99 @@
+-------------------------------------------------------------     
+              SERV-U END USER LICENSE AGREEMENT
+-------------------------------------------------------------
+
+
+LICENSE AGREEMENT
+
+Please read the Master End-User License Agreement below. If you do not
+agree to the terms of this agreement promptly return your distribution
+materials to the place you obtained them for a full refund or delete your
+trial package.
+
+
+RHINO SOFTWARE, INC. END-USER LICENSE AGREEMENT
+
+This End-User License Agreement ("EULA") is a legal agreement between you
+(either an individual or a single entity)("CUSTOMER") and Rhino Software,
+Inc. ("LICENSEE") for the software product "Serv-U", which include(s)
+computer software, "online" or electronic documentation, and may include
+associated media and printed materials ("SOFTWARE PRODUCT").
+
+The LICENSEE has been granted the authority to sub-license the SOFTWARE to
+you the CUSTOMER by Cat Soft ("LICENSOR"). The LICENSOR is an intended
+third-party beneficiary and retains the right to enforce the EULA on its
+own behalf.
+
+By installing, copying, or otherwise using the SOFTWARE PRODUCT, you agree
+to be bound by the terms of this EULA. If you do not agree to the terms of
+this EULA, promptly return the entire unused SOFTWARE PRODUCT, including
+all subscription updates that you may have received as part of the SOFTWARE
+PRODUCT, to the place from which you obtained it for a full refund and/or
+delete all files related to your trial demonstration version of the
+SOFTWARE PRODUCT.
+
+
+RHINO SOFTWARE, INC. SOFTWARE LICENSE
+
+This SOFTWARE PRODUCT is protected by copyright laws and international
+copyright treaties, as well as other intellectual property laws and
+treaties. The SOFTWARE PRODUCT is licensed, not sold. The SOFTWARE PRODUCT
+consists of product documentation, a server application identified here as
+"SERVER", and support files individually identified as "COMPONENT" and
+collectively referred to herein as "SOFTWARE".
+
+GRANT OF LICENSE. Rhino Software, Inc. grants to you as an individual, a
+personal, non-exclusive, non-transferable license to install and execute a
+single instance of the SERVER on a single computer or on multiple computers
+provided that there is no chance of concurrently running two or more
+distinct instances of the SERVER simultaneously. You may install the
+SOFTWARE PRODUCT without the SERVER on multiple computers as long as this
+is solely for communicating with and administrating the SERVER.
+
+TRIAL and REGISTRATION. You are granted the right to use the SOFTWARE
+PRODUCT without registration solely for the purposes of evaluating the
+performance of the SOFTWARE PRODUCT for a period of no more than 30 days.
+If after that time continued use of the SOFTWARE PRODUCT is desired then
+the SOFTWARE PRODUCT must be registered with Rhino Software, Inc. If you 
+are an entity Rhino Software, Inc. grants you the right to appoint an
+individual within your organization to use and administer the SOFTWARE
+subject to the same restrictions enforced on individual users.
+
+COPYRIGHT. All title and copyrights in and to the SOFTWARE PRODUCT are
+owned by Cat Soft, its suppliers, or component vendors. The SOFTWARE
+PRODUCT is protected by copyright laws and international treaty provisions.
+Therefore, you must treat the SOFTWARE PRODUCT like any other copyrighted
+material except that you may make one copy of the SOFTWARE PRODUCT solely
+for backup or archival purposes and install the SOFTWARE PRODUCT on one or
+more computers as limited by and outlined in the grant of license above.
+You may not copy the printed materials accompanying the SOFTWARE PRODUCT.
+
+THIRD PARTY COMPONENT LICENSING TERMS. Third party utilities, application
+programs, and/or components designed to integrate with Serv-U are subject
+to the license terms governing those products.
+
+You may not reverse-engineer, decompile, or disassemble the SOFTWARE
+PRODUCT, except and only to the extent that such activity is expressly
+permitted by applicable law, notwithstanding this limitation.
+
+
+DISCLAIMER OF WARRANTY
+
+NO WARRANTIES. THE SOFTWARE PRODUCT IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+ANY KIND. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, RHINO
+SOFTWARE, INC. AND CAT SOFT DISCLAIMS ALL WARRANTIES, EITHER EXPRESS OR
+IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE AND ANY WARRANTY
+AGAINST INFRINGEMENT, WITH REGARD TO THE SOFTWARE PRODUCT. THIS LIMITED
+WARRANTY GIVES YOU SPECIFIC LEGAL RIGHTS. YOU MAY HAVE OTHERS WHICH VARY
+FROM STATE TO STATE.
+
+CUSTOMER REMEDIES. RHINO SOFTWARE, INC. AND CAT SOFT'S ENTIRE LIABILITY AND
+YOUR EXCLUSIVE REMEDY SHALL NOT EXCEED THE PRICE PAID FOR THE SOFTWARE. NO
+LIABILITY FOR CONSEQUENTIAL DAMAGES. TO THE MAXIMUM EXTENT PERMITTED BY
+APPLICABLE LAW, IN NO EVENT SHALL RHINO SOFTWARE, INC. OR CAT SOFT BE
+LIABLE FOR ANY DAMAGES WHATSOEVER (INCLUDING, WITHOUT LIMITATION, DAMAGES
+FOR LOSS OF BUSINESS PROFITS, BUSINESS INTERRUPTION, LOSS OF BUSINESS
+INFORMATION, OR ANY OTHER PECUNIARY LOSS) ARISING OUT OF THE USE OF OR
+INABILITY TO USE THIS SOFTWARE PRODUCT, EVEN IF RHINO SOFTWARE, INC. OR CAT
+SOFT HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.

@@ -1,0 +1,869 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CDManagerDevModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="CDManagerDevModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="CDManagerDevModel.Store.Admin" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ApplyLog" EntityType="CDManagerDevModel.Store.ApplyLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BanIP" EntityType="CDManagerDevModel.Store.BanIP" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Book" EntityType="CDManagerDevModel.Store.Book" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BookType" EntityType="CDManagerDevModel.Store.BookType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CD" EntityType="CDManagerDevModel.Store.CD" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DownloadLog" EntityType="CDManagerDevModel.Store.DownloadLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Message" EntityType="CDManagerDevModel.Store.Message" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Notice" EntityType="CDManagerDevModel.Store.Notice" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Reader" EntityType="CDManagerDevModel.Store.Reader" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SystemLog" EntityType="CDManagerDevModel.Store.SystemLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UploadLog" EntityType="CDManagerDevModel.Store.UploadLog" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_ApplyLog_Book" Association="CDManagerDevModel.Store.FK_ApplyLog_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="ApplyLog" EntitySet="ApplyLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplyLog_Reader" Association="CDManagerDevModel.Store.FK_ApplyLog_Reader">
+            <End Role="Reader" EntitySet="Reader" />
+            <End Role="ApplyLog" EntitySet="ApplyLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BanIP_Admin" Association="CDManagerDevModel.Store.FK_BanIP_Admin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="BanIP" EntitySet="BanIP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CD_Book" Association="CDManagerDevModel.Store.FK_CD_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="CD" EntitySet="CD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DownloadLog_CD" Association="CDManagerDevModel.Store.FK_DownloadLog_CD">
+            <End Role="CD" EntitySet="CD" />
+            <End Role="DownloadLog" EntitySet="DownloadLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notice_Admin" Association="CDManagerDevModel.Store.FK_Notice_Admin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="Notice" EntitySet="Notice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UploadLog_Admin" Association="CDManagerDevModel.Store.FK_UploadLog_Admin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="UploadLog" EntitySet="UploadLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UploadLog_CD" Association="CDManagerDevModel.Store.FK_UploadLog_CD">
+            <End Role="CD" EntitySet="CD" />
+            <End Role="UploadLog" EntitySet="UploadLog" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="GLYTM" />
+          </Key>
+          <Property Name="GLYTM" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="XM" Type="nvarchar" MaxLength="20" />
+          <Property Name="MM" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="XB" Type="char" MaxLength="2" />
+          <Property Name="YJDW" Type="nvarchar" MaxLength="100" />
+          <Property Name="EJDW" Type="nvarchar" MaxLength="100" />
+          <Property Name="BZRQ" Type="date" />
+          <Property Name="YXRQ" Type="datetime" />
+          <Property Name="YY" Type="nvarchar" MaxLength="400" />
+          <Property Name="GLYLX" Type="int" Nullable="false" />
+          <Property Name="FFSJ" Type="datetime" />
+          <Property Name="FFCZY" Type="nvarchar" MaxLength="15" />
+          <Property Name="YHZT" Type="int" />
+          <Property Name="MAC" Type="nvarchar" MaxLength="50" />
+          <Property Name="SCIP" Type="nvarchar" MaxLength="20" />
+          <Property Name="SCRQ" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ApplyLog">
+          <Key>
+            <PropertyRef Name="SQBH" />
+          </Key>
+          <Property Name="SQBH" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="DZTM" Type="nvarchar" MaxLength="15" />
+          <Property Name="SQSJ" Type="datetime" />
+          <Property Name="SQZT" Type="int" />
+          <Property Name="CLCZY" Type="nvarchar" MaxLength="15" />
+          <Property Name="CLSJ" Type="datetime" />
+          <Property Name="BZ" Type="nvarchar" MaxLength="200" />
+          <Property Name="ISBN" Type="nvarchar" MaxLength="100" />
+          <Property Name="IP" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="BanIP">
+          <Key>
+            <PropertyRef Name="IPTM" />
+          </Key>
+          <Property Name="IPTM" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="JZIP" Type="nvarchar" MaxLength="20" />
+          <Property Name="KSSJ" Type="smalldatetime" />
+          <Property Name="JSSJ" Type="smalldatetime" />
+          <Property Name="JZCZY" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="ISBN" />
+          </Key>
+          <Property Name="ISBN" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="ZTM" Type="nvarchar" MaxLength="200" />
+          <Property Name="DJ" Type="money" />
+          <Property Name="ZRZ" Type="nvarchar" MaxLength="400" />
+          <Property Name="CBS" Type="nvarchar" MaxLength="100" />
+          <Property Name="YEMA" Type="nvarchar" MaxLength="50" />
+          <Property Name="YSBMY" Type="nvarchar" MaxLength="10" />
+          <Property Name="KB" Type="nvarchar" MaxLength="50" />
+          <Property Name="FLTM" Type="nvarchar" MaxLength="50" />
+          <Property Name="FFSJ" Type="datetime" />
+          <Property Name="FFCZY" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="BookType">
+          <Key>
+            <PropertyRef Name="FLTM" />
+          </Key>
+          <Property Name="FLTM" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="FLMC" Type="nvarchar(max)" />
+          <Property Name="FTM" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CD">
+          <Key>
+            <PropertyRef Name="CDID" />
+          </Key>
+          <Property Name="CDID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CDXH" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ISBN" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="CDMC" Type="nvarchar" MaxLength="200" />
+          <Property Name="CDGS" Type="nvarchar" MaxLength="200" />
+          <Property Name="CDDX" Type="float" />
+          <Property Name="CDLJ" Type="nvarchar" MaxLength="400" />
+          <Property Name="ZXZT" Type="int" />
+          <Property Name="CZSJ" Type="datetime" />
+          <Property Name="CZCZY" Type="nvarchar" MaxLength="15" />
+          <Property Name="FFSJ" Type="datetime" />
+          <Property Name="FFCZY" Type="nvarchar" MaxLength="15" />
+          <Property Name="BZ" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="DownloadLog">
+          <Key>
+            <PropertyRef Name="XZBH" />
+          </Key>
+          <Property Name="XZBH" Type="nvarchar" Nullable="false" MaxLength="35" />
+          <Property Name="CZYTM" Type="nvarchar" MaxLength="15" />
+          <Property Name="CDID" Type="bigint" />
+          <Property Name="XZSJ" Type="datetime" />
+          <Property Name="BZ" Type="nvarchar" MaxLength="200" />
+          <Property Name="IP" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="XXTM" />
+          </Key>
+          <Property Name="XXTM" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="YHLX" Type="nvarchar" MaxLength="10" />
+          <Property Name="SXRTM" Type="nvarchar" MaxLength="20" />
+          <Property Name="FSRTM" Type="nvarchar" MaxLength="20" />
+          <Property Name="FSSJ" Type="datetime" />
+          <Property Name="XXNR" Type="nvarchar(max)" />
+          <Property Name="YD" Type="bit" />
+        </EntityType>
+        <EntityType Name="Notice">
+          <Key>
+            <PropertyRef Name="GGTM" />
+          </Key>
+          <Property Name="GGTM" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="GGBT" Type="nvarchar" MaxLength="300" />
+          <Property Name="GGDX" Type="nvarchar" MaxLength="400" />
+          <Property Name="DXLX" Type="nvarchar" MaxLength="10" />
+          <Property Name="GGNR" Type="nvarchar(max)" />
+          <Property Name="LKR" Type="nvarchar" MaxLength="30" />
+          <Property Name="FJ" Type="bit" />
+          <Property Name="LKSJ" Type="datetime" />
+          <Property Name="GLYTM" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Reader">
+          <Key>
+            <PropertyRef Name="DZTM" />
+          </Key>
+          <Property Name="DZTM" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="XM" Type="nvarchar" MaxLength="20" />
+          <Property Name="MM" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="XB" Type="char" MaxLength="2" />
+          <Property Name="YJDW" Type="nvarchar" MaxLength="100" />
+          <Property Name="EJDW" Type="nvarchar" MaxLength="100" />
+          <Property Name="BZRQ" Type="date" />
+          <Property Name="YXRQ" Type="date" />
+          <Property Name="KSSJ" Type="datetime" />
+          <Property Name="JSSJ" Type="datetime" />
+          <Property Name="YY" Type="nvarchar" MaxLength="400" />
+          <Property Name="DZLX" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="DWDM" Type="nvarchar" MaxLength="100" />
+          <Property Name="FFSJ" Type="datetime" />
+          <Property Name="FFCZY" Type="nvarchar" MaxLength="15" />
+          <Property Name="JZCZY" Type="nvarchar" MaxLength="15" />
+          <Property Name="YHZT" Type="int" />
+          <Property Name="SCIP" Type="nvarchar" MaxLength="20" />
+          <Property Name="SCRQ" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SystemLog">
+          <Key>
+            <PropertyRef Name="JLBH" />
+          </Key>
+          <Property Name="JLBH" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="YHTM" Type="nvarchar" MaxLength="15" />
+          <Property Name="SJ" Type="nvarchar(max)" />
+          <Property Name="CZSJ" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UploadLog">
+          <Key>
+            <PropertyRef Name="SCBH" />
+          </Key>
+          <Property Name="SCBH" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="CZYTM" Type="nvarchar" MaxLength="15" />
+          <Property Name="SCSJ" Type="datetime" />
+          <Property Name="BZ" Type="nvarchar" MaxLength="200" />
+          <Property Name="CDID" Type="bigint" />
+          <Property Name="IP" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK_ApplyLog_Book">
+          <End Role="Book" Type="CDManagerDevModel.Store.Book" Multiplicity="0..1" />
+          <End Role="ApplyLog" Type="CDManagerDevModel.Store.ApplyLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="ISBN" />
+            </Principal>
+            <Dependent Role="ApplyLog">
+              <PropertyRef Name="ISBN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplyLog_Reader">
+          <End Role="Reader" Type="CDManagerDevModel.Store.Reader" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ApplyLog" Type="CDManagerDevModel.Store.ApplyLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reader">
+              <PropertyRef Name="DZTM" />
+            </Principal>
+            <Dependent Role="ApplyLog">
+              <PropertyRef Name="DZTM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BanIP_Admin">
+          <End Role="Admin" Type="CDManagerDevModel.Store.Admin" Multiplicity="0..1" />
+          <End Role="BanIP" Type="CDManagerDevModel.Store.BanIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="GLYTM" />
+            </Principal>
+            <Dependent Role="BanIP">
+              <PropertyRef Name="JZCZY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CD_Book">
+          <End Role="Book" Type="CDManagerDevModel.Store.Book" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CD" Type="CDManagerDevModel.Store.CD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="ISBN" />
+            </Principal>
+            <Dependent Role="CD">
+              <PropertyRef Name="ISBN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DownloadLog_CD">
+          <End Role="CD" Type="CDManagerDevModel.Store.CD" Multiplicity="0..1" />
+          <End Role="DownloadLog" Type="CDManagerDevModel.Store.DownloadLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CD">
+              <PropertyRef Name="CDID" />
+            </Principal>
+            <Dependent Role="DownloadLog">
+              <PropertyRef Name="CDID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notice_Admin">
+          <End Role="Admin" Type="CDManagerDevModel.Store.Admin" Multiplicity="0..1" />
+          <End Role="Notice" Type="CDManagerDevModel.Store.Notice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="GLYTM" />
+            </Principal>
+            <Dependent Role="Notice">
+              <PropertyRef Name="GLYTM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UploadLog_Admin">
+          <End Role="Admin" Type="CDManagerDevModel.Store.Admin" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UploadLog" Type="CDManagerDevModel.Store.UploadLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="GLYTM" />
+            </Principal>
+            <Dependent Role="UploadLog">
+              <PropertyRef Name="CZYTM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UploadLog_CD">
+          <End Role="CD" Type="CDManagerDevModel.Store.CD" Multiplicity="0..1" />
+          <End Role="UploadLog" Type="CDManagerDevModel.Store.UploadLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CD">
+              <PropertyRef Name="CDID" />
+            </Principal>
+            <Dependent Role="UploadLog">
+              <PropertyRef Name="CDID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CDManagerDevModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="CDManagerDevEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="CDManagerDevModel.Admin" />
+          <EntitySet Name="ApplyLog" EntityType="CDManagerDevModel.ApplyLog" />
+          <EntitySet Name="BanIP" EntityType="CDManagerDevModel.BanIP" />
+          <EntitySet Name="Book" EntityType="CDManagerDevModel.Book" />
+          <EntitySet Name="BookType" EntityType="CDManagerDevModel.BookType" />
+          <EntitySet Name="CD" EntityType="CDManagerDevModel.CD" />
+          <EntitySet Name="DownloadLog" EntityType="CDManagerDevModel.DownloadLog" />
+          <EntitySet Name="Message" EntityType="CDManagerDevModel.Message" />
+          <EntitySet Name="Notice" EntityType="CDManagerDevModel.Notice" />
+          <EntitySet Name="Reader" EntityType="CDManagerDevModel.Reader" />
+          <EntitySet Name="SystemLog" EntityType="CDManagerDevModel.SystemLog" />
+          <EntitySet Name="UploadLog" EntityType="CDManagerDevModel.UploadLog" />
+          <AssociationSet Name="FK_BanIP_Admin" Association="CDManagerDevModel.FK_BanIP_Admin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="BanIP" EntitySet="BanIP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notice_Admin" Association="CDManagerDevModel.FK_Notice_Admin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="Notice" EntitySet="Notice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UploadLog_Admin" Association="CDManagerDevModel.FK_UploadLog_Admin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="UploadLog" EntitySet="UploadLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplyLog_Book" Association="CDManagerDevModel.FK_ApplyLog_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="ApplyLog" EntitySet="ApplyLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplyLog_Reader" Association="CDManagerDevModel.FK_ApplyLog_Reader">
+            <End Role="Reader" EntitySet="Reader" />
+            <End Role="ApplyLog" EntitySet="ApplyLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CD_Book" Association="CDManagerDevModel.FK_CD_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="CD" EntitySet="CD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DownloadLog_CD" Association="CDManagerDevModel.FK_DownloadLog_CD">
+            <End Role="CD" EntitySet="CD" />
+            <End Role="DownloadLog" EntitySet="DownloadLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UploadLog_CD" Association="CDManagerDevModel.FK_UploadLog_CD">
+            <End Role="CD" EntitySet="CD" />
+            <End Role="UploadLog" EntitySet="UploadLog" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="GLYTM" />
+          </Key>
+          <Property Name="GLYTM" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="XM" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="MM" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="XB" Type="String" MaxLength="2" Unicode="false" FixedLength="true" />
+          <Property Name="YJDW" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="EJDW" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="BZRQ" Type="DateTime" Precision="0" />
+          <Property Name="YXRQ" Type="DateTime" Precision="3" />
+          <Property Name="YY" Type="String" MaxLength="400" Unicode="true" FixedLength="false" />
+          <Property Name="GLYLX" Type="Int32" Nullable="false" />
+          <Property Name="FFSJ" Type="DateTime" Precision="3" />
+          <Property Name="FFCZY" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="YHZT" Type="Int32" />
+          <Property Name="MAC" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SCIP" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="SCRQ" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BanIP" Relationship="CDManagerDevModel.FK_BanIP_Admin" FromRole="Admin" ToRole="BanIP" />
+          <NavigationProperty Name="Notice" Relationship="CDManagerDevModel.FK_Notice_Admin" FromRole="Admin" ToRole="Notice" />
+          <NavigationProperty Name="UploadLog" Relationship="CDManagerDevModel.FK_UploadLog_Admin" FromRole="Admin" ToRole="UploadLog" />
+        </EntityType>
+        <EntityType Name="ApplyLog">
+          <Key>
+            <PropertyRef Name="SQBH" />
+          </Key>
+          <Property Name="SQBH" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="DZTM" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="SQSJ" Type="DateTime" Precision="3" />
+          <Property Name="SQZT" Type="Int32" />
+          <Property Name="CLCZY" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="CLSJ" Type="DateTime" Precision="3" />
+          <Property Name="BZ" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="ISBN" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="IP" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Book" Relationship="CDManagerDevModel.FK_ApplyLog_Book" FromRole="ApplyLog" ToRole="Book" />
+          <NavigationProperty Name="Reader" Relationship="CDManagerDevModel.FK_ApplyLog_Reader" FromRole="ApplyLog" ToRole="Reader" />
+        </EntityType>
+        <EntityType Name="BanIP">
+          <Key>
+            <PropertyRef Name="IPTM" />
+          </Key>
+          <Property Name="IPTM" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="JZIP" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="KSSJ" Type="DateTime" Precision="0" />
+          <Property Name="JSSJ" Type="DateTime" Precision="0" />
+          <Property Name="JZCZY" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Admin" Relationship="CDManagerDevModel.FK_BanIP_Admin" FromRole="BanIP" ToRole="Admin" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="ISBN" />
+          </Key>
+          <Property Name="ISBN" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ZTM" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="DJ" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ZRZ" Type="String" MaxLength="400" Unicode="true" FixedLength="false" />
+          <Property Name="CBS" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="YEMA" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="YSBMY" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="KB" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FLTM" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FFSJ" Type="DateTime" Precision="3" />
+          <Property Name="FFCZY" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ApplyLog" Relationship="CDManagerDevModel.FK_ApplyLog_Book" FromRole="Book" ToRole="ApplyLog" />
+          <NavigationProperty Name="CD" Relationship="CDManagerDevModel.FK_CD_Book" FromRole="Book" ToRole="CD" />
+        </EntityType>
+        <EntityType Name="BookType">
+          <Key>
+            <PropertyRef Name="FLTM" />
+          </Key>
+          <Property Name="FLTM" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FLMC" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="FTM" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="CD">
+          <Key>
+            <PropertyRef Name="CDID" />
+          </Key>
+          <Property Name="CDID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CDXH" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ISBN" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="CDMC" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="CDGS" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="CDDX" Type="Double" />
+          <Property Name="CDLJ" Type="String" MaxLength="400" Unicode="true" FixedLength="false" />
+          <Property Name="ZXZT" Type="Int32" />
+          <Property Name="CZSJ" Type="DateTime" Precision="3" />
+          <Property Name="CZCZY" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="FFSJ" Type="DateTime" Precision="3" />
+          <Property Name="FFCZY" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="BZ" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Book" Relationship="CDManagerDevModel.FK_CD_Book" FromRole="CD" ToRole="Book" />
+          <NavigationProperty Name="DownloadLog" Relationship="CDManagerDevModel.FK_DownloadLog_CD" FromRole="CD" ToRole="DownloadLog" />
+          <NavigationProperty Name="UploadLog" Relationship="CDManagerDevModel.FK_UploadLog_CD" FromRole="CD" ToRole="UploadLog" />
+        </EntityType>
+        <EntityType Name="DownloadLog">
+          <Key>
+            <PropertyRef Name="XZBH" />
+          </Key>
+          <Property Name="XZBH" Type="String" Nullable="false" MaxLength="35" Unicode="true" FixedLength="false" />
+          <Property Name="CZYTM" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="CDID" Type="Int64" />
+          <Property Name="XZSJ" Type="DateTime" Precision="3" />
+          <Property Name="BZ" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="IP" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="CD" Relationship="CDManagerDevModel.FK_DownloadLog_CD" FromRole="DownloadLog" ToRole="CD" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="XXTM" />
+          </Key>
+          <Property Name="XXTM" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="YHLX" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="SXRTM" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="FSRTM" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="FSSJ" Type="DateTime" Precision="3" />
+          <Property Name="XXNR" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="YD" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Notice">
+          <Key>
+            <PropertyRef Name="GGTM" />
+          </Key>
+          <Property Name="GGTM" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="GGBT" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="GGDX" Type="String" MaxLength="400" Unicode="true" FixedLength="false" />
+          <Property Name="DXLX" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="GGNR" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="LKR" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="FJ" Type="Boolean" />
+          <Property Name="LKSJ" Type="DateTime" Precision="3" />
+          <Property Name="GLYTM" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Admin" Relationship="CDManagerDevModel.FK_Notice_Admin" FromRole="Notice" ToRole="Admin" />
+        </EntityType>
+        <EntityType Name="Reader">
+          <Key>
+            <PropertyRef Name="DZTM" />
+          </Key>
+          <Property Name="DZTM" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="XM" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="MM" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="XB" Type="String" MaxLength="2" Unicode="false" FixedLength="true" />
+          <Property Name="YJDW" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="EJDW" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="BZRQ" Type="DateTime" Precision="0" />
+          <Property Name="YXRQ" Type="DateTime" Precision="0" />
+          <Property Name="KSSJ" Type="DateTime" Precision="3" />
+          <Property Name="JSSJ" Type="DateTime" Precision="3" />
+          <Property Name="YY" Type="String" MaxLength="400" Unicode="true" FixedLength="false" />
+          <Property Name="DZLX" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="DWDM" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="FFSJ" Type="DateTime" Precision="3" />
+          <Property Name="FFCZY" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="JZCZY" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="YHZT" Type="Int32" />
+          <Property Name="SCIP" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="SCRQ" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ApplyLog" Relationship="CDManagerDevModel.FK_ApplyLog_Reader" FromRole="Reader" ToRole="ApplyLog" />
+        </EntityType>
+        <EntityType Name="SystemLog">
+          <Key>
+            <PropertyRef Name="JLBH" />
+          </Key>
+          <Property Name="JLBH" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="YHTM" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="SJ" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CZSJ" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UploadLog">
+          <Key>
+            <PropertyRef Name="SCBH" />
+          </Key>
+          <Property Name="SCBH" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="CZYTM" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="SCSJ" Type="DateTime" Precision="3" />
+          <Property Name="BZ" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="CDID" Type="Int64" />
+          <Property Name="IP" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Admin" Relationship="CDManagerDevModel.FK_UploadLog_Admin" FromRole="UploadLog" ToRole="Admin" />
+          <NavigationProperty Name="CD" Relationship="CDManagerDevModel.FK_UploadLog_CD" FromRole="UploadLog" ToRole="CD" />
+        </EntityType>
+        <Association Name="FK_BanIP_Admin">
+          <End Role="Admin" Type="CDManagerDevModel.Admin" Multiplicity="0..1" />
+          <End Role="BanIP" Type="CDManagerDevModel.BanIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="GLYTM" />
+            </Principal>
+            <Dependent Role="BanIP">
+              <PropertyRef Name="JZCZY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notice_Admin">
+          <End Role="Admin" Type="CDManagerDevModel.Admin" Multiplicity="0..1" />
+          <End Role="Notice" Type="CDManagerDevModel.Notice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="GLYTM" />
+            </Principal>
+            <Dependent Role="Notice">
+              <PropertyRef Name="GLYTM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UploadLog_Admin">
+          <End Role="Admin" Type="CDManagerDevModel.Admin" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UploadLog" Type="CDManagerDevModel.UploadLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="GLYTM" />
+            </Principal>
+            <Dependent Role="UploadLog">
+              <PropertyRef Name="CZYTM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplyLog_Book">
+          <End Role="Book" Type="CDManagerDevModel.Book" Multiplicity="0..1" />
+          <End Role="ApplyLog" Type="CDManagerDevModel.ApplyLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="ISBN" />
+            </Principal>
+            <Dependent Role="ApplyLog">
+              <PropertyRef Name="ISBN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplyLog_Reader">
+          <End Role="Reader" Type="CDManagerDevModel.Reader" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ApplyLog" Type="CDManagerDevModel.ApplyLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reader">
+              <PropertyRef Name="DZTM" />
+            </Principal>
+            <Dependent Role="ApplyLog">
+              <PropertyRef Name="DZTM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CD_Book">
+          <End Role="Book" Type="CDManagerDevModel.Book" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CD" Type="CDManagerDevModel.CD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="ISBN" />
+            </Principal>
+            <Dependent Role="CD">
+              <PropertyRef Name="ISBN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DownloadLog_CD">
+          <End Role="CD" Type="CDManagerDevModel.CD" Multiplicity="0..1" />
+          <End Role="DownloadLog" Type="CDManagerDevModel.DownloadLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CD">
+              <PropertyRef Name="CDID" />
+            </Principal>
+            <Dependent Role="DownloadLog">
+              <PropertyRef Name="CDID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UploadLog_CD">
+          <End Role="CD" Type="CDManagerDevModel.CD" Multiplicity="0..1" />
+          <End Role="UploadLog" Type="CDManagerDevModel.UploadLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CD">
+              <PropertyRef Name="CDID" />
+            </Principal>
+            <Dependent Role="UploadLog">
+              <PropertyRef Name="CDID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CDManagerDevModelStoreContainer" CdmEntityContainer="CDManagerDevEntities">
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="CDManagerDevModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="GLYTM" ColumnName="GLYTM" />
+                <ScalarProperty Name="XM" ColumnName="XM" />
+                <ScalarProperty Name="MM" ColumnName="MM" />
+                <ScalarProperty Name="XB" ColumnName="XB" />
+                <ScalarProperty Name="YJDW" ColumnName="YJDW" />
+                <ScalarProperty Name="EJDW" ColumnName="EJDW" />
+                <ScalarProperty Name="BZRQ" ColumnName="BZRQ" />
+                <ScalarProperty Name="YXRQ" ColumnName="YXRQ" />
+                <ScalarProperty Name="YY" ColumnName="YY" />
+                <ScalarProperty Name="GLYLX" ColumnName="GLYLX" />
+                <ScalarProperty Name="FFSJ" ColumnName="FFSJ" />
+                <ScalarProperty Name="FFCZY" ColumnName="FFCZY" />
+                <ScalarProperty Name="YHZT" ColumnName="YHZT" />
+                <ScalarProperty Name="MAC" ColumnName="MAC" />
+                <ScalarProperty Name="SCIP" ColumnName="SCIP" />
+                <ScalarProperty Name="SCRQ" ColumnName="SCRQ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplyLog">
+            <EntityTypeMapping TypeName="CDManagerDevModel.ApplyLog">
+              <MappingFragment StoreEntitySet="ApplyLog">
+                <ScalarProperty Name="SQBH" ColumnName="SQBH" />
+                <ScalarProperty Name="DZTM" ColumnName="DZTM" />
+                <ScalarProperty Name="SQSJ" ColumnName="SQSJ" />
+                <ScalarProperty Name="SQZT" ColumnName="SQZT" />
+                <ScalarProperty Name="CLCZY" ColumnName="CLCZY" />
+                <ScalarProperty Name="CLSJ" ColumnName="CLSJ" />
+                <ScalarProperty Name="BZ" ColumnName="BZ" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BanIP">
+            <EntityTypeMapping TypeName="CDManagerDevModel.BanIP">
+              <MappingFragment StoreEntitySet="BanIP">
+                <ScalarProperty Name="IPTM" ColumnName="IPTM" />
+                <ScalarProperty Name="JZIP" ColumnName="JZIP" />
+                <ScalarProperty Name="KSSJ" ColumnName="KSSJ" />
+                <ScalarProperty Name="JSSJ" ColumnName="JSSJ" />
+                <ScalarProperty Name="JZCZY" ColumnName="JZCZY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Book">
+            <EntityTypeMapping TypeName="CDManagerDevModel.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="ZTM" ColumnName="ZTM" />
+                <ScalarProperty Name="DJ" ColumnName="DJ" />
+                <ScalarProperty Name="ZRZ" ColumnName="ZRZ" />
+                <ScalarProperty Name="CBS" ColumnName="CBS" />
+                <ScalarProperty Name="YEMA" ColumnName="YEMA" />
+                <ScalarProperty Name="YSBMY" ColumnName="YSBMY" />
+                <ScalarProperty Name="KB" ColumnName="KB" />
+                <ScalarProperty Name="FLTM" ColumnName="FLTM" />
+                <ScalarProperty Name="FFSJ" ColumnName="FFSJ" />
+                <ScalarProperty Name="FFCZY" ColumnName="FFCZY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookType">
+            <EntityTypeMapping TypeName="CDManagerDevModel.BookType">
+              <MappingFragment StoreEntitySet="BookType">
+                <ScalarProperty Name="FLTM" ColumnName="FLTM" />
+                <ScalarProperty Name="FLMC" ColumnName="FLMC" />
+                <ScalarProperty Name="FTM" ColumnName="FTM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CD">
+            <EntityTypeMapping TypeName="CDManagerDevModel.CD">
+              <MappingFragment StoreEntitySet="CD">
+                <ScalarProperty Name="CDID" ColumnName="CDID" />
+                <ScalarProperty Name="CDXH" ColumnName="CDXH" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="CDMC" ColumnName="CDMC" />
+                <ScalarProperty Name="CDGS" ColumnName="CDGS" />
+                <ScalarProperty Name="CDDX" ColumnName="CDDX" />
+                <ScalarProperty Name="CDLJ" ColumnName="CDLJ" />
+                <ScalarProperty Name="ZXZT" ColumnName="ZXZT" />
+                <ScalarProperty Name="CZSJ" ColumnName="CZSJ" />
+                <ScalarProperty Name="CZCZY" ColumnName="CZCZY" />
+                <ScalarProperty Name="FFSJ" ColumnName="FFSJ" />
+                <ScalarProperty Name="FFCZY" ColumnName="FFCZY" />
+                <ScalarProperty Name="BZ" ColumnName="BZ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DownloadLog">
+            <EntityTypeMapping TypeName="CDManagerDevModel.DownloadLog">
+              <MappingFragment StoreEntitySet="DownloadLog">
+                <ScalarProperty Name="XZBH" ColumnName="XZBH" />
+                <ScalarProperty Name="CZYTM" ColumnName="CZYTM" />
+                <ScalarProperty Name="CDID" ColumnName="CDID" />
+                <ScalarProperty Name="XZSJ" ColumnName="XZSJ" />
+                <ScalarProperty Name="BZ" ColumnName="BZ" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Message">
+            <EntityTypeMapping TypeName="CDManagerDevModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="XXTM" ColumnName="XXTM" />
+                <ScalarProperty Name="YHLX" ColumnName="YHLX" />
+                <ScalarProperty Name="SXRTM" ColumnName="SXRTM" />
+                <ScalarProperty Name="FSRTM" ColumnName="FSRTM" />
+                <ScalarProperty Name="FSSJ" ColumnName="FSSJ" />
+                <ScalarProperty Name="XXNR" ColumnName="XXNR" />
+                <ScalarProperty Name="YD" ColumnName="YD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notice">
+            <EntityTypeMapping TypeName="CDManagerDevModel.Notice">
+              <MappingFragment StoreEntitySet="Notice">
+                <ScalarProperty Name="GGTM" ColumnName="GGTM" />
+                <ScalarProperty Name="GGBT" ColumnName="GGBT" />
+                <ScalarProperty Name="GGDX" ColumnName="GGDX" />
+                <ScalarProperty Name="DXLX" ColumnName="DXLX" />
+                <ScalarProperty Name="GGNR" ColumnName="GGNR" />
+                <ScalarProperty Name="LKR" ColumnName="LKR" />
+                <ScalarProperty Name="FJ" ColumnName="FJ" />
+                <ScalarProperty Name="LKSJ" ColumnName="LKSJ" />
+                <ScalarProperty Name="GLYTM" ColumnName="GLYTM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reader">
+            <EntityTypeMapping TypeName="CDManagerDevModel.Reader">
+              <MappingFragment StoreEntitySet="Reader">
+                <ScalarProperty Name="DZTM" ColumnName="DZTM" />
+                <ScalarProperty Name="XM" ColumnName="XM" />
+                <ScalarProperty Name="MM" ColumnName="MM" />
+                <ScalarProperty Name="XB" ColumnName="XB" />
+                <ScalarProperty Name="YJDW" ColumnName="YJDW" />
+                <ScalarProperty Name="EJDW" ColumnName="EJDW" />
+                <ScalarProperty Name="BZRQ" ColumnName="BZRQ" />
+                <ScalarProperty Name="YXRQ" ColumnName="YXRQ" />
+                <ScalarProperty Name="KSSJ" ColumnName="KSSJ" />
+                <ScalarProperty Name="JSSJ" ColumnName="JSSJ" />
+                <ScalarProperty Name="YY" ColumnName="YY" />
+                <ScalarProperty Name="DZLX" ColumnName="DZLX" />
+                <ScalarProperty Name="DWDM" ColumnName="DWDM" />
+                <ScalarProperty Name="FFSJ" ColumnName="FFSJ" />
+                <ScalarProperty Name="FFCZY" ColumnName="FFCZY" />
+                <ScalarProperty Name="JZCZY" ColumnName="JZCZY" />
+                <ScalarProperty Name="YHZT" ColumnName="YHZT" />
+                <ScalarProperty Name="SCIP" ColumnName="SCIP" />
+                <ScalarProperty Name="SCRQ" ColumnName="SCRQ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemLog">
+            <EntityTypeMapping TypeName="CDManagerDevModel.SystemLog">
+              <MappingFragment StoreEntitySet="SystemLog">
+                <ScalarProperty Name="JLBH" ColumnName="JLBH" />
+                <ScalarProperty Name="YHTM" ColumnName="YHTM" />
+                <ScalarProperty Name="SJ" ColumnName="SJ" />
+                <ScalarProperty Name="CZSJ" ColumnName="CZSJ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UploadLog">
+            <EntityTypeMapping TypeName="CDManagerDevModel.UploadLog">
+              <MappingFragment StoreEntitySet="UploadLog">
+                <ScalarProperty Name="SCBH" ColumnName="SCBH" />
+                <ScalarProperty Name="CZYTM" ColumnName="CZYTM" />
+                <ScalarProperty Name="SCSJ" ColumnName="SCSJ" />
+                <ScalarProperty Name="BZ" ColumnName="BZ" />
+                <ScalarProperty Name="CDID" ColumnName="CDID" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,45 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Resources/Masters/Front.Master" AutoEventWireup="true"
+    CodeBehind="Profile.master.cs" Inherits="CDManager_Dev4.Resources.Masters.Profile" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+<asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <div id="ac">
+        <div id="acHeader">
+            <div id="acTitle">
+                <center>
+                    用户信息管理</center>
+            </div>
+            <div id="acHead">
+            </div>
+        </div>
+        <div id="acLeft">
+            <ul>
+                <li>
+                    <center>
+                        <asp:HyperLink ID="linkMyApply" runat="server" NavigateUrl="~/Account/Profile/MyApply.aspx">我的申请</asp:HyperLink>
+                    </center>
+                </li>
+                <li>
+                    <center>
+                        <asp:HyperLink ID="linkMyDownload" runat="server" NavigateUrl="~/Account/Profile/MyDownload.aspx">我的下载</asp:HyperLink>
+                    </center>
+                </li>
+                <li>
+                    <center>
+                        <asp:HyperLink ID="linkUpdatePassword" runat="server" NavigateUrl="~/Account/Profile/UpdatePassword.aspx">修改密码</asp:HyperLink>
+                    </center>
+                </li>
+                <li>
+                    <center>
+                        <asp:HyperLink ID="linkMessage" runat="server" NavigateUrl="~/Account/Profile/MyMessage.aspx">我的消息箱</asp:HyperLink>
+                    </center>
+                </li>
+            </ul>
+        </div>
+        <div id="acMain">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </div>
+    </div>
+</asp:Content>

@@ -1,0 +1,224 @@
+﻿html {
+    height: 100%;
+}
+
+body {
+    font-size: .75em;
+    font-family: Microsoft YaHei, Arial, Verdana, Helvetica, Sans-Serif;
+    color: #696969;
+    height: 100%;
+    background-color: #EEF2FB;
+    scrollbar-arrow-color: #f4ae21;
+    scrollbar-face-color: #5381AC;
+    scrollbar-3dlight-color: #666;
+    scrollbar-highlight-color: #666;
+    scrollbar-shadow-color: #999;
+    scrollbar-darkshadow-color: #5381AC;
+    scrollbar-track-color: #0779D6;
+}
+
+
+
+.page {
+    width: 100%;
+    height: 98%;
+    background-color: #FFFFFF;
+}
+
+/*顶部标题栏*/
+#maintitle {
+    padding: 8px 60px 8px 60px;
+    /*border: 2px dotted #808080;*/
+    width: 70px;
+    font-size: medium;
+    background-image: url("../images/logininputbg.png");
+}
+
+    #maintitle a {
+        text-decoration: none;
+        color: #000000;
+        font-weight: bold;
+    }
+
+#header {
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+#title {
+    width: 480px;
+}
+
+#login_manager {
+    float: right;
+    margin-top: -20px;
+    margin-right: 12px;
+}
+
+/*菜单栏*/
+#leftmenu  {
+     vertical-align: top;
+}
+#leftmenu a {
+    color: #696969;
+    text-decoration: none;
+}
+
+    #leftmenu a:hover {
+        text-decoration: underline;
+    }
+
+/*主内容*/
+#main {
+    background-color: #EEF2FB;
+    height: 100%;
+    padding-top: 10px;
+    padding-right: 15px;
+}
+
+/*顶部导航栏*/
+#headmenu {
+    background-image: url("../images/top.gif");
+    height: 35px;
+    /*margin-left: 178px;
+    margin-top: -34px;*/
+}
+
+    #headmenu table {
+        padding-top: 2px;
+        padding-left: 5px;
+        padding-bottom: 2px;
+        height: 100%;
+    }
+
+        #headmenu table td {
+            border-width: 1px;
+            border-color: #C0C0C0;
+            padding: 3px;
+            border-right-style: solid;
+            color: #CC0000;
+            font-size: small;
+            border-left-style: solid;
+        }
+
+            #headmenu table td a {
+                text-decoration: none;
+                color: #FFFFFF;
+                font-size: medium;
+            }
+
+                #headmenu table td a:hover {
+                    text-decoration: underline;
+                    color: #000000;
+                    cursor: pointer;
+                    background-color: #FF9900;
+                    font-weight: bold;
+                }
+
+/*站点导航*/
+#notice {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+    #notice a {
+        text-decoration: none;
+    }
+
+        #notice a:hover {
+            color: #777777;
+        }
+
+#title_clock {
+    float: right;
+    margin-top: -28px;
+    margin-left: 50px;
+    padding-right: 5px;
+}
+
+/*左侧菜单*/
+#menu {
+    width: 100%;
+    height: 750px;
+    overflow:scroll;
+    overflow-x:hidden;
+}
+/*左部布局*/
+.leftmenu_title {
+    background-image: url("../images/menu_bgs.gif");
+    background-repeat: no-repeat;
+    color: #000000;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    text-decoration: none;
+    width: 182px;
+}
+
+.leftmenu_item {
+    width: 100%;
+    display: none;
+}
+
+    .leftmenu_item ul {
+        margin: 0 0 0 -40px;
+    }
+
+    .leftmenu_item li {
+        background-image: url("../images/menu_bg1.gif");
+        background-repeat: no-repeat;
+        color: #333333;
+        display: block;
+        font-family: Arial,Helvetica,sans-serif;
+        font-size: 12px;
+        height: 26px;
+        line-height: 26px;
+        margin: 0;
+        overflow: hidden;
+        padding: 0;
+        text-align: center;
+        text-decoration: none;
+    }
+
+/*内容页*/
+#content {
+    vertical-align: top;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    height: 100%;
+    width: 100%;
+}
+
+/*底部信息栏*/
+#footer {
+    background-image: url("../images/top.gif");
+    padding-bottom: 10px;
+}
+
+#msg {
+    color: #FFFFFF;
+    margin-top: 5px;
+    height: 40px;
+}
+
+#back {
+    float: right;
+}
+
+/*new*/
+.divider {
+    background-image: url("../images/menu_topline.gif");
+    width: 182px;
+    height: 5px;
+}
+
+hr {
+    margin: 0;
+    border-color: #DCDCDC;
+    border-width: 1px;
+    border-style: solid;
+}

@@ -1,0 +1,7 @@
+Tue 09Oct12 13:36:46 - Serv-U FTP Server v6.0 - (6.0.0.2) - Copyright (c) 1995-2005 Cat Soft, All Rights Reserved - by Rob Beckers
+Tue 09Oct12 13:36:46 - Cat Soft is an affiliate of Rhino Software, Inc.
+Tue 09Oct12 13:36:46 - Using WinSock 2.0 - max. 32767 sockets
+Tue 09Oct12 13:36:47 - PROBLEM: Unable to load the SSL/TLS libraries (SSLEAY32.DLL and LIBEAY32.DLL) - No SSL support
+Tue 09Oct12 13:36:47 - FTP Server listening on port number 21, IP 172.16.137.100, 127.0.0.1
+Tue 09Oct12 13:36:47 - FTP Server listening on port number 5460, IP 127.0.0.1
+Tue 09Oct12 13:36:47 - Valid registration key found

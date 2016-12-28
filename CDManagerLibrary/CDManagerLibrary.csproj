@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{21B6E2DD-6E70-4188-B83D-28FE2ACF5520}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CDManagerLibrary</RootNamespace>
+    <AssemblyName>CDManagerLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EntityFramework\Admin.cs">
+      <DependentUpon>CDManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\ApplyLog.cs">
+      <DependentUpon>CDManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\BanIP.cs">
+      <DependentUpon>CDManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Book.cs">
+      <DependentUpon>CDManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\BookType.cs">
+      <DependentUpon>CDManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\CD.cs">
+      <DependentUpon>CDManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\CDManager.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CDManager.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\CDManager.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CDManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\CDManager.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CDManager.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\CDManagerEntitiesSingleton.cs" />
+    <Compile Include="EntityFramework\DownloadLog.cs">
+      <DependentUpon>CDManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Message.cs">
+      <DependentUpon>CDManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Notice.cs">
+      <DependentUpon>CDManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Reader.cs">
+      <DependentUpon>CDManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\SystemLog.cs">
+      <DependentUpon>CDManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\UploadLog.cs">
+      <DependentUpon>CDManager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Excel\ExcelHelper.cs" />
+    <Compile Include="FTP\Serv-uAdvCon\Serv-UControl.cs" />
+    <Compile Include="FTP\Serv-uControl\FtpUserInfo.cs" />
+    <Compile Include="FTP\Serv-uControl\iniControl.cs" />
+    <Compile Include="FTP\Serv-uControl\PropertyControl.cs" />
+    <Compile Include="Core\Login\UserAuthentication.cs" />
+    <Compile Include="Core\CDPages.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Core\CDString.cs" />
+    <Compile Include="XML\XMLHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="EntityFramework\CDManager.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CDManager.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EntityFramework\CDManager.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CDManager.edmx</DependentUpon>
+      <LastGenOutput>CDManager.Context.cs</LastGenOutput>
+    </None>
+    <None Include="EntityFramework\CDManager.edmx.diagram">
+      <DependentUpon>CDManager.edmx</DependentUpon>
+    </None>
+    <None Include="EntityFramework\CDManager.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CDManager.edmx</DependentUpon>
+      <LastGenOutput>CDManager.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

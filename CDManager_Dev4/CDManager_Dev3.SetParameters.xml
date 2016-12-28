@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="Default Web Site/CDManager_Dev3_deploy" />
+  <setParameter name="ApplicationServices-Web.config Connection String" value="Data Source=Lovesha;Initial Catalog=CDManagerDev;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework" />
+  <setParameter name="CDManagerDevEntities-Web.config Connection String" value="metadata=res://*/EntityFramework.CDManager.csdl|res://*/EntityFramework.CDManager.ssdl|res://*/EntityFramework.CDManager.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=LOVESHA-PC;Initial Catalog=CDManagerDev;Integrated Security=True&quot;" />
+</parameters>

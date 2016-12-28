@@ -1,0 +1,77 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Resources/Masters/Front.Master" AutoEventWireup="true"
+    CodeBehind="NoticeShower.master.cs" Inherits="CDManager_Dev4.Resources.Masters.NoticeShower" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+    <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <table width="100%" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="25%" align="center" style="border-color: #5381AC; border-width: 2px; padding: 5px; vertical-align: top; border-right-style: groove; height: 100%">
+                <table style="height: 100%; width: 100%;">
+                    <tr style="background-color: #5381AC; color: #FFFFFF;">
+                        <th>新闻动态
+                        </th>
+                    </tr>
+                    <tr>
+                        <td align="left" style="border: 1px solid #5381AC; height: 200px; vertical-align: top">
+                            <marquee direction="up" scrollamount="1" onmouseover="this.stop()" onmouseout="this.start()"
+                                style="height: 100%; width: 100%;">
+                            <ul class="notice_link">
+                            <asp:Panel ID="panelNotice" runat="server"></asp:Panel>                        
+                            </ul></marquee>
+                        </td>
+                    </tr>
+                    <tr style="background-color: #5381AC; color: #FFFFFF;">
+                        <th>使用教程
+                        </th>
+                    </tr>
+                    <tr>
+                        <td align="left" style="border: 1px solid #5381AC; height: 200px; vertical-align: top">
+                            <ul class="notice_link">
+                                <asp:Panel ID="panelUsing" runat="server"></asp:Panel>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr style="background-color: #5381AC; color: #FFFFFF;">
+                        <th>使用者信息
+                        </th>
+                    </tr>
+                    <tr>
+                        <td align="left" style="border: 1px solid #5381AC; height: 200px; vertical-align: top">
+                            <table>
+                                <tr>
+                                    <th>访问IP:</th>
+                                    <td>
+                                        <asp:Label ID="lblIP" runat="server"></asp:Label></td>
+                                </tr>
+                                <tr>
+                                    <th>访问浏览器:</th>
+                                    <td>
+                                        <asp:Label ID="lblBrowser" runat="server"></asp:Label></td>
+                                </tr>
+                                <tr>
+                                    <th>是否已登录:</th>
+                                    <td>
+                                        <asp:Label ID="lblLogin" runat="server" Text="未登录" ForeColor="Red" Font-Bold="true"></asp:Label></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <div id="link">
+                    <asp:DropDownList ID="dropLink" runat="server" Width="90%" AutoPostBack="True" OnSelectedIndexChanged="dropLink_SelectedIndexChanged">
+                        <asp:ListItem>=快速链接=</asp:ListItem>
+                        <asp:ListItem>华软首页</asp:ListItem>
+                        <asp:ListItem>图书馆</asp:ListItem>
+                        <asp:ListItem>MySISE</asp:ListItem>
+                        <asp:ListItem>MySCSE</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+            </td>
+            <td style="vertical-align: top;">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </td>
+        </tr>
+    </table>
+</asp:Content>

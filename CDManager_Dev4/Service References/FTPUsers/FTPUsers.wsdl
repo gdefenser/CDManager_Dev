@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Admin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="glytm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="mm" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AdminResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AdminResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMaxUser">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMaxUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMaxUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetMaxUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="new_max" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetMaxUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetMaxUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePasswd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="glytm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="mm" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePasswdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdatePasswdResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NewUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="glytm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="mm" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NewUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="NewUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="glytm" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AdminSoapIn">
+    <wsdl:part name="parameters" element="tns:Admin" />
+  </wsdl:message>
+  <wsdl:message name="AdminSoapOut">
+    <wsdl:part name="parameters" element="tns:AdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMaxUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMaxUser" />
+  </wsdl:message>
+  <wsdl:message name="GetMaxUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMaxUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetMaxUserSoapIn">
+    <wsdl:part name="parameters" element="tns:SetMaxUser" />
+  </wsdl:message>
+  <wsdl:message name="SetMaxUserSoapOut">
+    <wsdl:part name="parameters" element="tns:SetMaxUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePasswdSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdatePasswd" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePasswdSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdatePasswdResponse" />
+  </wsdl:message>
+  <wsdl:message name="NewUserSoapIn">
+    <wsdl:part name="parameters" element="tns:NewUser" />
+  </wsdl:message>
+  <wsdl:message name="NewUserSoapOut">
+    <wsdl:part name="parameters" element="tns:NewUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUserSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUserSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:portType name="FTPUsersSoap">
+    <wsdl:operation name="Admin">
+      <wsdl:input message="tns:AdminSoapIn" />
+      <wsdl:output message="tns:AdminSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMaxUser">
+      <wsdl:input message="tns:GetMaxUserSoapIn" />
+      <wsdl:output message="tns:GetMaxUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetMaxUser">
+      <wsdl:input message="tns:SetMaxUserSoapIn" />
+      <wsdl:output message="tns:SetMaxUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePasswd">
+      <wsdl:input message="tns:UpdatePasswdSoapIn" />
+      <wsdl:output message="tns:UpdatePasswdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NewUser">
+      <wsdl:input message="tns:NewUserSoapIn" />
+      <wsdl:output message="tns:NewUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input message="tns:DeleteUserSoapIn" />
+      <wsdl:output message="tns:DeleteUserSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FTPUsersSoap" type="tns:FTPUsersSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Admin">
+      <soap:operation soapAction="http://tempuri.org/Admin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMaxUser">
+      <soap:operation soapAction="http://tempuri.org/GetMaxUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetMaxUser">
+      <soap:operation soapAction="http://tempuri.org/SetMaxUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePasswd">
+      <soap:operation soapAction="http://tempuri.org/UpdatePasswd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewUser">
+      <soap:operation soapAction="http://tempuri.org/NewUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://tempuri.org/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FTPUsersSoap12" type="tns:FTPUsersSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Admin">
+      <soap12:operation soapAction="http://tempuri.org/Admin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMaxUser">
+      <soap12:operation soapAction="http://tempuri.org/GetMaxUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetMaxUser">
+      <soap12:operation soapAction="http://tempuri.org/SetMaxUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePasswd">
+      <soap12:operation soapAction="http://tempuri.org/UpdatePasswd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewUser">
+      <soap12:operation soapAction="http://tempuri.org/NewUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap12:operation soapAction="http://tempuri.org/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FTPUsers">
+    <wsdl:port name="FTPUsersSoap" binding="tns:FTPUsersSoap">
+      <soap:address location="http://172.16.4.190/User/FTPUsers.asmx" />
+    </wsdl:port>
+    <wsdl:port name="FTPUsersSoap12" binding="tns:FTPUsersSoap12">
+      <soap12:address location="http://172.16.4.190/User/FTPUsers.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

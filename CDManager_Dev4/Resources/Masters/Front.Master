@@ -1,0 +1,97 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Front.master.cs" Inherits="CDManager_Dev4.Resources.Masters.Front" %>
+
+<%@ Register Src="../UserControl/LoginFront.ascx" TagName="LoginFront" TagPrefix="uc1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <p>
+    </p>
+    <link href="<%=ResolveClientUrl("~/Resources/Styles/FrontMaster.css")%>" rel="stylesheet" type="text/css" />
+    <link href="<%=ResolveClientUrl("~/Resources/Styles/Front.css")%>" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="<%=ResolveClientUrl("~/Resources/Scripts/jquery-1.8.0.min.js")%>"></script>
+    <script type="text/javascript" src="<%=ResolveClientUrl("~/Resources/Scripts/clock.js")%>"></script>
+    <script type="text/javascript" src="<%=ResolveClientUrl("~/Resources/Scripts/help_menu.js")%>"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager" runat="server">
+        </asp:ScriptManager>
+        <asp:UpdatePanel ID="upFornt" runat="server">
+            <ContentTemplate>
+                <table class="page">
+                    <tr>
+                        <td id="header">
+                            <div class="title">
+                                <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"
+                                    width="380" height="70" style="padding-left: 10px">
+                                    <param name="movie" value="<%=ResolveClientUrl("~/Resources/Images/logo.swf")%>">
+                                    <param name="quality" value="high">
+                                    <param name="scale" value="exactfit">
+                                    <embed src="<%=ResolveClientUrl("~/Resources/Images/logo.swf")%>" width="380" height="70"
+                                        quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash"
+                                        scale="exactfit"></embed>
+                                </object>
+                                <img id="Img1" runat="server" src="../Images/text.png" />
+                            </div>
+                            <div id="login_manager">
+                                <uc1:LoginFront ID="LoginFront" runat="server" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="headmenu">
+                            <div>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <asp:HyperLink ID="linkIndex" runat="server" NavigateUrl="~/Index.aspx">首页</asp:HyperLink>
+                                        </td>
+                                        <td>
+                                            <asp:HyperLink ID="linkHot" runat="server" NavigateUrl="~/Hot.aspx">热门下载</asp:HyperLink>
+                                        </td>
+                                        <td>
+                                            <asp:HyperLink ID="linkOnline" runat="server" NavigateUrl="~/Online.aspx">在线资源目录</asp:HyperLink>
+                                        </td>
+                                        <td>
+                                            <asp:HyperLink ID="linkIndexFill" runat="server" NavigateUrl="~/IndexFill.aspx">图书分类目录</asp:HyperLink>
+                                        </td>
+                                        <td>
+                                            <asp:HyperLink ID="linkHelp" runat="server" NavigateUrl="~/Help.aspx" Font-Bold="True">快速上手指引</asp:HyperLink>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div id="title_clock" style="color: #FFFFFF;">
+                                    <span id="clock_show"></span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td id="content">
+                            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td id="footer">
+                            <div id="msg">
+                                <div style="padding-top: 12px; padding-left: 5px">
+                                    为了您有更好的使用体验,建议使用IE/傲游/世界之窗/搜狗/TT等浏览器浏览此站点
+                                </div>
+                                <div style="float: right; margin-top: -20px;">
+                                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;© 广州大学华软软件学院图书馆<br />
+                                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;技术支持:软件工程系
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </form>
+</body>
+</html>

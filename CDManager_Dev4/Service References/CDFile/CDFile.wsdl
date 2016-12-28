@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="glytm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="isbn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ztm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cdxh" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFileResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="glytm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="isbn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ztm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cdxh" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RemoveFileResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadConfirm">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="glytm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="isbn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ztm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cdxh" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadConfirmResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UploadConfirmResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateFileName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="isbn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ztm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cdxh" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cdmc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateFileNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateFileNameResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="isbn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ztm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cdxh" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFileNameResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetFileSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFile" />
+  </wsdl:message>
+  <wsdl:message name="GetFileSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveFileSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveFile" />
+  </wsdl:message>
+  <wsdl:message name="RemoveFileSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadConfirmSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadConfirm" />
+  </wsdl:message>
+  <wsdl:message name="UploadConfirmSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadConfirmResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFileNameSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateFileName" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFileNameSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateFileNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFileNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFileName" />
+  </wsdl:message>
+  <wsdl:message name="GetFileNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFileNameResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CDFileSoap">
+    <wsdl:operation name="GetFile">
+      <wsdl:input message="tns:GetFileSoapIn" />
+      <wsdl:output message="tns:GetFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFile">
+      <wsdl:input message="tns:RemoveFileSoapIn" />
+      <wsdl:output message="tns:RemoveFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadConfirm">
+      <wsdl:input message="tns:UploadConfirmSoapIn" />
+      <wsdl:output message="tns:UploadConfirmSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFileName">
+      <wsdl:input message="tns:UpdateFileNameSoapIn" />
+      <wsdl:output message="tns:UpdateFileNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileName">
+      <wsdl:input message="tns:GetFileNameSoapIn" />
+      <wsdl:output message="tns:GetFileNameSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CDFileSoap" type="tns:CDFileSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetFile">
+      <soap:operation soapAction="http://tempuri.org/GetFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFile">
+      <soap:operation soapAction="http://tempuri.org/RemoveFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadConfirm">
+      <soap:operation soapAction="http://tempuri.org/UploadConfirm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFileName">
+      <soap:operation soapAction="http://tempuri.org/UpdateFileName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileName">
+      <soap:operation soapAction="http://tempuri.org/GetFileName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CDFileSoap12" type="tns:CDFileSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetFile">
+      <soap12:operation soapAction="http://tempuri.org/GetFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFile">
+      <soap12:operation soapAction="http://tempuri.org/RemoveFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadConfirm">
+      <soap12:operation soapAction="http://tempuri.org/UploadConfirm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFileName">
+      <soap12:operation soapAction="http://tempuri.org/UpdateFileName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileName">
+      <soap12:operation soapAction="http://tempuri.org/GetFileName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CDFile">
+    <wsdl:port name="CDFileSoap" binding="tns:CDFileSoap">
+      <soap:address location="http://172.16.4.190/CD/CDFile.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CDFileSoap12" binding="tns:CDFileSoap12">
+      <soap12:address location="http://172.16.4.190/CD/CDFile.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

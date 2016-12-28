@@ -1,0 +1,818 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E283E669-793E-4002-9CB7-470FA1C932ED}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CDManager_Dev4</RootNamespace>
+    <AssemblyName>CDManager_Dev4</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DataVisualization" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\AuthenticationError.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Profile\MyApply.aspx" />
+    <Content Include="Account\Profile\MyDownload.aspx" />
+    <Content Include="Account\Profile\MyMessage.aspx" />
+    <Content Include="Account\Profile\UpdatePassword.aspx" />
+    <Content Include="Account\SpecialLogin.aspx" />
+    <Content Include="Error.aspx" />
+    <Content Include="Help.aspx" />
+    <Content Include="IndexFill.aspx" />
+    <Content Include="Management\CDManager\BanApply.aspx" />
+    <Content Include="Management\User\ReaderManager\ReaderDelete.aspx" />
+    <Content Include="Resources\Images\20121109201459.jpg" />
+    <Content Include="Resources\Images\20121109204201.jpg" />
+    <Content Include="Resources\Images\20121109204731.jpg" />
+    <Content Include="Resources\Images\20121109204928.jpg" />
+    <Content Include="Resources\Images\20121109205604.jpg" />
+    <Content Include="Resources\Images\5-120604091310-50.gif" />
+    <Content Include="Resources\Images\bg.gif" />
+    <Content Include="Resources\Images\buttom_bgs.gif" />
+    <Content Include="Resources\Images\buttom_left2.gif" />
+    <Content Include="Resources\Images\buttom_right2.gif" />
+    <Content Include="Resources\Images\content-bg.gif" />
+    <Content Include="Resources\Images\left-top-right.gif" />
+    <Content Include="Resources\Images\logininputbg.png" />
+    <Content Include="Resources\Images\mail_leftbg.gif" />
+    <Content Include="Resources\Images\mail_rightbg.gif" />
+    <Content Include="Resources\Images\menu_bg1.gif" />
+    <Content Include="Resources\Images\menu_bgs.gif" />
+    <Content Include="Resources\Images\menu_topimg.gif" />
+    <Content Include="Resources\Images\menu_topline.gif" />
+    <Content Include="Resources\Images\nav-right-bg.gif" />
+    <Content Include="Resources\Images\20121109200613.jpg" />
+    <Content Include="Resources\Images\text.png" />
+    <Content Include="Resources\Images\top.gif" />
+    <Content Include="Resources\Images\usertr-bg.gif" />
+    <Content Include="Resources\Scripts\browserFolder.js" />
+    <Content Include="Resources\Scripts\cal.js" />
+    <Content Include="Resources\Scripts\help_menu.js" />
+    <Content Include="Resources\Styles\calendar.css" />
+    <Content Include="Resources\UserControl\FolderBrowser.ascx" />
+    <None Include="Service References\CDFile\CDFile.disco" />
+    <None Include="Service References\CDFile\configuration91.svcinfo" />
+    <None Include="Service References\CDFile\configuration.svcinfo" />
+    <None Include="Service References\CDFile\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\FTPDownloadFloder\FTPDownloadFloder.disco" />
+    <None Include="Service References\FTPDownloadFloder\configuration91.svcinfo" />
+    <None Include="Service References\FTPDownloadFloder\configuration.svcinfo" />
+    <None Include="Service References\FTPDownloadFloder\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\FTPUsers\FTPUsers.disco" />
+    <None Include="Service References\FTPUsers\configuration91.svcinfo" />
+    <None Include="Service References\FTPUsers\configuration.svcinfo" />
+    <None Include="Service References\FTPUsers\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Sorry.aspx" />
+    <Content Include="Resources\UserControl\TimePicker.ascx" />
+    <Content Include="TimeSpanTooShort.aspx" />
+    <Content Include="UpdateLog.txt" />
+    <Content Include="BookDetail.aspx" />
+    <Content Include="Hot.aspx" />
+    <Content Include="Management\BookManager\BookManagement.aspx" />
+    <Content Include="Management\BookManager\EditBook.aspx" />
+    <Content Include="Management\BookManager\NewBook.aspx" />
+    <Content Include="Management\BookManager\NewBookByExcel.aspx" />
+    <Content Include="Management\CDManager\ApplyLogList.aspx" />
+    <Content Include="Management\CDManager\ApplyStatistics.aspx" />
+    <Content Include="Management\CDManager\CDDetail.aspx" />
+    <Content Include="Management\CDManager\CDOnline.aspx" />
+    <Content Include="Management\CDManager\CDDownloadDetail.aspx" />
+    <Content Include="Management\CDManager\CDStatistics.aspx" />
+    <Content Include="Management\CDManager\DownloadStatistics.aspx" />
+    <Content Include="Management\CDManager\NewCDByExcel.aspx" />
+    <Content Include="Management\Main.aspx" />
+    <Content Include="Management\Message\AdminMessage.aspx" />
+    <Content Include="Management\Message\EditNotice.aspx" />
+    <Content Include="Management\Message\MessageDialog.aspx" />
+    <Content Include="Management\Message\MessageManagement.aspx" />
+    <Content Include="Management\Message\NewMessage.aspx" />
+    <Content Include="Management\Message\NewNotice.aspx" />
+    <Content Include="Management\Message\NoticeDetail.aspx" />
+    <Content Include="Management\Message\NoticeManagement.aspx" />
+    <Content Include="Management\Message\ReceivedMessage.aspx" />
+    <Content Include="Management\Message\SendedMessage.aspx" />
+    <Content Include="Management\Security\BanIPManagement.aspx" />
+    <Content Include="Management\Security\BanReaderManagement.aspx" />
+    <Content Include="Management\Success.aspx" />
+    <Content Include="Management\Error.aspx" />
+    <Content Include="Management\Sys\SystemManagement.aspx" />
+    <Content Include="Management\User\AdminManager\AdminManagement.aspx" />
+    <Content Include="Management\User\AdminManager\AdminStatistics.aspx" />
+    <Content Include="Management\User\AdminManager\EditAdmin.aspx" />
+    <Content Include="Management\User\AdminManager\NewAdmin.aspx" />
+    <Content Include="Management\User\ReaderManager\ApplyAndDownload.aspx" />
+    <Content Include="Management\User\ReaderManager\EditReader.aspx" />
+    <Content Include="Management\User\ReaderManager\NewReader.aspx" />
+    <Content Include="Management\User\ReaderManager\NewReaderByExcel.aspx" />
+    <Content Include="Management\User\ReaderManager\ReaderManagement.aspx" />
+    <Content Include="Management\User\ReaderManager\ReaderUpload.aspx" />
+    <Content Include="NoticeDetail.aspx" />
+    <Content Include="Online.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Index.aspx" />
+    <Content Include="Resources\Images\logo.swf" />
+    <Content Include="Resources\Images\s.jpg" />
+    <Content Include="Resources\Scripts\apply_panel.js" />
+    <Content Include="Resources\Scripts\clock.js" />
+    <Content Include="Resources\Scripts\jquery-1.8.0.js" />
+    <Content Include="Resources\Scripts\jquery-1.8.0.min.js" />
+    <Content Include="Resources\Scripts\management_menu.js" />
+    <Content Include="Resources\Scripts\ProcessBar.js" />
+    <Content Include="Resources\Scripts\ReaderUpload.js" />
+    <Content Include="Resources\Scripts\uploader.js" />
+    <Content Include="Resources\Styles\Management.css" />
+    <Content Include="Resources\Styles\ManagementMaster.css" />
+    <Content Include="Resources\Styles\Front.css" />
+    <Content Include="Resources\Styles\FrontMaster.css" />
+    <Content Include="Resources\Styles\style.css" />
+    <Content Include="Resources\UserControl\CalendarExtender.ascx" />
+    <Content Include="Resources\UserControl\LoginFront.ascx" />
+    <Content Include="Resources\UserControl\LoginManager.ascx" />
+    <Content Include="Resources\UserControl\SearchBook.ascx" />
+    <Content Include="SearchResult.aspx" />
+    <Content Include="Success.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Page404.aspx" />
+    <None Include="Service References\FTPUsers\FTPUsers.wsdl" />
+    <None Include="Service References\FTPDownloadFloder\FTPDownloadFloder.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\AuthenticationError.aspx.cs">
+      <DependentUpon>AuthenticationError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\AuthenticationError.aspx.designer.cs">
+      <DependentUpon>AuthenticationError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Profile\MyApply.aspx.cs">
+      <DependentUpon>MyApply.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Profile\MyApply.aspx.designer.cs">
+      <DependentUpon>MyApply.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Profile\MyDownload.aspx.cs">
+      <DependentUpon>MyDownload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Profile\MyDownload.aspx.designer.cs">
+      <DependentUpon>MyDownload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Profile\MyMessage.aspx.cs">
+      <DependentUpon>MyMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Profile\MyMessage.aspx.designer.cs">
+      <DependentUpon>MyMessage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Profile\UpdatePassword.aspx.cs">
+      <DependentUpon>UpdatePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Profile\UpdatePassword.aspx.designer.cs">
+      <DependentUpon>UpdatePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\SpecialLogin.aspx.cs">
+      <DependentUpon>SpecialLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\SpecialLogin.aspx.designer.cs">
+      <DependentUpon>SpecialLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BookDetail.aspx.cs">
+      <DependentUpon>BookDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BookDetail.aspx.designer.cs">
+      <DependentUpon>BookDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CDDownload.ashx.cs">
+      <DependentUpon>CDDownload.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FtpUserInfo.cs" />
+    <Compile Include="Help.aspx.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Help.aspx.designer.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Hot.aspx.cs">
+      <DependentUpon>Hot.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Hot.aspx.designer.cs">
+      <DependentUpon>Hot.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IndexFill.aspx.cs">
+      <DependentUpon>IndexFill.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IndexFill.aspx.designer.cs">
+      <DependentUpon>IndexFill.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\BookManager\BookManagement.aspx.cs">
+      <DependentUpon>BookManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\BookManager\BookManagement.aspx.designer.cs">
+      <DependentUpon>BookManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\BookManager\EditBook.aspx.cs">
+      <DependentUpon>EditBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\BookManager\EditBook.aspx.designer.cs">
+      <DependentUpon>EditBook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\BookManager\NewBook.aspx.cs">
+      <DependentUpon>NewBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\BookManager\NewBook.aspx.designer.cs">
+      <DependentUpon>NewBook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\BookManager\NewBookByExcel.aspx.cs">
+      <DependentUpon>NewBookByExcel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\BookManager\NewBookByExcel.aspx.designer.cs">
+      <DependentUpon>NewBookByExcel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\CDManager\ApplyLogList.aspx.cs">
+      <DependentUpon>ApplyLogList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\CDManager\ApplyLogList.aspx.designer.cs">
+      <DependentUpon>ApplyLogList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\CDManager\ApplyStatistics.aspx.cs">
+      <DependentUpon>ApplyStatistics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\CDManager\ApplyStatistics.aspx.designer.cs">
+      <DependentUpon>ApplyStatistics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\CDManager\BanApply.aspx.cs">
+      <DependentUpon>BanApply.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\CDManager\BanApply.aspx.designer.cs">
+      <DependentUpon>BanApply.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\CDManager\CDDetail.aspx.cs">
+      <DependentUpon>CDDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\CDManager\CDDetail.aspx.designer.cs">
+      <DependentUpon>CDDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\CDManager\CDOnline.aspx.cs">
+      <DependentUpon>CDOnline.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\CDManager\CDOnline.aspx.designer.cs">
+      <DependentUpon>CDOnline.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\CDManager\CDDownloadDetail.aspx.cs">
+      <DependentUpon>CDDownloadDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\CDManager\CDDownloadDetail.aspx.designer.cs">
+      <DependentUpon>CDDownloadDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\CDManager\CDStatistics.aspx.cs">
+      <DependentUpon>CDStatistics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\CDManager\CDStatistics.aspx.designer.cs">
+      <DependentUpon>CDStatistics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\CDManager\DownloadStatistics.aspx.cs">
+      <DependentUpon>DownloadStatistics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\CDManager\DownloadStatistics.aspx.designer.cs">
+      <DependentUpon>DownloadStatistics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\CDManager\NewCDByExcel.aspx.cs">
+      <DependentUpon>NewCDByExcel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\CDManager\NewCDByExcel.aspx.designer.cs">
+      <DependentUpon>NewCDByExcel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\Main.aspx.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\Main.aspx.designer.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\Message\AdminMessage.aspx.cs">
+      <DependentUpon>AdminMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\Message\AdminMessage.aspx.designer.cs">
+      <DependentUpon>AdminMessage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\Message\EditNotice.aspx.cs">
+      <DependentUpon>EditNotice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\Message\EditNotice.aspx.designer.cs">
+      <DependentUpon>EditNotice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\Message\MessageDialog.aspx.cs">
+      <DependentUpon>MessageDialog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\Message\MessageDialog.aspx.designer.cs">
+      <DependentUpon>MessageDialog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\Message\MessageManagement.aspx.cs">
+      <DependentUpon>MessageManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\Message\MessageManagement.aspx.designer.cs">
+      <DependentUpon>MessageManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\Message\NewMessage.aspx.cs">
+      <DependentUpon>NewMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\Message\NewMessage.aspx.designer.cs">
+      <DependentUpon>NewMessage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\Message\NewNotice.aspx.cs">
+      <DependentUpon>NewNotice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\Message\NewNotice.aspx.designer.cs">
+      <DependentUpon>NewNotice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\Message\NoticeDetail.aspx.cs">
+      <DependentUpon>NoticeDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\Message\NoticeDetail.aspx.designer.cs">
+      <DependentUpon>NoticeDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\Message\NoticeManagement.aspx.cs">
+      <DependentUpon>NoticeManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\Message\NoticeManagement.aspx.designer.cs">
+      <DependentUpon>NoticeManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\Message\ReceivedMessage.aspx.cs">
+      <DependentUpon>ReceivedMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\Message\ReceivedMessage.aspx.designer.cs">
+      <DependentUpon>ReceivedMessage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\Message\SendedMessage.aspx.cs">
+      <DependentUpon>SendedMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\Message\SendedMessage.aspx.designer.cs">
+      <DependentUpon>SendedMessage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\Security\BanIPManagement.aspx.cs">
+      <DependentUpon>BanIPManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\Security\BanIPManagement.aspx.designer.cs">
+      <DependentUpon>BanIPManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\Security\BanReaderManagement.aspx.cs">
+      <DependentUpon>BanReaderManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\Security\BanReaderManagement.aspx.designer.cs">
+      <DependentUpon>BanReaderManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\Success.aspx.cs">
+      <DependentUpon>Success.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\Success.aspx.designer.cs">
+      <DependentUpon>Success.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\Sys\SystemManagement.aspx.cs">
+      <DependentUpon>SystemManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\Sys\SystemManagement.aspx.designer.cs">
+      <DependentUpon>SystemManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\User\AdminManager\AdminManagement.aspx.cs">
+      <DependentUpon>AdminManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\User\AdminManager\AdminManagement.aspx.designer.cs">
+      <DependentUpon>AdminManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\User\AdminManager\AdminStatistics.aspx.cs">
+      <DependentUpon>AdminStatistics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\User\AdminManager\AdminStatistics.aspx.designer.cs">
+      <DependentUpon>AdminStatistics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\User\AdminManager\EditAdmin.aspx.cs">
+      <DependentUpon>EditAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\User\AdminManager\EditAdmin.aspx.designer.cs">
+      <DependentUpon>EditAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\User\AdminManager\NewAdmin.aspx.cs">
+      <DependentUpon>NewAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\User\AdminManager\NewAdmin.aspx.designer.cs">
+      <DependentUpon>NewAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\User\ReaderManager\ApplyAndDownload.aspx.cs">
+      <DependentUpon>ApplyAndDownload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\User\ReaderManager\ApplyAndDownload.aspx.designer.cs">
+      <DependentUpon>ApplyAndDownload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\User\ReaderManager\EditReader.aspx.cs">
+      <DependentUpon>EditReader.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\User\ReaderManager\EditReader.aspx.designer.cs">
+      <DependentUpon>EditReader.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\User\ReaderManager\NewReader.aspx.cs">
+      <DependentUpon>NewReader.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\User\ReaderManager\NewReader.aspx.designer.cs">
+      <DependentUpon>NewReader.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\User\ReaderManager\NewReaderByExcel.aspx.cs">
+      <DependentUpon>NewReaderByExcel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\User\ReaderManager\NewReaderByExcel.aspx.designer.cs">
+      <DependentUpon>NewReaderByExcel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\User\ReaderManager\ReaderDelete.aspx.cs">
+      <DependentUpon>ReaderDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\User\ReaderManager\ReaderDelete.aspx.designer.cs">
+      <DependentUpon>ReaderDelete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\User\ReaderManager\ReaderManagement.aspx.cs">
+      <DependentUpon>ReaderManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\User\ReaderManager\ReaderManagement.aspx.designer.cs">
+      <DependentUpon>ReaderManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\User\ReaderManager\ReaderUpload.aspx.cs">
+      <DependentUpon>ReaderUpload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\User\ReaderManager\ReaderUpload.aspx.designer.cs">
+      <DependentUpon>ReaderUpload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\User\ReaderManager\ReaderUploadHandler.ashx.cs">
+      <DependentUpon>ReaderUploadHandler.ashx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NoticeDetail.aspx.cs">
+      <DependentUpon>NoticeDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NoticeDetail.aspx.designer.cs">
+      <DependentUpon>NoticeDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NoticeDownload.ashx.cs">
+      <DependentUpon>NoticeDownload.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Online.aspx.cs">
+      <DependentUpon>Online.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Online.aspx.designer.cs">
+      <DependentUpon>Online.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Masters\Front.Master.cs">
+      <DependentUpon>Front.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\Masters\Front.Master.designer.cs">
+      <DependentUpon>Front.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Masters\Management.Master.cs">
+      <DependentUpon>Management.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\Masters\Management.Master.designer.cs">
+      <DependentUpon>Management.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Masters\NoticeShower.master.cs">
+      <DependentUpon>NoticeShower.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\Masters\NoticeShower.master.designer.cs">
+      <DependentUpon>NoticeShower.master</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Masters\Profile.master.cs">
+      <DependentUpon>Profile.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\Masters\Profile.master.designer.cs">
+      <DependentUpon>Profile.master</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControl\CalendarExtender.ascx.cs">
+      <DependentUpon>CalendarExtender.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControl\CalendarExtender.ascx.designer.cs">
+      <DependentUpon>CalendarExtender.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControl\FolderBrowser.ascx.cs">
+      <DependentUpon>FolderBrowser.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControl\FolderBrowser.ascx.designer.cs">
+      <DependentUpon>FolderBrowser.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControl\LoginFront.ascx.cs">
+      <DependentUpon>LoginFront.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControl\LoginFront.ascx.designer.cs">
+      <DependentUpon>LoginFront.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControl\LoginManager.ascx.cs">
+      <DependentUpon>LoginManager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControl\LoginManager.ascx.designer.cs">
+      <DependentUpon>LoginManager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControl\SearchBook.ascx.cs">
+      <DependentUpon>SearchBook.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControl\SearchBook.ascx.designer.cs">
+      <DependentUpon>SearchBook.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SearchResult.aspx.cs">
+      <DependentUpon>SearchResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchResult.aspx.designer.cs">
+      <DependentUpon>SearchResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\CDFile\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\FTPDownloadFloder\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\FTPUsers\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Sorry.aspx.cs">
+      <DependentUpon>Sorry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sorry.aspx.designer.cs">
+      <DependentUpon>Sorry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Success.aspx.cs">
+      <DependentUpon>Success.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Success.aspx.designer.cs">
+      <DependentUpon>Success.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControl\TimePicker.ascx.cs">
+      <DependentUpon>TimePicker.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControl\TimePicker.ascx.designer.cs">
+      <DependentUpon>TimePicker.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="TimeSpanTooShort.aspx.cs">
+      <DependentUpon>TimeSpanTooShort.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TimeSpanTooShort.aspx.designer.cs">
+      <DependentUpon>TimeSpanTooShort.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Page404.aspx.cs">
+      <DependentUpon>Page404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page404.aspx.designer.cs">
+      <DependentUpon>Page404.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Webservices\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CDManagerLibrary\CDManagerLibrary.csproj">
+      <Project>{21B6E2DD-6E70-4188-B83D-28FE2ACF5520}</Project>
+      <Name>CDManagerLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Masters\Front.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Masters\Profile.master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Masters\NoticeShower.master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Masters\Management.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Management\User\ReaderManager\ReaderUploadHandler.ashx" />
+    <Content Include="CDDownload.ashx" />
+    <Content Include="ShellApplication.doc" />
+    <Content Include="NoticeDownload.ashx" />
+    <Content Include="Management\光盘系统管理员使用说明书.docx" />
+    <None Include="Properties\PublishProfiles\CDManager.pubxml" />
+    <Content Include="光盘系统管理员使用说明书.doc" />
+    <Content Include="光盘系统读者使用说明书.doc" />
+    <None Include="Service References\CDFile\CDFile.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\CDFile\" />
+    <WCFMetadataStorage Include="Service References\FTPDownloadFloder\" />
+    <WCFMetadataStorage Include="Service References\FTPUsers\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>54731</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

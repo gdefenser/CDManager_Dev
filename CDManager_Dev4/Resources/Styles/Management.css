@@ -1,0 +1,265 @@
+﻿/**********************列表***********************/
+#listcontent
+{
+    margin: 5px 5px 50px 5px;
+}
+
+#list table
+{
+    border-collapse: collapse;
+    border: 2px solid #CCCCCC;
+}
+
+#list table td
+{
+    border: 1px solid #CCCCCC;
+}
+
+#listtitle
+{
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 40px;
+    background-color: #CCCCFF;
+    font-size: 15px;
+    color: #006666;
+    font-weight: bold;
+}
+
+#listtitle td
+{
+    border: 2px solid #CCCCCC;
+}
+
+.listitem
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.backitemtitle
+{
+    background: url("../images/usertr-bg.gif");
+    color: #FFFFFF;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 3px;
+    font-size: 13px;
+}
+
+.backitem
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+}
+
+.backitem hr
+{
+    color: #CCFF99;
+    background-color: #CCFF99;
+}
+
+#backmain
+{
+    /*padding: 5px;*/
+}
+
+#excelexample {
+    border: 1px solid #138AE5;
+}
+#excelexample tr th {
+    border: 1px solid #138AE5;
+}
+/**********************后台首页***********************/
+
+
+#backtable
+{
+    width:100%;
+}
+
+#backtable table tr
+{
+    width:100%;
+}
+
+/**********************系统事件***********************/
+
+#all
+{
+    width: 100px;
+    /*padding-left:2px;*/
+}
+
+/******************图书与光盘信息明细********************/
+.decol
+{
+    font-weight: bold;
+    width:100px;
+    font-size: 14px;
+    background-color: #1074C9;
+    color: #FFFFFF;
+}
+
+#detail
+{
+    padding: 10px;
+}
+
+#deContent
+{
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-bottom: 30px;
+}
+
+#deContent table
+{
+    border-collapse: collapse;
+    border: 2px solid #CCCCCC;
+}
+
+#deContent table td
+{
+    padding: 5px 10px 5px 10px;
+    border: 2px solid #CCCCCC;
+}
+
+.download
+{
+    background-color: #FFFFCC;
+    border: 1px dotted #990000;
+    padding: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #666666;
+}
+
+.download:hover
+{
+    text-decoration: underline;
+}
+
+/******************文件上传********************/
+.cdupload
+{
+    width:50%;
+}
+
+/*表格*/
+.input
+{
+    border: 1px solid #CCCCCC;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/*new*/
+.top_tdleft
+{
+    background: url("../images/left-top-right.gif") repeat-y scroll 0 0 transparent;
+    height: 27px;
+    width: 15px;
+}
+
+.top_tdcenter
+{
+    background: url("../images/content-bg.gif") repeat-x scroll 0 0 transparent;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.top_tdbuttom
+{
+    background: url("../images/nav-right-bg.gif") repeat-y scroll 0 0 transparent;
+    width: 16px;
+}
+
+.center_tdleft
+{
+    background: url("../images/mail_leftbg.gif") repeat-y scroll 0 0 transparent;
+}
+
+.center_tdright
+{
+    background: url("../images/mail_rightbg.gif") repeat-y scroll 0 0 transparent;
+}
+
+.buttom_tdleft
+{
+    background: url("../images/buttom_left2.gif") repeat-y scroll 0 0 transparent;
+}
+
+.buttom_tdcenter
+{
+    background: url("../images/buttom_bgs.gif") repeat-x scroll 0 0 transparent;
+}
+
+.buttom_tdright
+{
+    background: url("../images/buttom_right2.gif") repeat-y scroll 0 0 transparent;
+}
+
+.msg_tdleft
+{
+    background: url("../images/left-top-right.gif") repeat-y scroll 0 0 transparent;
+}
+
+.msg_tdcenter
+{
+    background: url("../images/content-bg.gif") repeat-x scroll 0 0 transparent;
+    font-weight: bold;
+    font-size: small;
+    text-align: center;
+}
+
+.msg_tdbuttom
+{
+    background: url("../images/nav-right-bg.gif") repeat-y scroll 0 0 transparent;
+}
+
+.statistics {
+    border: 1px solid #999999;
+}
+
+.statistics th {
+    color: #FFFFFF;
+    background-color: #1383DC;
+    font-weight: bold;
+}
+
+.statistics td {
+    border: 1px solid #999999;
+}
+
+.tableheader {
+    background-color: #1383DC;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+    .tableheader th {
+        padding: 6px;
+        border-style: none;
+        font-size: 14px;
+    }
+/*列表*/
+.alternating {
+    background-color: #FFFFFF;
+}
+
+    .alternating td {
+        padding: 4px;
+        border: 1px solid #5381AC;
+    }
+
+.item {
+    background-color: #EFF3FB;
+}
+
+    .item td {
+        padding: 4px;
+        border: 1px solid #5381AC;
+    }

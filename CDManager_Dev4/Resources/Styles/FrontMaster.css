@@ -1,0 +1,266 @@
+﻿html
+{
+    height: 100%;
+}
+
+body
+{
+    font-size: .75em;
+    font-family: Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+    color: #696969;
+    height: 100%;
+    background-color: #5381AC;
+}
+
+.page
+{
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+    
+    height: 100%;
+    background-color: #FFFFFF;
+}
+
+/*顶部标题栏*/
+
+#header
+{
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+#title
+{
+    width: 480px;
+}
+
+#login_manager
+{
+    float: right;
+    margin-top: -20px;
+    margin-right: 12px;
+}
+
+/*主内容*/
+#main
+{
+    height: 100%;
+    padding-top: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+    vertical-align:top;
+}
+
+/*顶部导航栏*/
+#headmenu
+{
+    height: 35px;
+    background-color: #5381AC;
+    vertical-align:top;
+}
+
+#headmenu table
+{
+    padding-top: 2px;
+    padding-left: 5px;
+    padding-bottom: 2px;
+    height: 100%;
+}
+
+#headmenu table td
+{
+    border-width: 1px;
+    border-color: #C0C0C0;
+    padding: 3px;
+    border-right-style: solid;
+    color: #CC0000;
+    font-size: small;
+    border-left-style: solid;
+}
+
+#headmenu table td a
+{
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: medium;
+}
+
+#headmenu table td a:hover
+{
+    text-decoration: underline;
+    color: #000000;
+    cursor: pointer;
+    background-color: #FF9900;
+    font-weight: bold;
+}
+
+/*站点导航*/
+#notice
+{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#notice a
+{
+    text-decoration: none;
+}
+
+#notice a:hover
+{
+    text-decoration: underline;
+}
+
+#title_clock
+{
+    float: right;
+    margin-top: -23px;
+    margin-left: 50px;
+    padding-right: 5px;
+}
+
+/*通知栏*/
+.notice_link a
+{
+    text-decoration: none;
+    color: #696969;
+}
+
+.notice_link a:hover
+{
+    text-decoration: underline;
+}
+
+
+/*内容页*/
+#content
+{
+    border: 1px solid #CCCCCC;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    height: 700px;
+    width:100%;
+    vertical-align:top;
+}
+
+/*底部信息栏*/
+#footer
+{
+    padding-bottom: 10px;
+}
+
+#msg
+{
+    background-color: #5381AC;
+    color: #FFFFFF;
+    margin-top: 5px;
+    height:40px;
+}
+
+#back
+{
+    float: right;
+}
+
+/****************用户信息管理*****************/
+#ac
+{
+    margin: 5px;
+    height:90%
+}
+
+/*顶部布局*/
+#acHeader
+{
+    margin-top: 10px;
+}
+
+#acTitle
+{
+    width: 150px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#acHead
+{
+    background-color: #006666;
+    margin-left: 155px;
+    margin-top: -20px;
+    height: 20px;
+}
+
+#acMain
+{
+    padding: 5px;
+    border-style: dotted;
+    border-width: 1px;
+    margin-left: 155px;
+    margin-top: -300px;
+    height:100%;
+}
+/*左部布局*/
+#acLeft
+{
+    width: 150px;
+    height: 300px;
+}
+
+#acLeft ul
+{
+    border-style: dotted;
+    border-width: 1px;
+    list-style-type: none;
+    margin-left: 1px;
+}
+
+#acLeft ul li
+{
+    border-width: 1px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top-style: dotted;
+    border-bottom-style: dotted;
+    margin-left: -39px;
+}
+
+#acLeft ul li
+{
+    border-width: 1px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top-style: dotted;
+    border-bottom-style: dotted;
+    margin-left: -39px;
+}
+
+#acLeft ul li a
+{
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    color: #808080;
+}
+
+#acLeft ul li a:hover
+{
+    text-decoration: underline;
+    color: #009900;
+}
+
+#acContent
+{
+    margin-left: 155px;
+    margin-top: -500px;
+    margin-bottom: 0px;
+}
+
+#link {
+    margin-top:10px;
+    padding: 5px;
+    background-color: #5381AC;
+}

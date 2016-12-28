@@ -1,0 +1,5 @@
+﻿body{font-size:12px;}
+
+#progressbar {background-color:#f8f8f8;color:#222;height:16px;width:400px;border:1px solid #ececec;text-align:center;position:relative;}
+#progressbar #progressbar_bar {background-color:#6CAF00;height:16px;width:0;position:absolute;left:0;top:0;z-index:10;}
+#progressbar #progressbar_text {height:16px;position:absolute;left:0;top:0;width:100%;line-height:16px;z-index:100;}
