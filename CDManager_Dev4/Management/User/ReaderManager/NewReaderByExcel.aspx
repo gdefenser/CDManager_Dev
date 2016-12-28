@@ -55,9 +55,25 @@
         <br />
         <asp:UpdatePanel ID="upMessage" runat="server">
             <ContentTemplate>
-                <asp:Label ID="lblMsg" runat="server"></asp:Label><br />
-                <asp:HyperLink ID="linkCheck" runat="server">查看待导入数据</asp:HyperLink>
-                <asp:Button ID="btnReUplod" runat="server" Text="重新上传" OnClick="btnReUplod_Click" /><asp:Button ID="btnInsert" runat="server" Text="开始导入数据到数据库" OnClick="btnInsert_Click" /><br />
+                <<table>
+                    <tr>
+                        <th>待上传数据:</th>
+                        <td>
+                            <asp:Label ID="lblMsg" runat="server"></asp:Label>【<asp:HyperLink ID="linkCheck" runat="server">查看待导入数据</asp:HyperLink>】</td>
+
+                    </tr>
+                    <tr>
+                        <th>上传方式:</th>
+                        <td>
+                            <asp:RadioButton ID="rdoContinue" runat="server" GroupName="type" Text="重复跳过" Checked="true" /><asp:RadioButton ID="rdoReset" runat="server" GroupName="type" Text="重复覆盖" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <asp:Button ID="btnReUplod" runat="server" Text="重新上传" OnClick="btnReUplod_Click" /><asp:Button ID="btnInsert" runat="server" Text="开始导入数据到数据库" OnClick="btnInsert_Click" />
+                        </td>
+                    </tr>
+                </table>
                 <asp:Label ID="lblUploading" runat="server"></asp:Label>
                 <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="upMessage" DisplayAfter="0" DynamicLayout="false">
                     <ProgressTemplate>

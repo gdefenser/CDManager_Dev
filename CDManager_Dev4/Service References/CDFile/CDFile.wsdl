@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:element name="GetFile">
@@ -49,7 +49,7 @@
       <s:element name="UploadConfirmResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="UploadConfirmResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="UploadConfirmResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -86,6 +86,57 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetUploadedFiles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="glytm" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUploadedFilesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUploadedFilesResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RemoveUploadedFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="glytm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveUploadedFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RemoveUploadedFileResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUploadedFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="glytm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="newName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ext" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUploadedFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateUploadedFileResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetFileSoapIn">
@@ -118,6 +169,24 @@
   <wsdl:message name="GetFileNameSoapOut">
     <wsdl:part name="parameters" element="tns:GetFileNameResponse" />
   </wsdl:message>
+  <wsdl:message name="GetUploadedFilesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUploadedFiles" />
+  </wsdl:message>
+  <wsdl:message name="GetUploadedFilesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUploadedFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveUploadedFileSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveUploadedFile" />
+  </wsdl:message>
+  <wsdl:message name="RemoveUploadedFileSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveUploadedFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUploadedFileSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUploadedFile" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUploadedFileSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUploadedFileResponse" />
+  </wsdl:message>
   <wsdl:portType name="CDFileSoap">
     <wsdl:operation name="GetFile">
       <wsdl:input message="tns:GetFileSoapIn" />
@@ -138,6 +207,18 @@
     <wsdl:operation name="GetFileName">
       <wsdl:input message="tns:GetFileNameSoapIn" />
       <wsdl:output message="tns:GetFileNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUploadedFiles">
+      <wsdl:input message="tns:GetUploadedFilesSoapIn" />
+      <wsdl:output message="tns:GetUploadedFilesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUploadedFile">
+      <wsdl:input message="tns:RemoveUploadedFileSoapIn" />
+      <wsdl:output message="tns:RemoveUploadedFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUploadedFile">
+      <wsdl:input message="tns:UpdateUploadedFileSoapIn" />
+      <wsdl:output message="tns:UpdateUploadedFileSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CDFileSoap" type="tns:CDFileSoap">
@@ -180,6 +261,33 @@
     </wsdl:operation>
     <wsdl:operation name="GetFileName">
       <soap:operation soapAction="http://tempuri.org/GetFileName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUploadedFiles">
+      <soap:operation soapAction="http://tempuri.org/GetUploadedFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUploadedFile">
+      <soap:operation soapAction="http://tempuri.org/RemoveUploadedFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUploadedFile">
+      <soap:operation soapAction="http://tempuri.org/UpdateUploadedFile" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -235,13 +343,40 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetUploadedFiles">
+      <soap12:operation soapAction="http://tempuri.org/GetUploadedFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUploadedFile">
+      <soap12:operation soapAction="http://tempuri.org/RemoveUploadedFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUploadedFile">
+      <soap12:operation soapAction="http://tempuri.org/UpdateUploadedFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="CDFile">
     <wsdl:port name="CDFileSoap" binding="tns:CDFileSoap">
-      <soap:address location="http://172.16.4.190/CD/CDFile.asmx" />
+      <soap:address location="http://localhost:8013/CD/CDFile.asmx" />
     </wsdl:port>
     <wsdl:port name="CDFileSoap12" binding="tns:CDFileSoap12">
-      <soap12:address location="http://172.16.4.190/CD/CDFile.asmx" />
+      <soap12:address location="http://localhost:8013/CD/CDFile.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

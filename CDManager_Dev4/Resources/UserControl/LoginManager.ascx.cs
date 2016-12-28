@@ -27,7 +27,7 @@ namespace CDManager_Dev4.Resources.UserControl
                     }
                     else if (roles == "3")
                     {
-                        lblLoginAccount.Text = Page.User.Identity.Name + "(系统管理员)";                      
+                        lblLoginAccount.Text = Page.User.Identity.Name + "(系统管理员)";
                     }
                     else { Response.Redirect("~/Account/AuthenticationError.aspx"); }
 
@@ -43,14 +43,21 @@ namespace CDManager_Dev4.Resources.UserControl
                     linkEditAdmin.NavigateUrl = "~/Management/User/AdminManager/EditAdmin.aspx?GLYTM=" + Page.User.Identity.Name;
                     linkLogout.Attributes["onclick"] = "javascript:return confirm('" + Page.User.Identity.Name + ",您确定退出吗？');";
                 }
-                else { Response.Redirect("~/Account/AuthenticationError.aspx"); }
+                else
+                {
+                    FormsAuthentication.SignOut();
+                    Response.Redirect("~/Account/AuthenticationError.aspx");
+                }
             }
+
         }
 
         //退出登录
         protected void linkLogout_Click(object sender, EventArgs e)
         {
             FormsAuthentication.SignOut();
+            try { Cache.Remove(Page.User.Identity.Name); }
+            catch { }
             Response.Redirect("~/Index.aspx");
         }
     }

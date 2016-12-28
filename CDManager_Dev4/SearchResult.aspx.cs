@@ -201,7 +201,7 @@ namespace CDManager_Dev4
                 Label lblCDCount = (Label)lite.FindControl("lblCDCount");
                 Label lblCDOnline = (Label)lite.FindControl("lblCDOnline");
                 string isbn = lblISBN.Text;
-                List<CD> listCD = cde.CD.Where(c => c.ISBN == isbn).ToList();
+                List<CD> listCD = cde.CD.Where(c => c.Book.ISBN == isbn).ToList();
 
                 if (listCD.Count(c => c.ZXZT == 1) > 0)
                 {
@@ -249,11 +249,18 @@ namespace CDManager_Dev4
                 Button btnApplySubmit = (Button)lite.FindControl("btnApplySubmit");
                 Button btnDownload = (Button)lite.FindControl("btnDownload");
                 HyperLink linkCDMC = (HyperLink)lite.FindControl("linkCDMC");
+                HyperLink linkUpload = (HyperLink)lite.FindControl("linkUpload");
                 Panel panelNoLogin = (Panel)lite.FindControl("panelNoLogin");
                 Panel panelApply = (Panel)lite.FindControl("panelApply");
                 Panel panelDownload = (Panel)lite.FindControl("panelDownload");
                 Panel panelUpload = (Panel)lite.FindControl("panelUpload");
+                HiddenField hideBookID = (HiddenField)lite.FindControl("hideBookID");
 
+                long bookID = Convert.ToInt64(hideBookID.Value);
+                string isbn = cde.Book.First(b => b.BookID == bookID).ISBN;
+
+                linkCDMC.NavigateUrl = "~/BookDetail.aspx?ISBN=" + isbn;
+                linkUpload.NavigateUrl = "~/Management/CDManager/CDDetail.aspx?ISBN=" + isbn;
 
                 if (lblCDStatus.Text == "1")
                 {
@@ -263,8 +270,6 @@ namespace CDManager_Dev4
                 }
                 else
                 { lblCDStatus.Text = "不在线"; }
-
-                string isbn = lblISBN.Text;
 
                 var ticket = Context.User.Identity as FormsIdentity;
                 if (ticket != null && ticket.IsAuthenticated)
@@ -283,7 +288,7 @@ namespace CDManager_Dev4
                         else
                         {
                             panelApply.Visible = true;
-                            if (cde.ApplyLog.Count(a => a.DZTM == ticket.Name && a.ISBN == isbn && a.SQZT == 0) > 0)
+                            if (cde.ApplyLog.Count(a => a.DZTM == ticket.Name && a.Book.ISBN == isbn && a.SQZT == 0) > 0)
                             { lblApplyed.Visible = true; }
                             else
                             {
@@ -312,8 +317,8 @@ namespace CDManager_Dev4
             try
             {
                 string dztm = Page.User.Identity.Name;
-                string isbn = e.CommandArgument.ToString();
-                if (cde.ApplyLog.Count(a => a.DZTM == dztm && a.ISBN == isbn && a.SQZT == 0) == 0)
+                long bookID = Convert.ToInt64(e.CommandArgument.ToString());
+                if (cde.ApplyLog.Count(a => a.DZTM == dztm && a.BookID == bookID && a.SQZT == 0) == 0)
                 {
                     //生成主键ID
                     DateTime now = DateTime.Now;
@@ -335,7 +340,7 @@ namespace CDManager_Dev4
                     new_log.DZTM = dztm;
                     new_log.SQSJ = DateTime.Now;
                     new_log.SQZT = 0;
-                    new_log.ISBN = isbn;
+                    new_log.BookID = bookID;
                     new_log.IP = Request.UserHostAddress;
                     cde.ApplyLog.Add(new_log);
                     if (cde.SaveChanges() > 0)

@@ -12,8 +12,20 @@ namespace CDManager_Dev4.Management.BookManager
     public partial class EditBook : CDPages
     {
         string isbn;
+        string roles;
         protected void Page_Load(object sender, EventArgs e)
         {
+            roles = GetUserRole();
+            if (roles == "2")
+            {
+                lblISBN.Visible = true;
+                txtISBN.Visible = false;
+            }
+            else
+            {
+                lblISBN.Visible = false;
+                txtISBN.Visible = true;
+            }
             isbn = Request.QueryString["ISBN"];
             if (!IsPostBack)
             {
@@ -24,6 +36,7 @@ namespace CDManager_Dev4.Management.BookManager
                 else
                 { Response.Redirect("~/Management/Error.aspx"); }
             }
+
         }
 
         private void BindBook(string isbn)
@@ -32,6 +45,7 @@ namespace CDManager_Dev4.Management.BookManager
             {
                 Book book = cde.Book.First(b => b.ISBN == isbn);
                 lblISBN.Text = book.ISBN;
+                if (roles == "3") { txtISBN.Text = book.ISBN; }
                 txtZTM.Text = book.ZTM;
                 txtCBS.Text = book.CBS;
                 txtDJ.Text = book.DJ.ToString();
@@ -56,6 +70,10 @@ namespace CDManager_Dev4.Management.BookManager
             {
                 valZTM.IsValid = false;
             }
+            else if (roles == "3" && String.IsNullOrEmpty(txtISBN.Text))
+            {
+                valISBN.IsValid = false;
+            }
             else
             {
                 try
@@ -70,13 +88,32 @@ namespace CDManager_Dev4.Management.BookManager
                     string kb = txtKB.Text;
 
                     Book edit_book = cde.Book.First(b => b.ISBN == isbn);
+                    if (roles == "3")//系统管理员修改ISBN
+                    {
+                        string edit_isbn = txtISBN.Text;
+                        if (isbn != edit_isbn)
+                        {
+                            if (cde.Book.Count(b => b.ISBN == edit_isbn) > 0)
+                            {
+                                valISBN.ErrorMessage = "ISBN已存在";
+                                valISBN.IsValid = false;
+                            }
+                            else
+                            {
+                                edit_book.ISBN = edit_isbn;
+                            }
+                        }
+                    }
                     edit_book.ZTM = ztm;
                     edit_book.DJ = dj;
                     edit_book.ZRZ = zrz;
                     edit_book.CBS = cbs;
                     edit_book.YEMA = yema;
                     edit_book.YSBMY = ysbmy;
-                    SaveAndRedirect_Management();
+                    if (cde.SaveChanges() > 0)
+                    {
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "click", "alert('更新成功!');location.href='EditBook.aspx?ISBN=" + edit_book.ISBN + "';", true);
+                    }
                 }
                 catch { Response.Redirect("~/Management/Error.aspx"); }
             }

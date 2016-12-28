@@ -34,28 +34,32 @@ namespace CDManager_Dev4
 
         void Application_Start(object sender, EventArgs e)
         {
-            FTPUsers.FTPUsersSoapClient usc = new FTPUsers.FTPUsersSoapClient();
-            FTPDownloadFloder.FTPDownloadFloderSoapClient fsc = new FTPDownloadFloder.FTPDownloadFloderSoapClient();
-            //统计图表缓存目录
-            if (!Directory.Exists(@"C:\TempImageFiles\")) { Directory.CreateDirectory(@"C:\TempImageFiles\"); }
-            //下载目录
-            //if (!Directory.Exists(XMLHelper.getAppSettingValue("FTP_Home") + "\\Download\\")) { Directory.CreateDirectory(XMLHelper.getAppSettingValue("FTP_Home") + "\\Download\\"); }
-            //数据导入缓存目录
-            DirectoryInfo dir;
-            dir = new DirectoryInfo(Server.MapPath("~/Temp/Upload/Book/"));
-            if (!dir.Exists) { dir.Create(); }
-            dir = new DirectoryInfo(Server.MapPath("~/Temp/Upload/CD/"));
-            if (!dir.Exists) { dir.Create(); }
-            dir = new DirectoryInfo(Server.MapPath("~/Temp/Upload/Reader/"));
-            if (!dir.Exists) { dir.Create(); }
-
-            List<Admin> list = cde.Admin.ToList();
-            foreach (Admin admin in list)
+            try
             {
-                usc.Admin(admin.GLYTM, admin.MM);
-            }
+                FTPUsers.FTPUsersSoapClient usc = new FTPUsers.FTPUsersSoapClient();
+                FTPDownloadFloder.FTPDownloadFloderSoapClient fsc = new FTPDownloadFloder.FTPDownloadFloderSoapClient();
+                //统计图表缓存目录
+                if (!Directory.Exists(@"C:\TempImageFiles\")) { Directory.CreateDirectory(@"C:\TempImageFiles\"); }
+                //下载目录
+                //if (!Directory.Exists(XMLHelper.getAppSettingValue("FTP_Home") + "\\Download\\")) { Directory.CreateDirectory(XMLHelper.getAppSettingValue("FTP_Home") + "\\Download\\"); }
+                //数据导入缓存目录
+                DirectoryInfo dir;
+                dir = new DirectoryInfo(Server.MapPath("~/Temp/Upload/Book/"));
+                if (!dir.Exists) { dir.Create(); }
+                dir = new DirectoryInfo(Server.MapPath("~/Temp/Upload/CD/"));
+                if (!dir.Exists) { dir.Create(); }
+                dir = new DirectoryInfo(Server.MapPath("~/Temp/Upload/Reader/"));
+                if (!dir.Exists) { dir.Create(); }
 
-            fsc.Check();
+                List<Admin> list = cde.Admin.ToList();
+                foreach (Admin admin in list)
+                {
+                    usc.Admin(admin.GLYTM, admin.MM);
+                }
+
+                fsc.Check();
+            }
+            catch {  }
             Timer myTimer = new Timer();
             myTimer.Interval = 60000; //这个时间单位毫秒,比如10秒，就写10000 
             myTimer.Enabled = true;

@@ -15,13 +15,13 @@ namespace CDManagerLibrary.EntityFramework
     public partial class ApplyLog
     {
         public string SQBH { get; set; }
+        public Nullable<long> BookID { get; set; }
         public string DZTM { get; set; }
         public Nullable<System.DateTime> SQSJ { get; set; }
         public Nullable<int> SQZT { get; set; }
         public string CLCZY { get; set; }
         public Nullable<System.DateTime> CLSJ { get; set; }
         public string BZ { get; set; }
-        public string ISBN { get; set; }
         public string IP { get; set; }
     
         public virtual Book Book { get; set; }

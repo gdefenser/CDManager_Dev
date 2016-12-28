@@ -65,6 +65,8 @@ namespace CDManager_Dev4.Account
             else if (String.IsNullOrEmpty(password.Trim())) { passwordValidator.IsValid = false; }
             else
             {
+                //单点登录检验
+                string cache = Convert.ToString(Cache[username]);
                 string val = UserAuthentication.ValidateUser(username, password, ip);
                 if (!String.IsNullOrEmpty(val))
                 {
@@ -85,26 +87,82 @@ namespace CDManager_Dev4.Account
                     }
                     else
                     {
-                        //FormsAuthentication认证
-                        //生成票证
-                        FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
+                        if (!String.IsNullOrEmpty(cache))
+                        { Cache.Remove(username); }
+                        FormsAuthenticationTicket ticket;
+                        if (val.Substring(0, 1) == "1")//读者票证
+                        {
+                            //FormsAuthentication认证
+                            //生成票证
+                            ticket = new FormsAuthenticationTicket(
                             1,//票证版本
                             username,//票证标识
-                            DateTime.Now,//票证登录时间
-                            DateTime.Now.Add(FormsAuthentication.Timeout),//票证过期时间
+                            DateTime.UtcNow,//票证登录时间
+
+                            DateTime.UtcNow.Add(FormsAuthentication.Timeout),//票证过期时间
                             false,//票证不永久保存
                             val//票证角色
                             );
+
+
+                            Cache.Insert(
+                                username,
+                                ip,
+                                null,
+                                DateTime.MaxValue,
+                                FormsAuthentication.Timeout,
+                                System.Web.Caching.CacheItemPriority.NotRemovable,
+                                null);
+                        }
+                        else//管理员票证
+                        {
+                            ticket = new FormsAuthenticationTicket(
+                                1,
+                                username,
+                                DateTime.UtcNow,
+                                DateTime.UtcNow.AddHours(3),
+                                false,
+                                val);
+                            Cache.Insert(
+                                username,
+                                ip,
+                                null,
+                                DateTime.MaxValue,
+                                new TimeSpan(0, 3, 0, 0, 0),
+                                System.Web.Caching.CacheItemPriority.NotRemovable,
+                                null);
+                        }
+
 
                         //加密票证并保存至用户Cookie
                         HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
                         Response.Cookies.Add(cookie);
 
-                        string back_url = Session["Back_URL"].ToString();
-                        if (String.IsNullOrEmpty(back_url))
-                        { Response.Redirect(FormsAuthentication.GetRedirectUrl(username, false)); }
-                        else
-                        { Response.Redirect(back_url, false); }
+                        try
+                        {
+                            //单点登录检验
+                            string back_url = Session["Back_URL"].ToString();
+                            if (String.IsNullOrEmpty(back_url))
+                            {
+                                if (!String.IsNullOrEmpty(cache))
+                                {
+                                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "load", "alert('该用户名已在IP:" + cache + "登录，此操作将会强制使用用户名" + username + "在本机登录，若非本人操作请及时修改密码！');location.href='../Index.aspx'", true);
+                                }
+                                else { Response.Redirect(FormsAuthentication.GetRedirectUrl(username, false)); }
+                            }
+                            else
+                            {
+                                string[] urls = back_url.Split('/');
+                                if (!String.IsNullOrEmpty(cache))
+                                {
+                                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "load", "alert('该用户名已在IP:" + cache + "登录，此操作将会强制使用用户名" + username + "在本机登录，若非本人操作请及时修改密码！');location.href='../" + urls[3] + "'", true);
+                                }
+                                else { Response.Redirect(back_url, false); }
+                            }
+                        }
+                        catch
+                        { Response.Redirect("~/Index.aspx"); }
+
                     }
                 }
                 else

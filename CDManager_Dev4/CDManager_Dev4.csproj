@@ -80,9 +80,15 @@
     <Content Include="Account\Profile\UpdatePassword.aspx" />
     <Content Include="Account\SpecialLogin.aspx" />
     <Content Include="Error.aspx" />
+    <Content Include="Feedback.aspx" />
     <Content Include="Help.aspx" />
     <Content Include="IndexFill.aspx" />
     <Content Include="Management\CDManager\BanApply.aspx" />
+    <Content Include="Management\CDManager\DownloadSearch.aspx" />
+    <Content Include="Management\CDManager\iframe_DownloadLog.aspx" />
+    <Content Include="Management\CDManager\UploadedCD.aspx" />
+    <Content Include="Management\Sys\FeedBackcheck.aspx" />
+    <Content Include="Management\CDManager\DownloadLogList.aspx" />
     <Content Include="Management\User\ReaderManager\ReaderDelete.aspx" />
     <Content Include="Resources\Images\20121109201459.jpg" />
     <Content Include="Resources\Images\20121109204201.jpg" />
@@ -114,6 +120,9 @@
     <Content Include="Resources\Styles\calendar.css" />
     <Content Include="Resources\UserControl\FolderBrowser.ascx" />
     <None Include="Service References\CDFile\CDFile.disco" />
+    <Content Include="Service References\CDFile\CDManager_Dev4.CDFile.ArrayOfString.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\CDFile\configuration91.svcinfo" />
     <None Include="Service References\CDFile\configuration.svcinfo" />
     <None Include="Service References\CDFile\Reference.svcmap">
@@ -213,6 +222,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Page404.aspx" />
+    <None Include="Service References\CDFile\CDFile.wsdl" />
     <None Include="Service References\FTPUsers\FTPUsers.wsdl" />
     <None Include="Service References\FTPDownloadFloder\FTPDownloadFloder.wsdl" />
   </ItemGroup>
@@ -282,6 +292,13 @@
     </Compile>
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Feedback.aspx.cs">
+      <DependentUpon>Feedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Feedback.aspx.designer.cs">
+      <DependentUpon>Feedback.aspx</DependentUpon>
     </Compile>
     <Compile Include="FtpUserInfo.cs" />
     <Compile Include="Help.aspx.cs">
@@ -382,6 +399,13 @@
     <Compile Include="Management\CDManager\CDStatistics.aspx.designer.cs">
       <DependentUpon>CDStatistics.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Management\CDManager\DownloadSearch.aspx.cs">
+      <DependentUpon>DownloadSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\CDManager\DownloadSearch.aspx.designer.cs">
+      <DependentUpon>DownloadSearch.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Management\CDManager\DownloadStatistics.aspx.cs">
       <DependentUpon>DownloadStatistics.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -389,12 +413,26 @@
     <Compile Include="Management\CDManager\DownloadStatistics.aspx.designer.cs">
       <DependentUpon>DownloadStatistics.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Management\CDManager\iframe_DownloadLog.aspx.cs">
+      <DependentUpon>iframe_DownloadLog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\CDManager\iframe_DownloadLog.aspx.designer.cs">
+      <DependentUpon>iframe_DownloadLog.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Management\CDManager\NewCDByExcel.aspx.cs">
       <DependentUpon>NewCDByExcel.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Management\CDManager\NewCDByExcel.aspx.designer.cs">
       <DependentUpon>NewCDByExcel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\CDManager\UploadedCD.aspx.cs">
+      <DependentUpon>UploadedCD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\CDManager\UploadedCD.aspx.designer.cs">
+      <DependentUpon>UploadedCD.aspx</DependentUpon>
     </Compile>
     <Compile Include="Management\Main.aspx.cs">
       <DependentUpon>Main.aspx</DependentUpon>
@@ -501,6 +539,13 @@
     <Compile Include="Management\Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Management\Sys\FeedBackcheck.aspx.cs">
+      <DependentUpon>FeedBackcheck.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\Sys\FeedBackcheck.aspx.designer.cs">
+      <DependentUpon>FeedBackcheck.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Management\Sys\SystemManagement.aspx.cs">
       <DependentUpon>SystemManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -542,6 +587,13 @@
     </Compile>
     <Compile Include="Management\User\ReaderManager\ApplyAndDownload.aspx.designer.cs">
       <DependentUpon>ApplyAndDownload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\CDManager\DownloadLogList.aspx.cs">
+      <DependentUpon>DownloadLogList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Management\CDManager\DownloadLogList.aspx.designer.cs">
+      <DependentUpon>DownloadLogList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Management\User\ReaderManager\EditReader.aspx.cs">
       <DependentUpon>EditReader.aspx</DependentUpon>
@@ -769,7 +821,6 @@
     <None Include="Properties\PublishProfiles\CDManager.pubxml" />
     <Content Include="光盘系统管理员使用说明书.doc" />
     <Content Include="光盘系统读者使用说明书.doc" />
-    <None Include="Service References\CDFile\CDFile.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

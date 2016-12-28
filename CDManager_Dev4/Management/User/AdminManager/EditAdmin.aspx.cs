@@ -49,15 +49,7 @@ namespace CDManager_Dev4.Management.User.AdminManager
 
                 if (!String.IsNullOrEmpty(admin.XB)) { dropXB.SelectedValue = admin.XB; }
 
-                if (admin.YXRQ.Value > DateTime.Now)
-                {
-                    try
-                    {
-                        int y = admin.YXRQ.Value.Year - DateTime.Now.Year;
-                        dropYXRQ.SelectedValue = y.ToString();
-                    }
-                    catch { }
-                }
+                CalendarExtenderYXRQ.SelectedDate = admin.YXRQ.Value;
 
                 txtYJDW.Text = admin.YJDW;
                 txtEJDW.Text = admin.EJDW;
@@ -80,7 +72,7 @@ namespace CDManager_Dev4.Management.User.AdminManager
             }
             else
             {
-                if (dropYXRQ.SelectedIndex < 1)
+                if (CalendarExtenderYXRQ.SelectedDate <= DateTime.Now)
                 {
                     valYXRQ.IsValid = false;
                 }
@@ -92,8 +84,8 @@ namespace CDManager_Dev4.Management.User.AdminManager
                         if (dropXB.SelectedIndex > 0) { xb = dropXB.SelectedValue; }
 
                         DateTime yxrq = new DateTime();
-                        if (dropYXRQ.SelectedIndex > 0)
-                        { yxrq = DateTime.Now.AddYears(Convert.ToInt16(dropYXRQ.SelectedValue)); }
+                        if (CalendarExtenderYXRQ.SelectedDate > DateTime.Now)
+                        { yxrq = CalendarExtenderYXRQ.SelectedDate; }
 
                         string yjdw = txtYJDW.Text;
                         string ejdw = txtEJDW.Text;

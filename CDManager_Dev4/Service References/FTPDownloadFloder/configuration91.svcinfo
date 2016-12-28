@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="S0vJsUutyZmTdNeRCsPuATUmUb8=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="DJqqQG798DOelkPwya96R5n4e2A=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="FTPDownloadFloderSoap">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="FTPDownloadFloderSoap" contract="FTPDownloadFloder.FTPDownloadFloderSoap" bindingType="basicHttpBinding" address="http://172.16.4.190/User/FTPDownloadFloder.asmx" bindingConfiguration="FTPDownloadFloderSoap">
+    <endpoint name="FTPDownloadFloderSoap" contract="FTPDownloadFloder.FTPDownloadFloderSoap" bindingType="basicHttpBinding" address="http://localhost:8013/User/FTPDownloadFloder.asmx" bindingConfiguration="FTPDownloadFloderSoap">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://172.16.4.190/User/FTPDownloadFloder.asmx</serializedValue>
+          <serializedValue>http://localhost:8013/User/FTPDownloadFloder.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

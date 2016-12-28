@@ -20,6 +20,7 @@ namespace CDManagerLibrary.EntityFramework
             this.CD = new HashSet<CD>();
         }
     
+        public long BookID { get; set; }
         public string ISBN { get; set; }
         public string ZTM { get; set; }
         public Nullable<decimal> DJ { get; set; }

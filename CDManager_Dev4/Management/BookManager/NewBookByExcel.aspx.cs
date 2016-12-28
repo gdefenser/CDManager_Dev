@@ -82,10 +82,13 @@ namespace CDManager_Dev4.Management.BookManager
             string msg = "";
             try
             {
+                string type = "continue";
+                if (rdoReset.Checked) { type = "reset"; }
+
                 ExcelHelper excel = new ExcelHelper(Page.User.Identity.Name);
                 string path = Server.MapPath("~/Temp/Upload/Book");
 
-                msg = excel.NewBookByExcel(path);
+                msg = excel.NewBookByExcel(path,type);
             }
             catch
             { msg = "导入错误!"; }

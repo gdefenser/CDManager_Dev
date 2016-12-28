@@ -21,7 +21,7 @@ namespace CDManager_Dev4.Resources.UserControl
                     DateTime selected = DateTime.Parse(TextBox.Text);
                     return selected;
                 }
-                catch { return DateTime.Now; }
+                catch { return new DateTime(0001,1,1); }
             }
         }
 

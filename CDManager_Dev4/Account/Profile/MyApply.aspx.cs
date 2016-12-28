@@ -23,6 +23,14 @@ namespace CDManager_Dev4.Account.Profile
                 else
                 { AuthenticationError(); }
             }
+
+            string title = hideTitle.Value;
+            if (!String.IsNullOrEmpty(title))
+            {
+                edsMyApply.Where = "it.DZTM=@DZTM and (it.Book.ISBN like '%" + title + "%' or it.Book.ZTM like '%" + title + "%')";
+            }
+            else
+            { edsMyApply.Where = "it.DZTM=@DZTM"; }
         }
 
         protected void lvMyApply_ItemDataBound(object sender, ListViewItemEventArgs e)
@@ -43,7 +51,7 @@ namespace CDManager_Dev4.Account.Profile
                 Label lblIsOnline = (Label)dataItem.FindControl("lblIsOnline");
                 try
                 {
-                    int status = Convert.ToInt16(cde.CD.Where(i => i.ISBN == isbn).First().ZXZT);
+                    int status = Convert.ToInt16(cde.CD.Where(i => i.Book.ISBN == isbn).First().ZXZT);
                     if (status == 1)
                     {
                         lblIsOnline.ForeColor = Color.Red;
@@ -63,7 +71,7 @@ namespace CDManager_Dev4.Account.Profile
 
             try
             {
-                int max = dpMyApply.TotalRowCount < dpMyApply.PageSize ? 1 : dpMyApply.TotalRowCount / dpMyApply.PageSize+1;
+                int max = dpMyApply.TotalRowCount < dpMyApply.PageSize ? 1 : dpMyApply.TotalRowCount / dpMyApply.PageSize + 1;
                 int select = Convert.ToInt32(txtPage.Text);
                 if (select < 1) { select = 1; }
                 else if (select > max) { select = max; }
@@ -74,6 +82,19 @@ namespace CDManager_Dev4.Account.Profile
             }
             catch
             { }
+        }
+
+        protected void btnSelect_Click(object sender, EventArgs e)
+        {
+            string title = txtTitle.Text;
+            if (!String.IsNullOrEmpty(title))
+            {
+                edsMyApply.Where = "it.DZTM=@DZTM and (it.Book.ISBN like '%" + title + "%' or it.Book.ZTM like '%" + title + "%')";
+
+            }
+            else
+            { edsMyApply.Where = "it.DZTM=@DZTM"; }
+            lvMyApply.DataBind();
         }
     }
 }

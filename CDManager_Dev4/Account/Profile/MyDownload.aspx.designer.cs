@@ -31,6 +31,33 @@ namespace CDManager_Dev4.Account.Profile {
         protected global::System.Web.UI.UpdatePanel upMyDownload;
         
         /// <summary>
+        /// txtTitle 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTitle;
+        
+        /// <summary>
+        /// hideTitle 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hideTitle;
+        
+        /// <summary>
+        /// btnSelect 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSelect;
+        
+        /// <summary>
         /// lvMyDownload 控件。
         /// </summary>
         /// <remarks>

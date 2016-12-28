@@ -98,6 +98,14 @@ namespace CDManager_Dev4.Account
                         false,//票证不永久保存
                         val//票证角色
                         );
+                    Cache.Insert(
+                                    username,
+                                    Request.UserHostAddress,
+                                    null,
+                                    DateTime.MaxValue,
+                                    new TimeSpan(0, 3, 0, 0, 0),
+                                    System.Web.Caching.CacheItemPriority.NotRemovable,
+                                    null);
 
                     //加密票证并保存至用户Cookie
                     HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));

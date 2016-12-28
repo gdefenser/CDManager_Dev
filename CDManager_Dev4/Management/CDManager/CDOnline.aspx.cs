@@ -28,7 +28,7 @@ namespace CDManager_Dev4.Management.CDManager
                 }
                 if (!String.IsNullOrEmpty(isbn))
                 {
-                    where += " and cd.ISBN like '%" + isbn + "%'";
+                    where += " and cd.Book.ISBN like '%" + isbn + "%'";
                     if (!IsPostBack) { txtISBN.Text = isbn; }
                 }
                 if (!String.IsNullOrEmpty(cdxh))
@@ -57,7 +57,7 @@ namespace CDManager_Dev4.Management.CDManager
                     lite = (LiteralControl)e.Row.Cells[3].Controls[0];
                     Label lblCDCount = (Label)lite.FindControl("lblCDCount");
                     string isbn = e.Row.Cells[1].Text;
-                    List<CD> list = cde.CD.Where(c => c.ISBN == isbn).ToList();
+                    List<CD> list = cde.CD.Where(c => c.Book.ISBN == isbn).ToList();
                     lblCDCount.Text = list.Count.ToString();
                     lite = (LiteralControl)e.Row.Cells[4].Controls[0];
                     Label lblOnlineCount = (Label)lite.FindControl("lblOnlineCount");
@@ -99,7 +99,7 @@ namespace CDManager_Dev4.Management.CDManager
                 ListViewDataItem dataItem = (ListViewDataItem)e.Item;
                 Label lblCount = (Label)dataItem.FindControl("lblCount");
                 Label lblISBN = (Label)dataItem.FindControl("lblISBN");
-                List<CD> list = cde.CD.Where(c => c.ISBN == lblISBN.Text).ToList();
+                List<CD> list = cde.CD.Where(c => c.Book.ISBN == lblISBN.Text).ToList();
                 lblCount.Text = list.Count.ToString();
                 Label lblOnlineCount = (Label)dataItem.FindControl("lblOnlineCount");
                 lblOnlineCount.Text = list.Count(c => c.ZXZT == 1).ToString();

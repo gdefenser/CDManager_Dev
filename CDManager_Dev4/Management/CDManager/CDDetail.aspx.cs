@@ -35,15 +35,15 @@ namespace CDManager_Dev4.Management.CDManager
                     LiteralControl lite;//强制转换LiteralControl
                     lite = (LiteralControl)e.Row.Cells[4].Controls[0];
                     Label lblApply = (Label)lite.FindControl("lblApply");
-                    lblApply.Text = cde.ApplyLog.Count(a => a.ISBN == isbn).ToString();
+                    lblApply.Text = cde.ApplyLog.Count(a => a.Book.ISBN == isbn).ToString();
 
                     lite = (LiteralControl)e.Row.Cells[5].Controls[0];
                     Label lblDownload = (Label)lite.FindControl("lblDownload");
-                    lblDownload.Text = cde.DownloadLog.Count(d => d.CD.ISBN == isbn).ToString();
+                    lblDownload.Text = cde.DownloadLog.Count(d => d.CD.Book.ISBN == isbn).ToString();
 
                     lite = (LiteralControl)e.Row.Cells[6].Controls[0];
                     Label lblCDCount = (Label)lite.FindControl("lblCDCount");
-                    List<CD> list = cde.CD.Where(c => c.ISBN == isbn).ToList();
+                    List<CD> list = cde.CD.Where(c => c.Book.ISBN == isbn).ToList();
                     lblCDCount.Text = list.Count.ToString();
                     lite = (LiteralControl)e.Row.Cells[7].Controls[0];
                     Label lblOnlineCount = (Label)lite.FindControl("lblOnlineCount");
@@ -76,6 +76,7 @@ namespace CDManager_Dev4.Management.CDManager
                     lite = (LiteralControl)e.Row.Cells[1].Controls[0];
 
                     string zxzt = e.Row.Cells[7].Text;
+
                     try
                     {
                         string[] fileMsg = cfc.GetFile(glytm, isbn, ztm, cdxh).Split(',');
@@ -114,6 +115,14 @@ namespace CDManager_Dev4.Management.CDManager
                             btnFTPUpload.Attributes.Add("onclick", "javascript:return confirm('你确认要上传好这张光盘:" + lblCDMC.Text + "(" + e.Row.Cells[3].Text + ")" + "吗?')");
                             e.Row.Cells[7].Text = "已删除";
                         }
+                        else
+                        {
+                            Label lblFTP = (Label)lite.FindControl("lblFTP");
+                            lblFTP.Visible = true;
+                            e.Row.Cells[5].Text = "无法获取";
+                            e.Row.Cells[6].Text = "无法获取";
+                            e.Row.Cells[7].Text = "无法获取";
+                        }
                     }
 
                     lite = (LiteralControl)e.Row.Cells[8].Controls[0];
@@ -129,7 +138,7 @@ namespace CDManager_Dev4.Management.CDManager
             {
                 string cdxh = e.CommandArgument.ToString();
                 CD delete_cd = cde.CD.FirstOrDefault(c => c.CDXH == cdxh);
-                string result = cfc.GetFileName(delete_cd.ISBN, delete_cd.Book.ZTM,cdxh);
+                string result = cfc.GetFileName(delete_cd.Book.ISBN, delete_cd.Book.ZTM, cdxh);
                 if (String.IsNullOrEmpty(result))
                 {
                     cde.CD.Remove(delete_cd);
@@ -154,95 +163,121 @@ namespace CDManager_Dev4.Management.CDManager
                 string glytm = Page.User.Identity.Name;
                 string isbn = Request.QueryString["ISBN"];
                 CD update_cd = cde.CD.FirstOrDefault(c => c.CDXH == cdxh);
-
-                bool isUpload = cfc.UploadConfirm(glytm, isbn, update_cd.Book.ZTM, cdxh);
-                if (isUpload)
+                if (update_cd != null)
                 {
                     if (update_cd.ZXZT != 1)
                     {
-                        List<ApplyLog> listApply = cde.ApplyLog.Where(a => a.ISBN == isbn && a.SQZT == 0).ToList();
-                        List<string> listMsg = new List<string>();
-                        foreach (ApplyLog apply in listApply)
+                        try
                         {
-                            //更新申请状态
-                            apply.CLSJ = DateTime.Now;
-                            apply.CLCZY = Page.User.Identity.Name;
-                            apply.SQZT = 1;
-
-                            //发送消息
-                            //生成主键ID
-                            DateTime now = DateTime.Now;
-                            string id = "" + now.Year.ToString() + now.Month.ToString() + now.Day.ToString();
-                            var id_count = cde.Message.Where(m => m.XXTM.Contains(id)).ToList();
-                            if (id_count.Count > 0 && listMsg.Count == 0)
+                            string result = cfc.UploadConfirm(glytm, isbn, update_cd.Book.ZTM, cdxh);
+                            if (result == "file_ok")
                             {
-                                string max = id_count.Max(m => m.XXTM.Substring(m.XXTM.Length - 8));
-                                int temp_id = Convert.ToInt16(max) + 1;
-                                id += temp_id.ToString().PadLeft(8, '0');
+                                List<ApplyLog> listApply = cde.ApplyLog.Where(a => a.Book.ISBN == isbn && a.SQZT == 0).ToList();
+                                List<string> listMsg = new List<string>();
+                                foreach (ApplyLog apply in listApply)
+                                {
+                                    //更新申请状态
+                                    apply.CLSJ = DateTime.Now;
+                                    apply.CLCZY = Page.User.Identity.Name;
+                                    apply.SQZT = 1;
 
+                                    //发送消息
+                                    //生成主键ID
+                                    DateTime now = DateTime.Now;
+                                    string id = "" + now.Year.ToString() + now.Month.ToString() + now.Day.ToString();
+                                    var id_count = cde.Message.Where(m => m.XXTM.Contains(id)).ToList();
+                                    if (id_count.Count > 0 && listMsg.Count == 0)
+                                    {
+                                        string max = id_count.Max(m => m.XXTM.Substring(m.XXTM.Length - 8));
+                                        int temp_id = Convert.ToInt16(max) + 1;
+                                        id += temp_id.ToString().PadLeft(8, '0');
+
+                                    }
+                                    else if (id_count.Count > 0 || listMsg.Count > 0)
+                                    {
+                                        string max = listMsg.Max().Substring(listMsg.Max().Length - 8);
+                                        int temp_id = Convert.ToInt16(max) + 1;
+                                        id += temp_id.ToString().PadLeft(8, '0');
+                                    }
+                                    else
+                                    {
+                                        id += "00000001";
+                                    }
+                                    listMsg.Add(id);
+                                    CDManagerLibrary.EntityFramework.Message new_msg = new CDManagerLibrary.EntityFramework.Message();
+                                    new_msg.XXTM = id;
+                                    new_msg.YHLX = "reader";
+                                    new_msg.SXRTM = apply.DZTM;
+                                    new_msg.FSRTM = "系统消息";
+                                    new_msg.FSSJ = DateTime.Now;
+                                    new_msg.XXNR = "你申请的" + apply.Book.ZTM + "(" + apply.Book.ISBN + ")光盘资源已经上传完成";
+                                    new_msg.YD = false;
+                                    cde.Message.Add(new_msg);
+                                }
+                                //更新光盘信息
+                                update_cd.ZXZT = 1;
+                                update_cd.CZCZY = Page.User.Identity.Name;
+                                update_cd.CZSJ = DateTime.Now;
+                                //update_cd.CDLJ = moved;
+
+                                //新建上传记录
+                                DateTime ul_now = DateTime.Now;
+                                string ul_id = Page.User.Identity.Name + ul_now.Year + ul_now.Month + ul_now.Day;
+                                var ul_id_count = cde.UploadLog.Where(u => u.SCBH.Contains(ul_id)).ToList();
+                                if (ul_id_count.Count > 0)
+                                {
+                                    string max = ul_id_count.Max(u => u.SCBH.Substring(u.SCBH.Length - 5));
+                                    int temp_id = Convert.ToInt16(max) + 1;
+                                    ul_id += temp_id.ToString().PadLeft(5, '0');
+                                }
+                                else
+                                { ul_id += "00001"; }
+
+                                UploadLog new_upload = new UploadLog();
+                                new_upload.SCBH = ul_id;
+                                new_upload.CZYTM = Page.User.Identity.Name;
+                                new_upload.CDID = update_cd.CDID;
+                                new_upload.SCSJ = DateTime.Now;
+                                new_upload.IP = Request.UserHostAddress;
+                                cde.UploadLog.Add(new_upload);
+                                cde.SaveChanges();
+                                gvCD.DataBind();
+                                gvBook.DataBind();
+
+                                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "click", "alert('确认成功!');", true);
                             }
-                            else if (id_count.Count > 0 || listMsg.Count > 0)
+                            else if (result == "file_null")
                             {
-                                string max = listMsg.Max().Substring(listMsg.Max().Length - 8);
-                                int temp_id = Convert.ToInt16(max) + 1;
-                                id += temp_id.ToString().PadLeft(8, '0');
+                                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "click", "alert('文件不存在!');", true);
                             }
                             else
                             {
-                                id += "00000001";
+                                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "click", "alert('确认失败!请耐心等待文件上传文件或重新上传文件!');", true);
                             }
-                            listMsg.Add(id);
-                            CDManagerLibrary.EntityFramework.Message new_msg = new CDManagerLibrary.EntityFramework.Message();
-                            new_msg.XXTM = id;
-                            new_msg.YHLX = "reader";
-                            new_msg.SXRTM = apply.DZTM;
-                            new_msg.FSRTM = "系统消息";
-                            new_msg.FSSJ = DateTime.Now;
-                            new_msg.XXNR = "你申请的" + apply.Book.ZTM + "(" + apply.ISBN + ")光盘资源已经上传完成";
-                            new_msg.YD = false;
-                            cde.Message.Add(new_msg);
+                        }
+                        catch
+                        {
+                            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "click", "alert('无法连接光盘存储服务器!');", true);
                         }
                     }
-
-                    //更新光盘信息
-                    update_cd.ZXZT = 1;
-                    update_cd.CZCZY = Page.User.Identity.Name;
-                    update_cd.CZSJ = DateTime.Now;
-                    //update_cd.CDLJ = moved;
-
-                    //新建上传记录
-                    DateTime ul_now = DateTime.Now;
-                    string ul_id = Page.User.Identity.Name + ul_now.Year + ul_now.Month + ul_now.Day;
-                    var ul_id_count = cde.UploadLog.Where(u => u.SCBH.Contains(ul_id)).ToList();
-                    if (ul_id_count.Count > 0)
-                    {
-                        string max = ul_id_count.Max(u => u.SCBH.Substring(u.SCBH.Length - 5));
-                        int temp_id = Convert.ToInt16(max) + 1;
-                        ul_id += temp_id.ToString().PadLeft(5, '0');
-                    }
                     else
-                    { ul_id += "00001"; }
-
-                    UploadLog new_upload = new UploadLog();
-                    new_upload.SCBH = ul_id;
-                    new_upload.CZYTM = Page.User.Identity.Name;
-                    new_upload.CDID = update_cd.CDID;
-                    new_upload.SCSJ = DateTime.Now;
-                    new_upload.IP = Request.UserHostAddress;
-                    cde.UploadLog.Add(new_upload);
-
-                    cde.SaveChanges();
-                    gvCD.DataBind();
-                    gvBook.DataBind();
+                    {
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "click", "alert('未找到光盘文件!请确认是否已经上传');", true);
+                        //Session["ErrorMsg"] = "未找到光盘文件!请确认是否已经上传";
+                        //ErrorRedirect_Management(false);
+                    }
                 }
                 else
                 {
-                    Session["ErrorMsg"] = "未找到光盘文件!请确认是否已经上传";
-                    ErrorRedirect_Management();
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "click", "alert('光盘序号错误!');", true);
                 }
             }
             catch
-            { }
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "click", "alert('确认失败!请查看文件名是否以[ISBN_光盘序号_光盘名称]命名!');", true);
+                //Session["ErrorMsg"] = "FTP已关闭!无法确认上传";
+                //ErrorRedirect_Management();
+            }
         }
         //FTP删除
         protected void btnFTPDelete_Command(object sender, CommandEventArgs e)
@@ -257,8 +292,8 @@ namespace CDManager_Dev4.Management.CDManager
                 update_cd.ZXZT = 2;
                 cde.SaveChanges();
 
-                string isbn = update_cd.ISBN;
-                if (cfc.RemoveFile(glytm, update_cd.ISBN, update_cd.Book.ZTM, cdxh))
+                string isbn = update_cd.Book.ISBN;
+                if (cfc.RemoveFile(glytm, update_cd.Book.ISBN, update_cd.Book.ZTM, cdxh))
                 {
                     gvCD.DataBind();
                     gvBook.DataBind();
@@ -307,7 +342,15 @@ namespace CDManager_Dev4.Management.CDManager
                     {
                         if (update_cd.ZXZT == 1)
                         {
-                            cfc.UpdateFileName(update_cd.ISBN, update_cd.Book.ZTM, update_cd.CDXH, cdmc);
+                            try
+                            {
+                                cfc.UpdateFileName(update_cd.Book.ISBN, update_cd.Book.ZTM, update_cd.CDXH, cdmc);
+                            }
+                            catch
+                            {
+                                Session["ErrorMsg"] = "FTP已关闭!无法更新!";
+                                ErrorRedirect_Management();
+                            }
                         }
                         update_cd.CDXH = cdxh;
                         update_cd.CDMC = cdmc;
@@ -360,9 +403,10 @@ namespace CDManager_Dev4.Management.CDManager
                     catch
                     { cdxh = "未确定" + (cde.CD.Count(c => c.CDXH.Contains("未确定")) + 1); }
                     string isbn = Request.QueryString["ISBN"];
+                    long bookID = cde.Book.First(b => b.ISBN == isbn).BookID;
                     CD new_cd = new CD();
                     new_cd.CDXH = cdxh;
-                    new_cd.ISBN = isbn;
+                    new_cd.BookID = bookID;
                     new_cd.CDMC = cdmc;
                     new_cd.CZSJ = DateTime.Now;
                     new_cd.FFSJ = DateTime.Now;

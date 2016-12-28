@@ -76,6 +76,24 @@ namespace CDManager_Dev4.Management.Sys {
         protected global::System.Web.UI.WebControls.Button btnClick;
         
         /// <summary>
+        /// lblCatch 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCatch;
+        
+        /// <summary>
+        /// btnCatch 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCatch;
+        
+        /// <summary>
         /// UpdatePanel 控件。
         /// </summary>
         /// <remarks>
@@ -110,5 +128,14 @@ namespace CDManager_Dev4.Management.Sys {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnReSetUser;
+        
+        /// <summary>
+        /// lblFTP 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFTP;
     }
 }

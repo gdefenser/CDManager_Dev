@@ -31,6 +31,7 @@ namespace CDManagerLibrary.Core.Login
             {
                 try
                 {
+                    if (String.IsNullOrEmpty(ip)) { ip = "无法获取"; }
                     Admin admin = cde.Admin.First(a => a.GLYTM == username && a.MM == password);
                     if (admin.YXRQ < DateTime.Now) { return "no_yxrq"; }
                     else

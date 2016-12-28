@@ -46,14 +46,14 @@ namespace CDManager_Dev4
                 Label lblDownloadApply = (Label)dataItem.FindControl("lblDownloadApply");
 
                 string isbn = ((Label)dataItem.FindControl("ISBNLabel")).Text;
-                int downlload = cde.DownloadLog.Count(d => d.CD.ISBN == isbn);
-                int apply = cde.ApplyLog.Count(a => a.ISBN == isbn);
+                int downlload = cde.DownloadLog.Count(d => d.CD.Book.ISBN == isbn);
+                int apply = cde.ApplyLog.Count(a => a.Book.ISBN == isbn);
 
                 lblDownloadApply.Text = downlload + "/" + apply;
                 Label lblIsOnline = (Label)dataItem.FindControl("lblIsOnline");
                 try
                 {
-                    int status = Convert.ToInt16(cde.CD.Where(i => i.ISBN == isbn).First().ZXZT);
+                    int status = Convert.ToInt16(cde.CD.Where(i => i.Book.ISBN == isbn).First().ZXZT);
                     if (status == 1)
                     {
                         lblIsOnline.ForeColor = Color.Red;
@@ -64,7 +64,7 @@ namespace CDManager_Dev4
                 }
                 catch { lblIsOnline.Text = "不在线"; }
                 Label lblTime = (Label)dataItem.FindControl("FFSJLabel");
-                lblTime.Text = cde.CD.Where(c => c.ISBN == isbn).Select(c => c.CZSJ).Max().ToString();
+                lblTime.Text = cde.CD.Where(c => c.Book.ISBN == isbn).Select(c => c.CZSJ).Max().ToString();
                 if (String.IsNullOrEmpty(lblTime.Text)) { lblTime.Text = "暂无操作"; }
             }
         }

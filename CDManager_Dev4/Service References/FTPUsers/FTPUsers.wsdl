@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetFTPStatus">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFTPStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetFTPStatusResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Admin">
         <s:complexType>
           <s:sequence>
@@ -88,6 +98,12 @@
       </s:element>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="GetFTPStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFTPStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetFTPStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFTPStatusResponse" />
+  </wsdl:message>
   <wsdl:message name="AdminSoapIn">
     <wsdl:part name="parameters" element="tns:Admin" />
   </wsdl:message>
@@ -125,6 +141,10 @@
     <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
   </wsdl:message>
   <wsdl:portType name="FTPUsersSoap">
+    <wsdl:operation name="GetFTPStatus">
+      <wsdl:input message="tns:GetFTPStatusSoapIn" />
+      <wsdl:output message="tns:GetFTPStatusSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Admin">
       <wsdl:input message="tns:AdminSoapIn" />
       <wsdl:output message="tns:AdminSoapOut" />
@@ -152,6 +172,15 @@
   </wsdl:portType>
   <wsdl:binding name="FTPUsersSoap" type="tns:FTPUsersSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetFTPStatus">
+      <soap:operation soapAction="http://tempuri.org/GetFTPStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Admin">
       <soap:operation soapAction="http://tempuri.org/Admin" style="document" />
       <wsdl:input>
@@ -209,6 +238,15 @@
   </wsdl:binding>
   <wsdl:binding name="FTPUsersSoap12" type="tns:FTPUsersSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetFTPStatus">
+      <soap12:operation soapAction="http://tempuri.org/GetFTPStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Admin">
       <soap12:operation soapAction="http://tempuri.org/Admin" style="document" />
       <wsdl:input>
@@ -266,10 +304,10 @@
   </wsdl:binding>
   <wsdl:service name="FTPUsers">
     <wsdl:port name="FTPUsersSoap" binding="tns:FTPUsersSoap">
-      <soap:address location="http://172.16.4.190/User/FTPUsers.asmx" />
+      <soap:address location="http://localhost:8013/User/FTPUsers.asmx" />
     </wsdl:port>
     <wsdl:port name="FTPUsersSoap12" binding="tns:FTPUsersSoap12">
-      <soap12:address location="http://172.16.4.190/User/FTPUsers.asmx" />
+      <soap12:address location="http://localhost:8013/User/FTPUsers.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

@@ -11,6 +11,7 @@ using CDManagerLibrary.XML;
 using System.Timers;
 using CDManagerLibrary.FTP.Serv_uAdvCon;
 using CDManagerLibrary.Core;
+using System.Collections;
 
 namespace CDManager_Dev4.Management.Sys
 {
@@ -19,6 +20,7 @@ namespace CDManager_Dev4.Management.Sys
         FTPUsers.FTPUsersSoapClient usc = new FTPUsers.FTPUsersSoapClient();
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
                 string enable = XMLHelper.getAppSettingValue("IsEnable");
@@ -51,7 +53,16 @@ namespace CDManager_Dev4.Management.Sys
                     { XMLHelper.setAppSettingValue("SetTime", ""); }
                 }
                 //并发下载读者数
-                txtMaxUser.Text = usc.GetMaxUser();
+                try
+                { txtMaxUser.Text = usc.GetMaxUser(); }
+                catch
+                {
+                    UpdatePanel.Visible = false;
+                    lblFTP.Visible = true;
+                }
+
+
+                lblCatch.Text = Cache.Count.ToString();
             }
         }
 
@@ -120,10 +131,18 @@ namespace CDManager_Dev4.Management.Sys
 
         protected void btnSetUser_Click(object sender, EventArgs e)
         {
-            string new_max = txtMaxUser.Text;
-            if (usc.SetMaxUser("reader",new_max))
+            try
             {
-                 SuccessRedirect_Management(); 
+                string new_max = txtMaxUser.Text;
+                if (usc.SetMaxUser("reader", new_max))
+                {
+                    SuccessRedirect_Management();
+                }
+            }
+            catch
+            {
+                UpdatePanel.Visible = false;
+                lblFTP.Visible = true;
             }
         }
 
@@ -139,6 +158,30 @@ namespace CDManager_Dev4.Management.Sys
             { Response.Redirect("~/Management/Success.aspx"); }
             else
             { Response.Redirect("~/Management/Error.aspx"); }
+        }
+
+        //清空读者登录缓存
+        protected void btnCatch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<string> cacheKeys = new List<string>();
+                IDictionaryEnumerator cacheEnum = Cache.GetEnumerator();
+                while (cacheEnum.MoveNext())
+                {
+                    string key = cacheEnum.Key.ToString();
+                    if (cde.Admin.Count(a => a.GLYTM == key) <= 0 &&
+                        cacheEnum.Key.ToString().Length <= 20)
+                    { cacheKeys.Add(cacheEnum.Key.ToString()); }
+                }
+                foreach (string cacheKey in cacheKeys)
+                {
+                    Cache.Remove(cacheKey);
+                }
+
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "click", "alert('登录缓存清除成功!');location.href = 'SystemManagement.aspx';", true);
+            }
+            catch { }
         }
     }
 }

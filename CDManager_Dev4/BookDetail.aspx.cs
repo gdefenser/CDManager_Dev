@@ -8,6 +8,7 @@ using CDManagerLibrary.EntityFramework;
 using CDManagerLibrary.Core;
 using System.Drawing;
 using System.Web.Security;
+using CDManagerLibrary.XML;
 
 namespace CDManager_Dev4
 {
@@ -47,52 +48,68 @@ namespace CDManager_Dev4
                     linkZRZ.Text = book.ZRZ;
                     linkZRZ.NavigateUrl = "~/SearchResult.aspx?ZRZ=" + book.ZRZ;
                     lblYEMA.Text = book.YEMA;
-                    lblDownload.Text = cde.DownloadLog.Where(d => d.CD.ISBN == isbn).Count().ToString();
+                    lblDownload.Text = cde.DownloadLog.Where(d => d.CD.Book.ISBN == isbn).Count().ToString();
 
-                    lblApply.Text = book.ApplyLog.Count(a => a.ISBN == isbn).ToString();
-                    List<CD> listCD = cde.CD.Where(c => c.ISBN == isbn).ToList();
+                    lblApply.Text = book.ApplyLog.Count(a => a.Book.ISBN == isbn).ToString();
+                    List<CD> listCD = cde.CD.Where(c => c.Book.ISBN == isbn).ToList();
                     lblOnlineCount.Text = "(光盘数量:" + listCD.Count() + "  在线数量:" + listCD.Count(c => c.ZXZT == 1) + ")";
-                  
+
                     try
                     {
-                        status = Convert.ToInt16(cde.CD.Where(i => i.ISBN == isbn).First().ZXZT);
+                        status = Convert.ToInt16(cde.CD.Where(i => i.Book.ISBN == isbn).First().ZXZT);
                     }
                     catch { }
 
                     if (status == 1)
                     {
-                        lblIsOnline.Font.Bold = true;
-                        lblIsOnline.ForeColor = Color.Red;
-                        lblIsOnline.Text = "在线";
-                        listCD = listCD.Where(c => c.ZXZT == 1).ToList();
-                        for (int i = 0; i < listCD.Count; i++)
+                        bool ftp = false;
+                        try
                         {
+                            FTPUsers.FTPUsersSoapClient usc = new FTPUsers.FTPUsersSoapClient();
+                            ftp = usc.GetFTPStatus();
+                        }
+                        catch
+                        { }
+                        if (ftp)
+                        {
+                            lblIsOnline.Font.Bold = true;
+                            lblIsOnline.ForeColor = Color.Red;
+                            lblIsOnline.Text = "在线";
+                            listCD = listCD.Where(c => c.ZXZT == 1).ToList();
+                            for (int i = 0; i < listCD.Count; i++)
+                            {
 
-                            CD cd = listCD[i];
-                            Literal li_div_b = new Literal();
-                            li_div_b.Text = "光盘" + (i + 1) + "<div style='background-color: #FFFFCC; border: 1px dotted #990000;padding-top: 3px; padding-bottom: 3px'>";
+                                CD cd = listCD[i];
+                                Literal li_div_b = new Literal();
+                                li_div_b.Text = "光盘" + (i + 1) + "<div style='background-color: #FFFFCC; border: 1px dotted #990000;padding-top: 3px; padding-bottom: 3px'>";
 
-                            HyperLink link = new HyperLink();
-                            link.Font.Bold = true;
-                            link.Text = cd.CDMC;
-                            link.NavigateUrl = "~/CDDownload.ashx?CDXH=" + cd.CDXH;
-                            link.Target = "_blank";
+                                HyperLink link = new HyperLink();
+                                link.Font.Bold = true;
+                                link.Text = cd.CDMC;
+                                link.NavigateUrl = "~/CDDownload.ashx?CDXH=" + cd.CDXH;
+                                link.Target = "_blank";
 
-                            Literal li = new Literal();
-                            li.Text = "<br/>";
+                                Literal li = new Literal();
+                                li.Text = "<br/>";
 
-                            Literal li_div_e = new Literal();
-                            li_div_e.Text = "</div><br/>";
+                                Literal li_div_e = new Literal();
+                                li_div_e.Text = "</div><br/>";
 
-                            panelDownload.Controls.Add(li_div_b);
-                            panelDownload.Controls.Add(link);
-                            panelDownload.Controls.Add(li);
-                            panelDownload.Controls.Add(li_div_e);
+                                panelDownload.Controls.Add(li_div_b);
+                                panelDownload.Controls.Add(link);
+                                panelDownload.Controls.Add(li);
+                                panelDownload.Controls.Add(li_div_e);
+                            }
+                        }
+                        else
+                        {
+                            panelFTPShutDown.Visible = true;
+                            return;
                         }
                     }
                     else { lblIsOnline.Text = "不在线"; }
 
-                    lblTime.Text = cde.CD.Where(c => c.ISBN == isbn).Select(c => c.CZSJ).Max().ToString();
+                    lblTime.Text = cde.CD.Where(c => c.Book.ISBN == isbn).Select(c => c.CZSJ).Max().ToString();
                 }
 
                 var ticket = Context.User.Identity as FormsIdentity;
@@ -109,15 +126,15 @@ namespace CDManager_Dev4
                         string[] data = ticket.Ticket.UserData.Split(',');
                         string roles = data[0];
 
-                        if (roles == "2" || roles == "3") 
-                        { 
+                        if (roles == "2" || roles == "3")
+                        {
                             panelUpload.Visible = true;
                             linkUpload.NavigateUrl = "~/Management/CDManager/CDDetail.aspx?ISBN=" + isbn;
                         }
                         else
                         {
                             panelApply.Visible = true;
-                            if (cde.ApplyLog.Count(a => a.DZTM == ticket.Name && a.ISBN == isbn && a.SQZT == 0) > 0)
+                            if (cde.ApplyLog.Count(a => a.DZTM == ticket.Name && a.Book.ISBN == isbn && a.SQZT == 0) > 0)
                             { lblApplyed.Visible = true; }
                             else { btnApplySubmit.Visible = true; }
                         }
@@ -138,7 +155,7 @@ namespace CDManager_Dev4
             {
                 string dztm = Page.User.Identity.Name;
                 string isbn = lblISBN.Text;
-                if (cde.ApplyLog.Count(a => a.DZTM == dztm && a.ISBN == isbn && a.SQZT == 0) > 0)
+                if (cde.ApplyLog.Count(a => a.DZTM == dztm && a.Book.ISBN == isbn && a.SQZT == 0) > 0)
                 {
                     if (IsPostBack)
                     {
@@ -165,13 +182,13 @@ namespace CDManager_Dev4
                     {
                         id += "000001";
                     }
-
+                    long bookID = cde.Book.First(b => b.ISBN == isbn).BookID;
                     ApplyLog new_log = new ApplyLog();
                     new_log.SQBH = id;
                     new_log.DZTM = dztm;
                     new_log.SQSJ = DateTime.Now;
                     new_log.SQZT = 0;
-                    new_log.ISBN = isbn;
+                    new_log.BookID = bookID;
                     new_log.IP = Request.UserHostAddress;
                     cde.ApplyLog.Add(new_log);
                     if (cde.SaveChanges() > 0)

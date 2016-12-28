@@ -9,6 +9,7 @@ using System.Web.Configuration;
 using CDManagerLibrary.EntityFramework;
 using CDManagerLibrary.Core;
 using System.Drawing;
+using CDManagerLibrary.XML;
 
 namespace CDManager_Dev4.Resources.UserControl
 {
@@ -19,95 +20,111 @@ namespace CDManager_Dev4.Resources.UserControl
         {
             if (!IsPostBack)
             {
+
                 var ticket = Context.User.Identity as FormsIdentity;
                 string status = WebConfigurationManager.AppSettings["IsEnable"];
 
                 if (ticket != null && ticket.IsAuthenticated)
                 {
-                    string[] data = ticket.Ticket.UserData.Split(',');
-                    string roles = data[0];
 
-                    if (roles == "1" || roles == "2" || roles == "3")//用户角色检查
+                    string cache = "";
+                    try { cache = Cache[Page.User.Identity.Name].ToString(); }
+                    catch { }
+                    if (!String.IsNullOrEmpty(cache) && cache == Request.UserHostAddress)
                     {
-                        if (status == "0")//如果前台已关闭
+                        string[] data = ticket.Ticket.UserData.Split(',');
+                        string roles = data[0];
+
+                        if (roles == "1" || roles == "2" || roles == "3")//用户角色检查
                         {
-                            string currentFilePath = HttpContext.Current.Request.FilePath;
-                            string toppic = currentFilePath.Substring(currentFilePath.LastIndexOf("/") + 1);
-                            if (toppic != "SpecialLogin.aspx" && roles == "1")//注销已登录读者
+                            if (status == "0")//如果前台已关闭
                             {
-                                FormsAuthentication.SignOut();
-                                Response.Redirect("~/Account/SpecialLogin.aspx");
+                                string currentFilePath = HttpContext.Current.Request.FilePath;
+                                string toppic = currentFilePath.Substring(currentFilePath.LastIndexOf("/") + 1);
+                                if (toppic != "SpecialLogin.aspx" && roles == "1")//注销已登录读者
+                                {
+                                    FormsAuthentication.SignOut();
+                                    try { Cache.Remove(Page.User.Identity.Name); }
+                                    catch { }
+                                    Response.Redirect("~/Account/SpecialLogin.aspx");
+                                }
+                                else
+                                {
+                                    if (roles == "2")
+                                    {
+                                        lblLoginTitle.Text = "图书管理员：" + data[1];
+                                        linkLoginManager.Visible = true;
+                                        lblLoginAccount.Text = Page.User.Identity.Name;
+                                    }
+                                    else if (roles == "3")
+                                    {
+                                        lblLoginTitle.Text = "系统管理员：" + data[1];
+                                        linkLoginManager.Visible = true;
+                                        lblLoginAccount.Text = Page.User.Identity.Name;
+                                    }
+
+                                    int apply_count = cde.ApplyLog.Count(a => a.SQZT == 0);
+                                    if (apply_count > 0)
+                                    {
+                                        linkApplyLog.Text = "[未处理申请" + apply_count + "条]";
+                                        linkApplyLog.Font.Bold = true;
+                                        linkApplyLog.ForeColor = Color.DarkSeaGreen;
+                                    }
+                                    linkApplyLog.Visible = true;
+
+                                    linkLoginMessage.NavigateUrl = "~/Management/Message/ReceivedMessage.aspx";
+                                    linkLogout.Attributes["onclick"] = "javascript:return confirm('" + Page.User.Identity.Name + ",您确定退出吗？');";
+                                    lblStatus.Visible = true;
+                                    panelLogin.Visible = true;
+                                    panelNoLogin.Visible = false;
+                                }
                             }
                             else
                             {
-                                if (roles == "2")
+                                if (roles == "1")
                                 {
-                                    lblLoginTitle.Text = "图书管理员：" + data[1];
+                                    lblLoginTitle.Text = "读者：" + data[1];
+                                    lblLoginAccount.Text = Page.User.Identity.Name;
+                                    linkLoginMessage.NavigateUrl = "~/Account/Profile/MyMessage.aspx";
+                                    linkLoginProfile.Visible = true;
+                                }
+                                else if (roles == "2" || roles == "3")
+                                {
+                                    if (roles == "2") { lblLoginTitle.Text = "图书管理员：" + data[1]; }
+                                    else if (roles == "3") { lblLoginTitle.Text = "系统管理员：" + data[1]; }
                                     linkLoginManager.Visible = true;
                                     lblLoginAccount.Text = Page.User.Identity.Name;
-                                }
-                                else if (roles == "3")
-                                {
-                                    lblLoginTitle.Text = "系统管理员：" + data[1];
-                                    linkLoginManager.Visible = true;
-                                    lblLoginAccount.Text = Page.User.Identity.Name;
+                                    linkLoginMessage.NavigateUrl = "~/Management/Message/ReceivedMessage.aspx";
+
+                                    int apply_count = cde.ApplyLog.Count(a => a.SQZT == 0);
+                                    if (apply_count > 0)
+                                    {
+                                        linkApplyLog.Text = "[未处理申请" + apply_count + "条]";
+                                        linkApplyLog.Font.Bold = true;
+                                        linkApplyLog.ForeColor = Color.DarkSeaGreen;
+                                    }
+                                    linkApplyLog.Visible = true;
                                 }
 
-                                int apply_count = cde.ApplyLog.Count(a => a.SQZT == 0);
-                                if (apply_count > 0)
-                                {
-                                    linkApplyLog.Text = "[未处理申请" + apply_count + "条]";
-                                    linkApplyLog.Font.Bold = true;
-                                    linkApplyLog.ForeColor = Color.DarkSeaGreen;
-                                }
-                                linkApplyLog.Visible = true;
-
-                                linkLoginMessage.NavigateUrl = "~/Management/Message/ReceivedMessage.aspx";
                                 linkLogout.Attributes["onclick"] = "javascript:return confirm('" + Page.User.Identity.Name + ",您确定退出吗？');";
-                                lblStatus.Visible = true;
                                 panelLogin.Visible = true;
                                 panelNoLogin.Visible = false;
                             }
-                        }
-                        else
-                        {
-                            if (roles == "1")
+
+                            int msg_count = cde.Message.Count(m => m.SXRTM == ticket.Name && m.YD == false);
+                            if (msg_count > 0)
                             {
-                                lblLoginTitle.Text = "读者：" + data[1];
-                                lblLoginAccount.Text = Page.User.Identity.Name;
-                                linkLoginMessage.NavigateUrl = "~/Account/Profile/MyMessage.aspx";
-                                linkLoginProfile.Visible = true;
+                                linkLoginMessage.Text = "未读消息" + msg_count + "条";
+                                linkLoginMessage.Font.Bold = true;
+                                linkLoginMessage.ForeColor = Color.DarkOrange;
                             }
-                            else if (roles == "2" || roles == "3")
-                            {
-                                if (roles == "2") { lblLoginTitle.Text = "图书管理员：" + data[1]; }
-                                else if (roles == "3") { lblLoginTitle.Text = "系统管理员：" + data[1]; }
-                                linkLoginManager.Visible = true;
-                                lblLoginAccount.Text = Page.User.Identity.Name;
-                                linkLoginMessage.NavigateUrl = "~/Management/Message/ReceivedMessage.aspx";
-
-                                int apply_count = cde.ApplyLog.Count(a => a.SQZT == 0);
-                                if (apply_count > 0)
-                                {
-                                    linkApplyLog.Text = "[未处理申请" + apply_count + "条]";
-                                    linkApplyLog.Font.Bold = true;
-                                    linkApplyLog.ForeColor = Color.DarkSeaGreen;
-                                }
-                                linkApplyLog.Visible = true;
-                            }
-
-                            linkLogout.Attributes["onclick"] = "javascript:return confirm('" + Page.User.Identity.Name + ",您确定退出吗？');";
-                            panelLogin.Visible = true;
-                            panelNoLogin.Visible = false;
                         }
+                    }
+                    else
+                    {
+                        FormsAuthentication.SignOut();
+                        Response.Redirect("~/Index.aspx");
 
-                        int msg_count = cde.Message.Count(m => m.SXRTM == ticket.Name && m.YD == false);
-                        if (msg_count > 0)
-                        {
-                            linkLoginMessage.Text = "未读消息" + msg_count + "条";
-                            linkLoginMessage.Font.Bold = true;
-                            linkLoginMessage.ForeColor = Color.DarkOrange;
-                        }
                     }
                 }
                 else
@@ -134,6 +151,8 @@ namespace CDManager_Dev4.Resources.UserControl
         protected void linkLogout_Click(object sender, EventArgs e)
         {
             FormsAuthentication.SignOut();
+            try { Cache.Remove(Page.User.Identity.Name); }
+            catch { }
             Response.Redirect("~/Index.aspx");
         }
     }

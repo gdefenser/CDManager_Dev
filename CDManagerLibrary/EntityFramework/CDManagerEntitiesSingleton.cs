@@ -12,15 +12,12 @@ namespace CDManagerLibrary.EntityFramework
         //单例模式
         public static CDManagerDevEntities GetCDManagerDevEntities()
         {
-            if (cde == null)
+            //给实例化操作加上线程互斥锁
+            lock (lockHelper)
             {
-                //给实例化操作加上线程互斥锁
-                lock (lockHelper)
+                if (cde == null)
                 {
-                    if (cde == null)
-                    {
-                        cde = new CDManagerDevEntities();
-                    }
+                    cde = new CDManagerDevEntities();
                 }
             }
             return cde;

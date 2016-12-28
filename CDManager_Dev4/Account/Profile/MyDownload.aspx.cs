@@ -24,6 +24,15 @@ namespace CDManager_Dev4.Account.Profile
                 else
                 { AuthenticationError(); }
             }
+
+            string title = hideTitle.Value;
+            if (!String.IsNullOrEmpty(title))
+            {
+                edsMyDownload.Where = "it.CZYTM=@CZYTM and (it.CD.Book.ISBN like '%" + title + "%' or it.CD.Book.ZTM like '%" + title + "%')";
+
+            }
+            else
+            { edsMyDownload.Where = "it.CZYTM=@CZYTM"; }
         }
 
         protected void gvMyDownload_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -82,7 +91,7 @@ namespace CDManager_Dev4.Account.Profile
                 Label lblIsOnline = (Label)dataItem.FindControl("lblIsOnline");
                 try
                 {
-                    int status = Convert.ToInt16(cde.CD.Where(i => i.ISBN == isbn).First().ZXZT);
+                    int status = Convert.ToInt16(cde.CD.Where(i => i.Book.ISBN == isbn).First().ZXZT);
                     if (status == 1)
                     {
                         lblIsOnline.ForeColor = Color.Red;
@@ -93,6 +102,19 @@ namespace CDManager_Dev4.Account.Profile
                 }
                 catch { lblIsOnline.Text = "不在线"; }
             }
+        }
+
+        protected void btnSelect_Click(object sender, EventArgs e)
+        {
+            string title = txtTitle.Text;
+            if (!String.IsNullOrEmpty(title))
+            {
+                edsMyDownload.Where = "it.CZYTM=@CZYTM and (it.CD.Book.ISBN like '%" + title + "%' or it.CD.Book.ZTM like '%" + title + "%')";
+
+            }
+            else
+            { edsMyDownload.Where = "it.CZYTM=@CZYTM"; }
+            hideTitle.Value = title;
         }
     }
 }

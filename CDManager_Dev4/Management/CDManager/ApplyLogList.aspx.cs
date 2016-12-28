@@ -31,9 +31,9 @@ namespace CDManager_Dev4.Management.CDManager
                     try
                     {
                         panelLogDetail.Visible = true;
-                        List<ApplyLog> list = cde.ApplyLog.Where(a => a.ISBN == isbn && a.SQZT == 0).ToList();
+                        List<ApplyLog> list = cde.ApplyLog.Where(a => a.Book.ISBN == isbn && a.SQZT == 0).ToList();
                         ApplyLog apply = list.First();
-                        lblCount.Text = "截至" + DateTime.Now + "图书:" + apply.Book.ZTM + "(" + apply.ISBN + ")的光盘资源申请数: " + list.Count;
+                        lblCount.Text = "截至" + DateTime.Now + "图书:" + apply.Book.ZTM + "(" + apply.Book.ISBN + ")的光盘资源申请数: " + list.Count;
                     }
                     catch
                     { Response.Redirect("~/Management/Error.aspx", false); }
@@ -104,7 +104,7 @@ namespace CDManager_Dev4.Management.CDManager
                 ListViewDataItem dataItem = (ListViewDataItem)e.Item;
                 HyperLink linkCountApply = (HyperLink)dataItem.FindControl("linkCountApply");
                 Label lblISBN = (Label)dataItem.FindControl("lblISBN");
-                linkCountApply.Text = cde.ApplyLog.Count(a => a.ISBN == lblISBN.Text && a.SQZT == 0).ToString();
+                linkCountApply.Text = cde.ApplyLog.Count(a => a.Book.ISBN == lblISBN.Text && a.SQZT == 0).ToString();
             }
         }
 

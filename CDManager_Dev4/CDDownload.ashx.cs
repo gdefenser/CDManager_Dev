@@ -34,20 +34,20 @@ namespace CDManager_Dev4
                     CD cd = cde.CD.FirstOrDefault(c => c.CDXH == cdxh);
                     if (cd != null)
                     {
-                        DownloadLog download = cde.DownloadLog.OrderByDescending(d => d.XZSJ).FirstOrDefault(d => d.CZYTM == dztm && d.CDID == cd.CDID);
-                        if (download != null && DateTime.Now < download.XZSJ.Value.AddSeconds(300))
-                        {
-                            context.Response.Write("<script>alert('请勿在短时间内下载统一资源!');window.close();</script>");
-                        }
-                        else
-                        {
+                        //DownloadLog download = cde.DownloadLog.OrderByDescending(d => d.XZSJ).FirstOrDefault(d => d.CZYTM == dztm && d.CDID == cd.CDID);
+                        //if (download != null && DateTime.Now < download.XZSJ.Value.AddSeconds(300))
+                        //{
+                        //    context.Response.Write("<script>alert('请勿在短时间内下载同一资源!');window.close();</script>");
+                        //}
+                        //else
+                        //{
                             CDFile.CDFileSoapClient csc = new CDFile.CDFileSoapClient();
-                            string name = csc.GetFileName(cd.ISBN, cd.Book.ZTM, cdxh);
+                            string name = csc.GetFileName(cd.Book.ISBN, cd.Book.ZTM, cdxh);
 
                             if (!String.IsNullOrEmpty(name))
                             {
                                 string check_url = "ftp://" + XMLHelper.getAppSettingValue("FTP_IP") + "/" +
-                                            CDString.getFileName(cd.ISBN + cd.Book.ZTM) + "/" + CDString.getFileName(cdxh) + "/" +
+                                            CDString.getFileName(cd.Book.ISBN + cd.Book.ZTM) + "/" + CDString.getFileName(cdxh) + "/" +
                                             name;
                                 FtpWebRequest request = (FtpWebRequest)WebRequest.Create(check_url);
                                 request.Credentials = new NetworkCredential("reader", "reader");
@@ -75,7 +75,7 @@ namespace CDManager_Dev4
                                     //}
 
                                     string download_url = "ftp://reader:reader@" + XMLHelper.getAppSettingValue("FTP_IP") + "/" +
-                                                   HttpUtility.UrlEncode(CDString.getFileName(cd.ISBN + cd.Book.ZTM), Encoding.GetEncoding("gb2312"))
+                                                   HttpUtility.UrlEncode(CDString.getFileName(cd.Book.ISBN + cd.Book.ZTM), Encoding.GetEncoding("gb2312"))
                                                    + "/" + CDString.getFileName(cdxh) + "/" +
                                                    HttpUtility.UrlEncode(CDString.getFileName(name), Encoding.GetEncoding("gb2312"));
                                     try
@@ -123,7 +123,7 @@ namespace CDManager_Dev4
                             }
                         }
                     }
-                }
+                //}
             }
             else
             {

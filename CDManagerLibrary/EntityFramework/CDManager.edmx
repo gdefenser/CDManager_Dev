@@ -61,7 +61,7 @@
           <Property Name="XB" Type="char" MaxLength="2" />
           <Property Name="YJDW" Type="nvarchar" MaxLength="100" />
           <Property Name="EJDW" Type="nvarchar" MaxLength="100" />
-          <Property Name="BZRQ" Type="date" />
+          <Property Name="BZRQ" Type="datetime" />
           <Property Name="YXRQ" Type="datetime" />
           <Property Name="YY" Type="nvarchar" MaxLength="400" />
           <Property Name="GLYLX" Type="int" Nullable="false" />
@@ -77,13 +77,13 @@
             <PropertyRef Name="SQBH" />
           </Key>
           <Property Name="SQBH" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="BookID" Type="bigint" />
           <Property Name="DZTM" Type="nvarchar" MaxLength="15" />
           <Property Name="SQSJ" Type="datetime" />
           <Property Name="SQZT" Type="int" />
           <Property Name="CLCZY" Type="nvarchar" MaxLength="15" />
           <Property Name="CLSJ" Type="datetime" />
           <Property Name="BZ" Type="nvarchar" MaxLength="200" />
-          <Property Name="ISBN" Type="nvarchar" MaxLength="100" />
           <Property Name="IP" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="BanIP">
@@ -98,8 +98,9 @@
         </EntityType>
         <EntityType Name="Book">
           <Key>
-            <PropertyRef Name="ISBN" />
+            <PropertyRef Name="BookID" />
           </Key>
+          <Property Name="BookID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ISBN" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="ZTM" Type="nvarchar" MaxLength="200" />
           <Property Name="DJ" Type="money" />
@@ -125,8 +126,8 @@
             <PropertyRef Name="CDID" />
           </Key>
           <Property Name="CDID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BookID" Type="bigint" Nullable="false" />
           <Property Name="CDXH" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="ISBN" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="CDMC" Type="nvarchar" MaxLength="200" />
           <Property Name="CDGS" Type="nvarchar" MaxLength="200" />
           <Property Name="CDDX" Type="float" />
@@ -224,10 +225,10 @@
           <End Role="ApplyLog" Type="CDManagerDevModel.Store.ApplyLog" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Book">
-              <PropertyRef Name="ISBN" />
+              <PropertyRef Name="BookID" />
             </Principal>
             <Dependent Role="ApplyLog">
-              <PropertyRef Name="ISBN" />
+              <PropertyRef Name="BookID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -258,16 +259,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CD_Book">
-          <End Role="Book" Type="CDManagerDevModel.Store.Book" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Book" Type="CDManagerDevModel.Store.Book" Multiplicity="1" />
           <End Role="CD" Type="CDManagerDevModel.Store.CD" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Book">
-              <PropertyRef Name="ISBN" />
+              <PropertyRef Name="BookID" />
             </Principal>
             <Dependent Role="CD">
-              <PropertyRef Name="ISBN" />
+              <PropertyRef Name="BookID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -382,7 +381,7 @@
           <Property Name="XB" Type="String" MaxLength="2" Unicode="false" FixedLength="true" />
           <Property Name="YJDW" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="EJDW" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="BZRQ" Type="DateTime" Precision="0" />
+          <Property Name="BZRQ" Type="DateTime" Precision="3" />
           <Property Name="YXRQ" Type="DateTime" Precision="3" />
           <Property Name="YY" Type="String" MaxLength="400" Unicode="true" FixedLength="false" />
           <Property Name="GLYLX" Type="Int32" Nullable="false" />
@@ -401,13 +400,13 @@
             <PropertyRef Name="SQBH" />
           </Key>
           <Property Name="SQBH" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="BookID" Type="Int64" />
           <Property Name="DZTM" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
           <Property Name="SQSJ" Type="DateTime" Precision="3" />
           <Property Name="SQZT" Type="Int32" />
           <Property Name="CLCZY" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
           <Property Name="CLSJ" Type="DateTime" Precision="3" />
           <Property Name="BZ" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="ISBN" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="IP" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Book" Relationship="CDManagerDevModel.FK_ApplyLog_Book" FromRole="ApplyLog" ToRole="Book" />
           <NavigationProperty Name="Reader" Relationship="CDManagerDevModel.FK_ApplyLog_Reader" FromRole="ApplyLog" ToRole="Reader" />
@@ -425,8 +424,9 @@
         </EntityType>
         <EntityType Name="Book">
           <Key>
-            <PropertyRef Name="ISBN" />
+            <PropertyRef Name="BookID" />
           </Key>
+          <Property Name="BookID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ISBN" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="ZTM" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="DJ" Type="Decimal" Precision="19" Scale="4" />
@@ -454,8 +454,8 @@
             <PropertyRef Name="CDID" />
           </Key>
           <Property Name="CDID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookID" Type="Int64" Nullable="false" />
           <Property Name="CDXH" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="ISBN" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="CDMC" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="CDGS" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="CDDX" Type="Double" />
@@ -599,10 +599,10 @@
           <End Role="ApplyLog" Type="CDManagerDevModel.ApplyLog" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Book">
-              <PropertyRef Name="ISBN" />
+              <PropertyRef Name="BookID" />
             </Principal>
             <Dependent Role="ApplyLog">
-              <PropertyRef Name="ISBN" />
+              <PropertyRef Name="BookID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -621,16 +621,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CD_Book">
-          <End Role="Book" Type="CDManagerDevModel.Book" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Book" Type="CDManagerDevModel.Book" Multiplicity="1" />
           <End Role="CD" Type="CDManagerDevModel.CD" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Book">
-              <PropertyRef Name="ISBN" />
+              <PropertyRef Name="BookID" />
             </Principal>
             <Dependent Role="CD">
-              <PropertyRef Name="ISBN" />
+              <PropertyRef Name="BookID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -690,13 +688,13 @@
             <EntityTypeMapping TypeName="CDManagerDevModel.ApplyLog">
               <MappingFragment StoreEntitySet="ApplyLog">
                 <ScalarProperty Name="SQBH" ColumnName="SQBH" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
                 <ScalarProperty Name="DZTM" ColumnName="DZTM" />
                 <ScalarProperty Name="SQSJ" ColumnName="SQSJ" />
                 <ScalarProperty Name="SQZT" ColumnName="SQZT" />
                 <ScalarProperty Name="CLCZY" ColumnName="CLCZY" />
                 <ScalarProperty Name="CLSJ" ColumnName="CLSJ" />
                 <ScalarProperty Name="BZ" ColumnName="BZ" />
-                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
                 <ScalarProperty Name="IP" ColumnName="IP" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -715,6 +713,7 @@
           <EntitySetMapping Name="Book">
             <EntityTypeMapping TypeName="CDManagerDevModel.Book">
               <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
                 <ScalarProperty Name="ISBN" ColumnName="ISBN" />
                 <ScalarProperty Name="ZTM" ColumnName="ZTM" />
                 <ScalarProperty Name="DJ" ColumnName="DJ" />
@@ -742,8 +741,8 @@
             <EntityTypeMapping TypeName="CDManagerDevModel.CD">
               <MappingFragment StoreEntitySet="CD">
                 <ScalarProperty Name="CDID" ColumnName="CDID" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
                 <ScalarProperty Name="CDXH" ColumnName="CDXH" />
-                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
                 <ScalarProperty Name="CDMC" ColumnName="CDMC" />
                 <ScalarProperty Name="CDGS" ColumnName="CDGS" />
                 <ScalarProperty Name="CDDX" ColumnName="CDDX" />

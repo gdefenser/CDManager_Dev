@@ -5,9 +5,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:EntityDataSource ID="edsApplyLogList" runat="server" ConnectionString="name=CDManagerDevEntities" DefaultContainerName="CDManagerDevEntities" EnableFlattening="False"
-        CommandText="select a.ISBN,a.Book.ZTM,a.SQSJ,a.SQZT,a.IP from ApplyLog as a where a.SQSJ in (select value MAX(a2.SQSJ) from ApplyLog as a2 group by a2.ISBN) and a.SQZT = 0" OrderBy="it.SQSJ">
+        CommandText="select a.Book.ISBN,a.Book.ZTM,a.SQSJ,a.SQZT,a.IP from ApplyLog as a where a.SQSJ in (select value MAX(a2.SQSJ) from ApplyLog as a2 group by a2.Book.ISBN) and a.SQZT = 0" OrderBy="it.SQSJ">
     </asp:EntityDataSource>
-    <asp:EntityDataSource ID="edsApplyLogDetail" runat="server" ConnectionString="name=CDManagerDevEntities" DefaultContainerName="CDManagerDevEntities" EnableFlattening="False" EntitySetName="ApplyLog" Where="it.ISBN=@ISBN" Select="it.DZTM,it.Reader.XM,it.SQSJ,it.IP" OrderBy="it.SQSJ">
+    <asp:EntityDataSource ID="edsApplyLogDetail" runat="server" ConnectionString="name=CDManagerDevEntities" DefaultContainerName="CDManagerDevEntities" EnableFlattening="False" EntitySetName="ApplyLog" Where="it.Book.ISBN=@ISBN" Select="it.DZTM,it.Reader.XM,it.SQSJ,it.IP" OrderBy="it.SQSJ">
         <WhereParameters>
             <asp:QueryStringParameter Name="ISBN" QueryStringField="ISBN" DbType="String" />
         </WhereParameters>
@@ -41,7 +41,7 @@
                     <EmptyDataTemplate>
                         <table id="Table1" runat="server" style="background-color: #FFFFFF; border-collapse: collapse; border-color: #5381AC; border-style: solid; border-width: 1px;">
                             <tr>
-                                <td>没有图书</td>
+                                <td>没有光盘申请</td>
                             </tr>
                         </table>
                     </EmptyDataTemplate>

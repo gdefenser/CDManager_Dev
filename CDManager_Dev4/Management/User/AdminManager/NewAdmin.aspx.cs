@@ -53,7 +53,7 @@ namespace CDManager_Dev4.Management.User.AdminManager
                 }
                 else
                 {
-                    if (dropYXRQ.SelectedIndex < 1)
+                    if (CalendarExtenderYXRQ.SelectedDate <= DateTime.Now)
                     {
                         valYXRQ.IsValid = false;
                     }
@@ -61,14 +61,14 @@ namespace CDManager_Dev4.Management.User.AdminManager
                     {
                         string mm = txtMM.Text;
                         if (String.IsNullOrEmpty(mm))
-                        { mm = "000000"; }
+                        { mm = "0000"; }
 
                         string xb = "";
                         if (dropXB.SelectedIndex > 0) { xb = dropXB.SelectedValue; }
 
                         DateTime yxrq = new DateTime();
-                        if (dropYXRQ.SelectedIndex > 0)
-                        { yxrq = DateTime.Now.AddYears(Convert.ToInt16(dropYXRQ.SelectedValue)); }
+                        if (CalendarExtenderYXRQ.SelectedDate > DateTime.Now)
+                        { yxrq = CalendarExtenderYXRQ.SelectedDate; }
 
                         string yjdw = txtYJDW.Text;
                         string ejdw = txtEJDW.Text;
@@ -109,7 +109,7 @@ namespace CDManager_Dev4.Management.User.AdminManager
             txtXM.Text = "";
             txtMM.Text = "";
             dropXB.SelectedIndex = 0;
-            dropYXRQ.SelectedIndex = 0;
+            CalendarExtenderYXRQ.Clear();
             txtYJDW.Text = "";
             txtEJDW.Text = "";
         }

@@ -87,10 +87,13 @@ namespace CDManager_Dev4.Management.User.ReaderManager
             string msg = "";
             try
             {
+                string type = "continue";
+                if (rdoReset.Checked) { type = "reset"; }
+
                 ExcelHelper excel = new ExcelHelper(Page.User.Identity.Name);
                 string path = Server.MapPath("~/Temp/Upload/Reader");
 
-                msg = excel.NewReaderByExcel(path);
+                msg = excel.NewReaderByExcel(path,type);
             }
             catch
             { msg = "导入错误!"; }

@@ -21,8 +21,8 @@ namespace CDManagerLibrary.EntityFramework
         }
     
         public long CDID { get; set; }
+        public long BookID { get; set; }
         public string CDXH { get; set; }
-        public string ISBN { get; set; }
         public string CDMC { get; set; }
         public string CDGS { get; set; }
         public Nullable<double> CDDX { get; set; }

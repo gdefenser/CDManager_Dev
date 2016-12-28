@@ -14,11 +14,28 @@ namespace CDManager_Dev4.Management.CDManager
         {
             if (!IsPostBack)
             {
-                if (String.IsNullOrEmpty(Request.QueryString["ISBN"]))
+                string isbn = Request.QueryString["ISBN"];
+                if (String.IsNullOrEmpty(isbn))
                 { ErrorRedirect_Management(); }
                 else
                 {
-                    btnClick.Attributes.Add("onclick", "javascript:return confirm('你确认要忽略图书:" + ((HyperLink)gvApplyLog.Rows[0].Cells[1].Controls[0]).Text + "(" + gvApplyLog.Rows[0].Cells[0].Text + ")的申请吗?')");
+                    try
+                    {
+                        //DateTime date = cde.ApplyLog.OrderBy(a => a.Book.ISBN == isbn).Max(a => a.SQSJ).Value;
+                        List<ApplyLog> applylist = cde.ApplyLog.Where(a => a.SQZT == 0 && a.Book.ISBN == isbn).ToList();
+                        ApplyLog applylog = applylist.Where(a => a.SQSJ == applylist.Max(a1 => a1.SQSJ)).First();
+                        if (applylog != null)
+                        {
+                            lblISBN.Text = applylog.Book.ISBN;
+                            linkZTM.Text = applylog.Book.ZTM;
+                            linkZTM.NavigateUrl = "~/Management/CDManager/CDDetail.aspx?ISBN=" + applylog.Book.ISBN;
+                            linkApply.Text = applylist.Count.ToString();
+                            linkApply.NavigateUrl = "~/Management/CDManager/ApplyLogList.aspx?ISBN=" + applylog.Book.ISBN;
+                            lblSQSJ.Text = applylog.SQSJ.ToString();
+                        }
+                    }
+                    catch { }
+                    //btnClick.Attributes.Add("onclick", "javascript:return confirm('你确认要忽略图书:" + ((HyperLink)gvApplyLog.Rows[0].Cells[1].Controls[0]).Text + "(" + gvApplyLog.Rows[0].Cells[0].Text + ")的申请吗?')");
                 }
             }
         }
@@ -33,7 +50,7 @@ namespace CDManager_Dev4.Management.CDManager
                     LiteralControl lite = (LiteralControl)e.Row.Cells[2].Controls[0];
                     HyperLink linkCountApply = (HyperLink)lite.FindControl("linkCountApply");
                     string isbn = e.Row.Cells[0].Text;
-                    linkCountApply.Text = cde.ApplyLog.Count(a => a.ISBN == isbn && a.SQZT == 0).ToString();
+                    linkCountApply.Text = cde.ApplyLog.Count(a => a.Book.ISBN == isbn && a.SQZT == 0).ToString();
                 }
             }
         }
@@ -43,7 +60,7 @@ namespace CDManager_Dev4.Management.CDManager
             try
             {
                 string isbn = Request.QueryString["ISBN"];
-                List<ApplyLog> list = cde.ApplyLog.Where(a => a.ISBN == isbn && a.SQZT == 0).ToList();
+                List<ApplyLog> list = cde.ApplyLog.Where(a => a.Book.ISBN == isbn && a.SQZT == 0).ToList();
                 List<string> listMsg = new List<string>();
                 foreach (ApplyLog apply in list)
                 {
@@ -74,7 +91,7 @@ namespace CDManager_Dev4.Management.CDManager
                     listMsg.Add(id);
                     CDManagerLibrary.EntityFramework.Message new_msg = new CDManagerLibrary.EntityFramework.Message();
 
-                    string msg = "抱歉,你的" + apply.Book.ZTM + "(" + apply.ISBN + ")光盘资源上传资源被管理员拒绝了";
+                    string msg = "抱歉,你的" + apply.Book.ZTM + "(" + apply.Book.ISBN + ")光盘资源上传资源被管理员拒绝了";
                     if (dropMessage.SelectedIndex > 0)
                     {
                         if (dropMessage.SelectedIndex == 3)

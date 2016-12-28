@@ -16,16 +16,10 @@ namespace CDManager_Dev4.Management.User.AdminManager
         string roles;
         protected void Page_Load(object sender, EventArgs e)
         {
-            var ticket = Context.User.Identity as FormsIdentity;
-            if (ticket != null && ticket.IsAuthenticated)
+            roles = GetUserRole();
+            if (roles != "3")
             {
-                string[] data = ticket.Ticket.UserData.Split(',');
-                roles = data[0];
-
-                if (roles != "3")
-                {
-                    AuthenticationError();
-                }
+                AuthenticationError();
             }
         }
         //删除操作

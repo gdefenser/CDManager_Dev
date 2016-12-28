@@ -17,7 +17,7 @@ namespace CDManager_Dev4.Management.User.ReaderManager
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (now.Month < 7) { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "click", "alert('不能在毕业生离校前进行此操作');window.history.back(-1);", true); }
+            if (now.Month <= 6) { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "click", "alert('不能在毕业生离校前进行此操作');window.history.back(-1);", true); }
             else
             {
                 string where = "(it.DZLX='专科生' or it.DZLX='本科生') and (Substring(it.DZTM,1,3)='" + y1 + "4' or Substring(it.DZTM,1,3)='" + y2 + "3')";
@@ -30,8 +30,8 @@ namespace CDManager_Dev4.Management.User.ReaderManager
                         && (r.DZTM.Substring(0, 3) == y1 + "4" || r.DZTM.Substring(0, 3) == y2 + "3"));
                     if (count > 0) { btnDelete.Enabled = true; }
                     lblTitle.Text = now.Year + "届毕业生读者注销";
-                    lblWarning.Text = "注意!以下" + count + "位学生用户一经删除即无法恢复,请谨慎操作!";
-                    btnDelete.Attributes.Add("onclick", "javascript:return confirm('你确认要删除这些读者用户吗?')");
+                    lblWarning.Text = "注意!以下" + count + "位学生用户一经注销即无法恢复,请谨慎操作!";
+                    btnDelete.Attributes.Add("onclick", "javascript:return confirm('你确认要注销这些读者用户吗?')");
                 }
             }
         }

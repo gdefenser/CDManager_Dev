@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using CDManagerLibrary.EntityFramework;
 using CDManagerLibrary.Core;
 using System.Drawing;
+using System.Web.Security;
 
 
 namespace CDManager_Dev4.Resources.Masters
@@ -67,6 +68,19 @@ namespace CDManager_Dev4.Resources.Masters
                 lblLogin.Text = "已登录";
                 lblLogin.ForeColor = Color.Green;
                 lblLogin.Font.Bold = false;
+
+                var ticket = Context.User.Identity as FormsIdentity;
+                string[] data = ticket.Ticket.UserData.Split(',');
+                string roles = data[0];
+                if (roles == "1")
+                {
+                    lblApply.Visible = true;
+                    lblDownload.Visible = true;
+                    linkApply.Text = cde.ApplyLog.Count(a => a.DZTM == Page.User.Identity.Name).ToString();
+                    linkApply.NavigateUrl = "~/Account/Profile/MyApply.aspx";
+                    linkDownload.Text = cde.DownloadLog.Count(d => d.CZYTM == Page.User.Identity.Name).ToString();
+                    linkDownload.NavigateUrl = "~/Account/Profile/MyDownload.aspx";
+                }
             }
         }
 

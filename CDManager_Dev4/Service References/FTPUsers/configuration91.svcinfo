@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="0d6bYbmU7RHUHjSQm9bmMAXEutg=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="wuHvPFUzndl6zg99StGd6iRFBXw=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="FTPUsersSoap">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="FTPUsersSoap" contract="FTPUsers.FTPUsersSoap" bindingType="basicHttpBinding" address="http://172.16.4.190/User/FTPUsers.asmx" bindingConfiguration="FTPUsersSoap">
+    <endpoint name="FTPUsersSoap" contract="FTPUsers.FTPUsersSoap" bindingType="basicHttpBinding" address="http://localhost:8013/User/FTPUsers.asmx" bindingConfiguration="FTPUsersSoap">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://172.16.4.190/User/FTPUsers.asmx</serializedValue>
+          <serializedValue>http://localhost:8013/User/FTPUsers.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

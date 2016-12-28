@@ -1,0 +1,202 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Management.master.cs"
+    Inherits="CDManager_Dev4.Resources.Masters.Management" %>
+
+<%@ Register Src="../UserControl/LoginManager.ascx" TagName="LoginManager" TagPrefix="uc1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <p>
+    </p>
+    <link href="<%=ResolveClientUrl("~/Resources/Styles/ManagementMaster.css")%>" rel="stylesheet" type="text/css" />
+    <link href="<%=ResolveClientUrl("~/Resources/Styles/Management.css")%>" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="<%=ResolveClientUrl("~/Resources/Scripts/jquery-1.8.0.min.js")%>"></script>
+    <script type="text/javascript" src="<%=ResolveClientUrl("~/Resources/Scripts/clock.js")%>"></script>
+    <script type="text/javascript" src="<%=ResolveClientUrl("~/Resources/Scripts/management_menu.js")%>"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager" runat="server" AsyncPostBackTimeout="0">
+        </asp:ScriptManager>
+        <div>
+            <table class="page">
+                <tr>
+                    <td style="vertical-align: top">
+                        <div id="header">
+                            <div class="title">
+                                <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"
+                                    width="380" height="60" style="padding-left: 10px">
+                                    <param name="movie" value="<%=ResolveClientUrl("~/Resources/Images/logo.swf")%>">
+                                    <param name="quality" value="high">
+                                    <param name="scale" value="exactfit">
+                                    <embed src="<%=ResolveClientUrl("~/Resources/Images/logo.swf")%>" width="380" height="70"
+                                        quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash"
+                                        scale="exactfit"></embed>
+                                </object>
+                                <img runat="server" src="../Images/text.png" />
+                            </div>
+                            <div id="login_manager">
+                                <uc1:LoginManager ID="LoginManager" runat="server" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top; height: 100%;">
+                        <div id="main">
+                            <div id="headmenu">
+                                <div id="maintitle">
+                                    <b>
+                                        <asp:HyperLink ID="linkMain" runat="server" NavigateUrl="~/Management/Main.aspx">管理后台</asp:HyperLink></b>
+                                </div>
+                                <div id="title_clock">
+                                    <span id="clock_show" style="color: #FFFFFF;"></span>
+                                </div>
+                            </div>
+                            <hr />
+                            <table style="border: 1px solid #CCCCCC; height: auto; width: 100%;">
+                                <tr>
+                                    <td style="vertical-align: top; height: 750px;">
+                                        <table id="leftmenu">
+                                            <tr>
+                                                <td>
+                                                    <div id="menu">
+                                                        <div id="all_title" class="leftmenu_title" style="margin-top: 5px; margin-bottom: 5px; width: 100px; margin-left: 45px; display: none">
+                                                            <span id="all_titleimg">◇</span>全部打开
+                                                        </div>
+                                                        <asp:Panel ID="panelSystem" runat="server" Visible="false">
+                                                            <div id="system_title" class="leftmenu_title">
+                                                                <span id="system_titleimg">◇</span>系统管理
+                                                            </div>
+                                                            <div id="system_item" class="leftmenu_item">
+                                                                <ul>
+                                                                    <li>
+                                                                        <asp:HyperLink ID="linkSystemManagement" runat="server" NavigateUrl="~/Management/Sys/SystemManagement.aspx">系统信息与维护</asp:HyperLink></li>
+                                                                    <%--<li>
+                                                                        <asp:HyperLink ID="linkFTPIni" runat="server" NavigateUrl="~/Management/Sys/FTPIni.aspx">光盘FTP服务器配置</asp:HyperLink></li>
+                                                                    <li></li>--%>
+                                                                </ul>
+                                                            </div>
+                                                        </asp:Panel>
+                                                        <div id="msg_title" class="leftmenu_title">
+                                                            <span id="msg_titleimg">◇</span>公告与消息管理
+                                                        </div>
+                                                        <div id="msg_item" class="leftmenu_item">
+                                                            <ul>
+                                                                <li>
+                                                                    <asp:HyperLink ID="linkNewNotice" runat="server" NavigateUrl="~/Management/Message/NewNotice.aspx">新建公告与教程</asp:HyperLink></li>
+                                                                <li>
+                                                                    <asp:HyperLink ID="linkNoriceManagement" runat="server" NavigateUrl="~/Management/Message/NoticeManagement.aspx">公告与教程管理</asp:HyperLink></li>
+                                                                <hr />
+                                                                <hr />
+                                                                <li>
+                                                                    <asp:HyperLink ID="linkNewMessage" runat="server" NavigateUrl="~/Management/Message/NewMessage.aspx">发送新消息</asp:HyperLink></li>
+                                                                <li>
+                                                                    <asp:HyperLink ID="linkReceivedMessage" runat="server" NavigateUrl="~/Management/Message/ReceivedMessage.aspx">收信箱</asp:HyperLink></li>
+                                                                <li>
+                                                                    <asp:HyperLink ID="linkSendedMessage" runat="server" NavigateUrl="~/Management/Message/SendedMessage.aspx">发信箱</asp:HyperLink></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div id="book_title" class="leftmenu_title">
+                                                            <span id="book_titleimg">◇</span>图书与光盘管理
+                                                        </div>
+                                                        <div id="book_item" class="leftmenu_item">
+                                                            <ul>
+                                                                <li>
+                                                                    <asp:HyperLink ID="linkNewBookByExcel" runat="server" NavigateUrl="~/Management/BookManager/NewBookByExcel.aspx">导入图书信息</asp:HyperLink></li>
+                                                                <li>
+                                                                    <asp:HyperLink ID="linkNewBook" runat="server" NavigateUrl="~/Management/BookManager/NewBook.aspx">新建图书</asp:HyperLink></li>
+                                                                <li>
+                                                                    <asp:HyperLink ID="linkBookManagement" runat="server" NavigateUrl="~/Management/BookManager/BookManagement.aspx">图书管理</asp:HyperLink></li>
+                                                                <hr />
+                                                                <hr />   
+                                                                <li>
+                                                                    <asp:HyperLink ID="linkNewCDByExcel" runat="server" NavigateUrl="~/Management/CDManager/NewCDByExcel.aspx">导入光盘信息</asp:HyperLink></li>
+                                                                <li>
+                                                                    <asp:HyperLink ID="linkApplyLogList" runat="server" NavigateUrl="~/Management/CDManager/ApplyLogList.aspx">申请处理</asp:HyperLink></li>                                                         
+                                                                <li>
+                                                                    <asp:HyperLink ID="linkUploaded" runat="server" NavigateUrl="~/Management/CDManager/UploadedCD.aspx">未确认光盘管理</asp:HyperLink></li>
+                                                                <li>
+                                                                    <asp:HyperLink ID="linkCDOnline" runat="server" NavigateUrl="~/Management/CDManager/CDOnline.aspx">在线光盘资源管理</asp:HyperLink></li>
+                                                                <li>
+                                                                    <asp:HyperLink ID="linkCDStatistics" runat="server" NavigateUrl="~/Management/CDManager/CDStatistics.aspx">光盘库统计</asp:HyperLink></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div id="user_title" class="leftmenu_title">
+                                                            <span id="user_titleimg">◇</span>用户管理
+                                                        </div>
+                                                        <div id="user_item" class="leftmenu_item">
+                                                            <ul>
+                                                                <asp:Panel ID="panelNewAdmin" runat="server" Visible="false">
+                                                                    <li>
+                                                                        <asp:HyperLink ID="linkNewAdmin" runat="server" NavigateUrl="~/Management/User/AdminManager/NewAdmin.aspx">新建管理员</asp:HyperLink></li>
+                                                                </asp:Panel>
+                                                                <asp:Panel ID="panelAdminManagement" runat="server" Visible="false">
+                                                                    <li>
+                                                                        <asp:HyperLink ID="linkAdminManagement" runat="server" NavigateUrl="~/Management/User/AdminManager/AdminManagement.aspx">管理员管理</asp:HyperLink></li>
+                                                                </asp:Panel>
+                                                                <li>
+                                                                    <asp:HyperLink ID="linkAdminStatistics" runat="server" NavigateUrl="~/Management/User/AdminManager/AdminStatistics.aspx">管理员管理统计</asp:HyperLink>
+                                                                </li>
+                                                                <hr />
+                                                                <hr />
+                                                                <li>
+                                                                    <asp:HyperLink ID="linkNewReaderByExcel" runat="server" NavigateUrl="~/Management/User/ReaderManager/NewReaderByExcel.aspx">导入读者信息</asp:HyperLink></li>
+                                                                <li>
+                                                                    <asp:HyperLink ID="linkNewReader" runat="server" NavigateUrl="~/Management/User/ReaderManager/NewReader.aspx">新建读者</asp:HyperLink></li>
+                                                                <li>
+                                                                    <asp:HyperLink ID="linkReaderManagement" runat="server" NavigateUrl="~/Management/User/ReaderManager/ReaderManagement.aspx">读者管理</asp:HyperLink></li>
+                                                                <li>
+                                                                    <asp:HyperLink ID="linkApplyAndDownload" runat="server" NavigateUrl="~/Management/User/ReaderManager/ApplyAndDownload.aspx">读者申请与下载统计</asp:HyperLink></li>
+                                                                <li>
+                                                                    <asp:HyperLink ID="linkDownloadLog" runat="server" NavigateUrl="~/Management/User/ReaderManager/DownloadLogList.aspx">读者下载日志</asp:HyperLink></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div id="security_title" class="leftmenu_title">
+                                                            <span id="security_titleimg">◇</span>安全管理
+                                                        </div>
+                                                        <div id="security_item" class="leftmenu_item">
+                                                            <ul>
+                                                                <li>
+                                                                    <asp:HyperLink ID="linkBanIP" runat="server" NavigateUrl="~/Management/Security/BanIPManagement.aspx">禁止IP</asp:HyperLink></li>
+                                                                <li>
+                                                                    <asp:HyperLink ID="linkBanReader" runat="server" NavigateUrl="~/Management/Security/BanReaderManagement.aspx">禁止读者登录</asp:HyperLink>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td style="height: 100%; width: 92%; vertical-align: top;">
+                                        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top;">
+                        <hr />
+                        <div id="footer">
+                            <div id="msg">
+                                <div style="padding-top: 12px; padding-left: 5px">
+                                    为了您有更好的使用体验,建议使用IE/傲游/世界之窗/360/搜狗/TT等浏览器浏览此站点
+                                </div>
+                                <div style="float: right; margin-top: -30px;">
+                                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;© 广州大学华软软件学院图书馆<br />
+                                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;技术支持:软件工程系
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>

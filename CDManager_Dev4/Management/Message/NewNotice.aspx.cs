@@ -92,7 +92,7 @@ namespace CDManager_Dev4.Management.Message
                                             Directory.CreateDirectory(path);
                                         }
                                         FileUpload.SaveAs(path + "//" + fname);
-                                        fj = !fj;
+                                        fj = true;
                                     }
                                 }
                             }

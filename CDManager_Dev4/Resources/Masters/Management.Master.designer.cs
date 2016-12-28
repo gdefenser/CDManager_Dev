@@ -76,6 +76,15 @@ namespace CDManager_Dev4.Resources.Masters {
         protected global::System.Web.UI.WebControls.HyperLink linkSystemManagement;
         
         /// <summary>
+        /// linkFeedbackCheck 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink linkFeedbackCheck;
+        
+        /// <summary>
         /// linkNewNotice 控件。
         /// </summary>
         /// <remarks>
@@ -148,6 +157,15 @@ namespace CDManager_Dev4.Resources.Masters {
         protected global::System.Web.UI.WebControls.HyperLink linkBookManagement;
         
         /// <summary>
+        /// linkNewCDByExcel 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink linkNewCDByExcel;
+        
+        /// <summary>
         /// linkApplyLogList 控件。
         /// </summary>
         /// <remarks>
@@ -157,13 +175,13 @@ namespace CDManager_Dev4.Resources.Masters {
         protected global::System.Web.UI.WebControls.HyperLink linkApplyLogList;
         
         /// <summary>
-        /// linkNewCDByExcel 控件。
+        /// linkUploaded 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink linkNewCDByExcel;
+        protected global::System.Web.UI.WebControls.HyperLink linkUploaded;
         
         /// <summary>
         /// linkCDOnline 控件。
@@ -182,6 +200,15 @@ namespace CDManager_Dev4.Resources.Masters {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink linkCDStatistics;
+        
+        /// <summary>
+        /// linkDownloadLog 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink linkDownloadLog;
         
         /// <summary>
         /// panelNewAdmin 控件。

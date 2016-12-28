@@ -21,11 +21,13 @@ namespace CDManager_Dev4.Resources.Masters
                 { Response.Cache.SetCacheability(System.Web.HttpCacheability.NoCache); }
                 else
                 { Response.Cache.SetNoStore(); }
+
                 var ticket = Context.User.Identity as FormsIdentity;
                 if (ticket != null && ticket.IsAuthenticated)
                 {
                     string[] data = ticket.Ticket.UserData.Split(',');
                     string roles = data[0];
+
                     if (roles == "3")
                     {
                         panelNewAdmin.Visible = true;
@@ -33,8 +35,6 @@ namespace CDManager_Dev4.Resources.Masters
                         panelSystem.Visible = true;
                     }
                 }
-
-
             }
         }
     }

@@ -76,13 +76,13 @@ namespace CDManager_Dev4.Management.CDManager {
         protected global::System.Web.UI.WebControls.Label lblMouthApply;
         
         /// <summary>
-        /// lblMouthDownload 控件。
+        /// linkMouthDownload 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMouthDownload;
+        protected global::System.Web.UI.WebControls.HyperLink linkMouthDownload;
         
         /// <summary>
         /// chartCD 控件。

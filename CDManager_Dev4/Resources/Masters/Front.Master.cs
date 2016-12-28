@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CDManagerLibrary.XML;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,7 @@ namespace CDManager_Dev4.Resources.Masters
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void timer_Tick(object sender, EventArgs e)

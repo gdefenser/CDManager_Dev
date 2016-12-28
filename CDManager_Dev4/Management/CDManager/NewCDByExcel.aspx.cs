@@ -82,10 +82,13 @@ namespace CDManager_Dev4.Management.CDManager
             string msg = "";
             try
             {
+                string type = "continue";
+                if (rdoReset.Checked) { type = "reset"; }
+
                 ExcelHelper excel = new ExcelHelper(Page.User.Identity.Name);
                 string path = Server.MapPath("~/Temp/Upload/CD");
 
-                msg = excel.NewCDByExcel(path);
+                msg = excel.NewCDByExcel(path, type);
             }
             catch
             { msg = "导入错误!"; }

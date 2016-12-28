@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="6906d712-d3f9-4f4e-b7fe-a658df4ed010" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="bc859da7-d51f-44c1-ab6f-b01acdfabdeb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -18,11 +18,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://172.16.4.190/CD/CDFile.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:8013/CD/CDFile.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="CDFile.wsdl" MetadataType="Wsdl" ID="23ddb0b4-1fc4-487c-bf54-5e63df741b39" SourceId="1" SourceUrl="http://172.16.4.190/CD/CDFile.asmx?wsdl" />
-    <MetadataFile FileName="CDFile.disco" MetadataType="Disco" ID="6b224f2b-d704-428f-a835-1d94b1c06086" SourceId="1" SourceUrl="http://172.16.4.190/CD/CDFile.asmx?disco" />
+    <MetadataFile FileName="CDFile.disco" MetadataType="Disco" ID="37917f0e-97e4-4792-9daf-e3223a2688ae" SourceId="1" SourceUrl="http://localhost:8013/CD/CDFile.asmx?disco" />
+    <MetadataFile FileName="CDFile.wsdl" MetadataType="Wsdl" ID="6076d836-3256-4926-a7ef-de0cb16557ce" SourceId="1" SourceUrl="http://localhost:8013/CD/CDFile.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

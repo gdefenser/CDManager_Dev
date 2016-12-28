@@ -5,11 +5,14 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CDManagerLibrary.EntityFramework;
+using System.Web.Security;
+using System.Data.Entity.Validation;
 
 namespace CDManagerLibrary.Core
 {
     public class CDPages : System.Web.UI.Page
     {
+        protected static string CLICK = "click";
         protected CDManagerDevEntities cde;
         public CDPages() { cde = CDManagerEntitiesSingleton.GetCDManagerDevEntities(); }
         //禁用缓存
@@ -19,10 +22,33 @@ namespace CDManagerLibrary.Core
         //    base.OnLoad(e);
         //}
 
+        protected string GetUserRole()
+        {
+            try
+            {
+                var ticket = Context.User.Identity as FormsIdentity;
+                if (ticket != null && ticket.IsAuthenticated)
+                {
+                    string[] data = ticket.Ticket.UserData.Split(',');
+                    return data[0];
+                }
+                else { return null; }
+            }
+            catch
+            {
+                return null;             
+            }
+        }
+
         protected void SaveAndRedirect_Management()
         {
-            if (cde.SaveChanges() > 0) { SuccessRedirect_Management(false); }
-            else { ErrorRedirect_Management(false); }
+            try
+            {
+                if (cde.SaveChanges() > 0) { SuccessRedirect_Management(false); }
+                else { ErrorRedirect_Management(false); }
+            }
+            catch (DbEntityValidationException e)
+            { ErrorRedirect_Management(false); }
         }
 
 

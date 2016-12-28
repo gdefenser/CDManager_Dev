@@ -11,6 +11,10 @@ namespace CDManager_Dev4.Management.User.ReaderManager
 {
     public partial class ReaderManagement : CDPages
     {
+        string dztm;
+        string dzlx;
+        string yjdw;
+        string ejdw;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -24,7 +28,7 @@ namespace CDManager_Dev4.Management.User.ReaderManager
                 }
 
                 DateTime now = DateTime.Now;
-                if (now.Month > 6)
+                if (now.Month >= 6)
                 {
                     btnReaderDelete.Visible = true;
                     btnReaderDelete.Text = now.Year + "届毕业生读者注销";
@@ -36,8 +40,8 @@ namespace CDManager_Dev4.Management.User.ReaderManager
                 //}              
             }
 
-            string dztm = Server.UrlDecode(Request.QueryString["DZTM"]);
-            string dzlx = Server.UrlDecode(Request.QueryString["DZLX"]);
+            dztm = Server.UrlDecode(Request.QueryString["DZTM"]);
+            dzlx = Server.UrlDecode(Request.QueryString["DZLX"]);
             if (!String.IsNullOrEmpty(dztm) || !String.IsNullOrEmpty(dzlx))
             {
                 string where = "";
@@ -89,7 +93,7 @@ namespace CDManager_Dev4.Management.User.ReaderManager
                             }
                             catch { }
                         }
-                        string yjdw = Server.UrlDecode(Request.QueryString["YJDW"]);
+                        yjdw = Server.UrlDecode(Request.QueryString["YJDW"]);
                         if (!String.IsNullOrEmpty(yjdw))
                         {
                             if (!IsPostBack)
@@ -99,7 +103,7 @@ namespace CDManager_Dev4.Management.User.ReaderManager
                             }
                             where += " and it.YJDW='" + yjdw + "'";
                         }
-                        string ejdw = Server.UrlDecode(Request.QueryString["EJDW"]);
+                        ejdw = Server.UrlDecode(Request.QueryString["EJDW"]);
                         if (!String.IsNullOrEmpty(ejdw))
                         {
                             if (!IsPostBack)
@@ -115,7 +119,7 @@ namespace CDManager_Dev4.Management.User.ReaderManager
                             trOther.Visible = true;
                             BindOther(dzlx);
                         }
-                        string yjdw = Server.UrlDecode(Request.QueryString["YJDW"]);
+                        yjdw = Server.UrlDecode(Request.QueryString["YJDW"]);
                         if (!String.IsNullOrEmpty(yjdw))
                         {
                             if (!IsPostBack)
@@ -125,7 +129,7 @@ namespace CDManager_Dev4.Management.User.ReaderManager
                             }
                             where += " and it.YJDW='" + yjdw + "'";
                         }
-                        string ejdw = Server.UrlDecode(Request.QueryString["EJDW"]);
+                        ejdw = Server.UrlDecode(Request.QueryString["EJDW"]);
                         if (!String.IsNullOrEmpty(ejdw))
                         {
                             if (!IsPostBack)
@@ -134,6 +138,8 @@ namespace CDManager_Dev4.Management.User.ReaderManager
                         }
                     }
                 }
+                btnDelete.Attributes.Add("onclick", "javascript:return confirm('你确认要注销本列表的读者吗?')");
+                btnDelete.Visible = true;
                 lvReader.Visible = true;
                 edsReader.Where = where;
                 lvReader.DataBind();
@@ -370,13 +376,56 @@ namespace CDManager_Dev4.Management.User.ReaderManager
                 ListViewDataItem dataItem = (ListViewDataItem)e.Item;
                 HyperLink linkDZTM = (HyperLink)dataItem.FindControl("linkDZTM");
                 Button btn = (Button)dataItem.FindControl("btnDelete");
-                btn.Attributes.Add("onclick", "javascript:return confirm('你确认要删除图书:" + linkDZTM.Text + "吗?')");
+                btn.Attributes.Add("onclick", "javascript:return confirm('你确认要注销读者:" + linkDZTM.Text + "吗?')");
             }
         }
 
         protected void btnReaderDelete_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Management/User/ReaderManager/ReaderDelete.aspx");
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (Request.QueryString.Count > 0)
+            {
+                List<Reader> listReader = cde.Reader.ToList();
+                int all_count = listReader.Count;
+                if (!String.IsNullOrEmpty(dztm))
+                { listReader = listReader.Where(r => r.DZTM.Contains(dztm)).ToList(); }
+
+                if (!String.IsNullOrEmpty(dzlx))
+                { listReader = listReader.Where(r => r.DZLX == dzlx).ToList(); }
+
+                if (!String.IsNullOrEmpty(yjdw))
+                { listReader = listReader.Where(r => r.YJDW == yjdw).ToList(); }
+
+                if (!String.IsNullOrEmpty(ejdw))
+                { listReader = listReader.Where(r => r.EJDW == ejdw).ToList(); }
+
+                string result = "";
+                if (listReader.Count == 0)
+                { result = "删除列表为空!"; }
+                else if (all_count == listReader.Count)
+                { result = "查询条件错误!"; }
+                else if (all_count > 0 && listReader.Count > 0)
+                {
+                    int count = 0;
+                    try
+                    {
+                        foreach (Reader reader in listReader)
+                        {
+                            cde.Reader.Remove(reader);
+                        }
+                        count = cde.SaveChanges();
+                        result = "成功注销" + count + "条读者信息";
+                    }
+                    catch
+                    { result = "注销错误!"; }
+                }
+
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "click", "alert('" + result + "');location.href='ReaderManagement.aspx';", true);
+            }
         }
     }
 }

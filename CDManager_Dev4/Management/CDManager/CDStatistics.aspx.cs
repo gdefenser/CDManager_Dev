@@ -20,6 +20,11 @@ namespace CDManager_Dev4.Management.CDManager
             {
                 try
                 {
+                    string begin = DateTime.Now.Year + "-" + DateTime.Now.Month + "-1";
+                    string end = DateTime.Now.Year + "-"
+                        + DateTime.Now.Month + "-"
+                        + DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month).ToString();
+                    linkMouthDownload.NavigateUrl = "/Management/CDManager/DownloadLogList.aspx?from=" + begin + "&to=" + end;
                     List<ApplyLog> listApply = cde.ApplyLog.ToList();
                     List<DownloadLog> listDownload = cde.DownloadLog.ToList();
                     BindBaseMsg(listApply, listDownload);
@@ -47,7 +52,7 @@ namespace CDManager_Dev4.Management.CDManager
             linkApply.Text = listApply.Count.ToString();
             linkDownload.Text = listDownload.Count.ToString();
             lblMouthApply.Text = listApply.Count(a => a.SQSJ.Value.Year == DateTime.Now.Year && a.SQSJ.Value.Month == DateTime.Now.Month).ToString();
-            lblMouthDownload.Text = listDownload.Count(d => d.XZSJ.Value.Year == DateTime.Now.Year && d.XZSJ.Value.Month == DateTime.Now.Month).ToString();
+            linkMouthDownload.Text = listDownload.Count(d => d.XZSJ.Value.Year == DateTime.Now.Year && d.XZSJ.Value.Month == DateTime.Now.Month).ToString();
         }
         //绑定条形图数据
         private void BindChart(List<ApplyLog> listApply, List<DownloadLog> listDownload)
@@ -144,7 +149,7 @@ namespace CDManager_Dev4.Management.CDManager
             lblBanCount.Text = (listApply.Count(a => a.SQZT == 2) / Convert.ToDouble(listApply.Count) * 100).ToString("f2") + "%";
 
             //最多申请资源
-            var listMaxApply = listApply.GroupBy(a1 => a1.ISBN).OrderBy(a2 => a2.Count(a => a.ISBN != null));
+            var listMaxApply = listApply.GroupBy(a1 => a1.Book.ISBN).OrderBy(a2 => a2.Count(a => a.Book.ISBN != null));
             if (listMaxApply.Count() < 1)
             { linkMaxApply.Text = "没有申请记录"; }
             else
@@ -161,7 +166,7 @@ namespace CDManager_Dev4.Management.CDManager
             //本月最多申请资源
             var listMouthMaxApply = listApply.Where(a1 => a1.SQSJ.Value.Year == DateTime.Now.Year &&
                     a1.SQSJ.Value.Month == DateTime.Now.Month)
-                    .GroupBy(a1 => a1.ISBN).OrderBy(a2 => a2.Count(a => a.ISBN != null));
+                    .GroupBy(a1 => a1.Book.ISBN).OrderBy(a2 => a2.Count(a => a.Book.ISBN != null));
 
             if (listMouthMaxApply.Count() < 1)
             { linkMouthMaxApply.Text = "本月没有申请记录"; }
@@ -243,7 +248,7 @@ namespace CDManager_Dev4.Management.CDManager
                 else
                 { linkNewlyApply.Text = newly_apply.Book.ZTM; }
                 linkNewlyApply.ToolTip = newly_apply.Book.ZTM;
-                linkNewlyApply.NavigateUrl = "~/Management/CDManager/CDDetail.aspx?ISBN=" + newly_apply.ISBN;
+                linkNewlyApply.NavigateUrl = "~/Management/CDManager/CDDetail.aspx?ISBN=" + newly_apply.Book.ISBN;
             }
             catch { linkNewlyApply.Text = "没有人申请资源"; }
         }
@@ -251,7 +256,7 @@ namespace CDManager_Dev4.Management.CDManager
         private void BindDownloadLog(List<ApplyLog> listApply, List<DownloadLog> listDownload)
         {
             //最多下载资源
-            var listMaxDownload = listDownload.GroupBy(d1 => d1.CD.ISBN).OrderBy(a2 => a2.Count(d3 => d3.CD.ISBN != null));
+            var listMaxDownload = listDownload.GroupBy(d1 => d1.CD.Book.ISBN).OrderBy(a2 => a2.Count(d3 => d3.CD.Book.ISBN != null));
             if (listMaxDownload.Count() < 1)
             { linkMaxDownload.Text = "没有下载记录"; }
             else
@@ -262,13 +267,13 @@ namespace CDManager_Dev4.Management.CDManager
                 else
                 { linkMaxDownload.Text = max_download.CD.Book.ZTM; }
                 linkMaxDownload.ToolTip = max_download.CD.Book.ZTM;
-                linkMaxDownload.NavigateUrl = "~/Management/CDManager/CDDetail.aspx?ISBN=" + max_download.CD.ISBN;
+                linkMaxDownload.NavigateUrl = "~/Management/CDManager/CDDetail.aspx?ISBN=" + max_download.CD.Book.ISBN;
             }
 
             //本月最多下载资源
             var listMouthMaxDownload = listDownload.Where(d1 => d1.XZSJ.Value.Year == DateTime.Now.Year &&
                     d1.XZSJ.Value.Month == DateTime.Now.Month)
-                    .GroupBy(d2 => d2.CD.ISBN).OrderBy(d3 => d3.Count(d4 => d4.CD.ISBN != null));
+                    .GroupBy(d2 => d2.CD.Book.ISBN).OrderBy(d3 => d3.Count(d4 => d4.CD.Book.ISBN != null));
             if (listMouthMaxDownload.Count() < 1)
             { linkMouthMaxDownload.Text = "本月没有下载记录"; }
             else
@@ -279,7 +284,7 @@ namespace CDManager_Dev4.Management.CDManager
                 else
                 { linkMouthMaxDownload.Text = mouth_max_download.CD.Book.ZTM; }
                 linkMouthMaxDownload.ToolTip = mouth_max_download.CD.Book.ZTM;
-                linkMouthMaxDownload.NavigateUrl = "~/Management/CDManager/CDDetail.aspx?ISBN=" + mouth_max_download.CD.ISBN;
+                linkMouthMaxDownload.NavigateUrl = "~/Management/CDManager/CDDetail.aspx?ISBN=" + mouth_max_download.CD.Book.ISBN;
             }
 
             //最近下载资源
@@ -291,7 +296,7 @@ namespace CDManager_Dev4.Management.CDManager
                 else
                 { linkNewlyDownload.Text = newly_download.CD.Book.ZTM; }
                 linkNewlyDownload.ToolTip = newly_download.CD.Book.ZTM;
-                linkNewlyDownload.NavigateUrl = "~/Management/CDManager/CDDetail.aspx?ISBN=" + newly_download.CD.ISBN;
+                linkNewlyDownload.NavigateUrl = "~/Management/CDManager/CDDetail.aspx?ISBN=" + newly_download.CD.Book.ISBN;
             }
             catch { linkNewlyDownload.Text = "没有资源被下载"; }
 

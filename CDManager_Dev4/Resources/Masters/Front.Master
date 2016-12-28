@@ -61,6 +61,9 @@
                                         <td>
                                             <asp:HyperLink ID="linkHelp" runat="server" NavigateUrl="~/Help.aspx" Font-Bold="True">快速上手指引</asp:HyperLink>
                                         </td>
+                                        <td>
+                                            <asp:HyperLink ID="linkFeedback" runat="server" NavigateUrl="~/Feedback.aspx" Font-Bold="True" ForeColor="#660033">用户体验调查与意见反馈</asp:HyperLink>
+                                        </td>
                                     </tr>
                                 </table>
                                 <div id="title_clock" style="color: #FFFFFF;">
